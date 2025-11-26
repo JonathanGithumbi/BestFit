@@ -1,3 +1,8 @@
+using BestFit.Domain.Entities;
+using BestFit.Infrastructure.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +11,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+//Injecting the DB Context Class
+builder.Services.AddDbContext<BestFitDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BestFitConnectionString"));
+});
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<BestFitDbContext>()
+    .AddDefaultTokenProviders();
+
+
 
 var app = builder.Build();
 

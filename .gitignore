@@ -9,3 +9,7 @@
 /src/BestFit.Application/obj
 /src/BestFit.Domain/obj
 /src/BestFit.Infrastructure/obj
+/src/.vs/ProjectEvaluation
+/src/BestFit.Application/bin/Debug/net8.0
+/src/BestFit.Domain/bin/Debug/net8.0
+/src/BestFit.Infrastructure/bin/Debug/net8.0

@@ -1,0 +1,13 @@
+dotnet ef migrations add [Name] --project [InfrastructureLayer.csproj directory] --startup-project [PresentationProject.csproj directory]
+
+"C:\Users\User\source\repos\BestFit\src\BestFit.API\BestFit.API.csproj"
+"C:\Users\User\source\repos\BestFit\src\BestFit.Infrastructure\BestFit.Infrastructure.csproj"
+
+
+dotnet ef migrations add Initial --project C:\Users\User\source\repos\BestFit\src\BestFit.Infrastructure\BestFit.Infrastructure.csproj --startup-project C:\Users\User\source\repos\BestFit\src\BestFit.API\BestFit.API.csproj
+
+
+
+--remove migration
+dotnet ef migrations remove --project C:\Users\User\source\repos\BestFit\src\BestFit.Infrastructure\BestFit.Infrastructure.csproj --startup-project C:\Users\User\source\repos\BestFit\src\BestFit.API\BestFit.API.csproj
+
