@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/.vs/BestFit
+/src/BestFit.API/bin/Debug/net8.0
+/src/BestFit.API/obj
+/src/BestFit.Application/obj
+/src/BestFit.Domain/obj
+/src/BestFit.Infrastructure/obj
