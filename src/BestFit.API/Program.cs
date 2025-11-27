@@ -1,3 +1,4 @@
+using BestFit.Application.Services.AdminServices;
 using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
 using BestFit.Infrastructure.Data;
@@ -11,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
-
+builder.Services.AddScoped<CategoryService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

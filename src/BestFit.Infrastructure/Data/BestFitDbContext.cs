@@ -1,5 +1,5 @@
 ﻿using BestFit.Domain.Entities;
-using ClothingStore.Domain.Entities;
+
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
