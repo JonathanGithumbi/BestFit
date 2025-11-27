@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BestFit.Domain.Interfaces
 {
-    public interface ICustomerMeasurementProfileInterface : IRepository<CustomerMeasurementProfile>
+    public interface IProductMeasurementProfileRepository : IRepository<ProductMeasurementProfile>
     {
     }
 }

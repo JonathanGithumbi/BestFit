@@ -14,8 +14,8 @@ namespace BestFit.Domain.Interfaces
         IOrderDetailsRepository OrderDetailsRepository { get; }
         IOrderProductRepository OrderProductRepository { get; }  
         IProductRepository ProductRepository { get; }
-        ICustomerMeasurementProfileInterface CustomerMeasurementProfileInterface { get; }
-        IProductMeasurementProfileInterface ProductMeasurementProfileInterface { get; }
+        ICustomerMeasurementProfileRepository CustomerMeasurementProfileRepository { get; }
+        IProductMeasurementProfileRepository ProductMeasurementProfileRepository { get; }
         IProductImageRepository ProductImageRepository { get; }
         void Save();
     }

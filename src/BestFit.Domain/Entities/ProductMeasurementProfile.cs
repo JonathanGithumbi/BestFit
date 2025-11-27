@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ClothingStore.Domain.Entities
+namespace BestFit.Domain.Entities
 {
     /// <summary>
     /// Represents the actual physical dimensions of a specific Product SKU (e.g., The Small Red Shirt).
