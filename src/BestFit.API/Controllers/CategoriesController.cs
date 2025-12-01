@@ -30,7 +30,7 @@ namespace BestFit.API.Controllers
         {
             IEnumerable<Category> categoryList = categoryService.GetAllCategories();
             
-            var categoryListResponseDTO = mapper.Map<List<Category>>(categoryList);
+            var categoryListResponseDTO = mapper.Map<List<CategoryResponseDTO>>(categoryList);
             return Ok(categoryList);
         }
 
@@ -75,6 +75,7 @@ namespace BestFit.API.Controllers
                 return Ok(mapper.Map<CategoryResponseDTO>(categoryDomainModel));
             }
         }
+        
         [HttpDelete]
         [Route("{id:Guid}")]
         public IActionResult Delete([FromRoute] Guid id)
