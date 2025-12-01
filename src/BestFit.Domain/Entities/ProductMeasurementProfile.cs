@@ -1,4 +1,4 @@
-﻿using BestFit.Domain.Entities;
+﻿using BestFit.Domain.ValueObjects;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

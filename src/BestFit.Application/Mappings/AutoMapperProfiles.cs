@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BestFit.API.Controllers;
 using BestFit.Application.DTOs.RequestDTOs;
-using BestFit.Application.DTOs.RequestDTOs.AddCustomerMeasurementProfileRequestDTO;
+
 using BestFit.Application.DTOs.ResponseDTOs;
 using BestFit.Application.DTOs.RequestDTOs.UpdateCustomerMeasurementProfileRequestDTO;
 using BestFit.Domain.Entities;
