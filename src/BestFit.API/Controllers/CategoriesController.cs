@@ -14,13 +14,13 @@ namespace BestFit.API.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly CategoryService categoryService;
-        private readonly IUnitOfWork unitOfWork;
+        
         private readonly IMapper mapper;
 
-        public CategoriesController(CategoryService categoryService,IUnitOfWork unitOfWork,IMapper mapper)
+        public CategoriesController(CategoryService categoryService,IMapper mapper)
         {
             this.categoryService = categoryService;
-            this.unitOfWork = unitOfWork;
+           
             this.mapper = mapper;
         }
         
