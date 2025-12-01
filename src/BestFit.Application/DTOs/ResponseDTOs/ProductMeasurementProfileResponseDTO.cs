@@ -1,17 +1,10 @@
-﻿using BestFit.Domain.ValueObjects;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using BestFit.Domain.Entities;
+using BestFit.Domain.ValueObjects;
 
-namespace BestFit.Domain.Entities
+namespace BestFit.Application.DTOs.ResponseDTOs
 {
-    /// <summary>
-    /// Represents the actual physical dimensions of a specific Product SKU (e.g., The Small Red Shirt).
-    /// These are usually measured "Flat Lay" (garment laid flat on a table).
-    /// </summary>
-    public class ProductMeasurementProfile
+    public class ProductMeasurementProfileResponseDTO
     {
-        [Key, ForeignKey("Product")]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -31,6 +24,4 @@ namespace BestFit.Domain.Entities
         public FootWearDimensions Shoes { get; set; } = new();
         public AccessoryDimensions Accessories { get; set; } = new();
     }
-
-   
 }
