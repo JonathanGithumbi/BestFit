@@ -64,7 +64,7 @@ namespace BestFit.API.Controllers
             }
             else
             {
-                return Ok(mapper.Map<CategoryResponseDTO>(orderDetailsDomainModel));
+                return Ok(mapper.Map<OrderDetailsResponseDTO>(orderDetailsDomainModel));
             }
         }
         [HttpDelete]
