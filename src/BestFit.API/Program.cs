@@ -1,3 +1,4 @@
+using BestFit.Application.Mappings;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
@@ -13,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped(typeof(IRepository<>),typeof(Repository<>));
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<CategoryService>();
-
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -23,10 +23,11 @@ namespace BestFit.Application.Services
             return categoryList;
         }
 
-        public void CreateCategory(Category category)
+        public Category CreateCategory(Category category)
         {
             unitOfWork.CategoryRepository.Add(category);
             unitOfWork.Save();
+            return category;
         }
         public Category GetCategoryById(Guid id)
         {
@@ -34,10 +35,13 @@ namespace BestFit.Application.Services
             return category;
         }
 
-        public void UpdateCategory(Category category)
+        public Category UpdateCategory(Category category)
         {
+            var existingCategory = GetCategoryById(category.Id);
+
             unitOfWork.CategoryRepository.Update(category);
             unitOfWork.Save();
+            return category;
         }
         public bool DeleteCategory(Guid id)
         {
