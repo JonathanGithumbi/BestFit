@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace BestFit.Application.Services.AdminServices
+namespace BestFit.Application.Services
 {
     public class ProductService
     {

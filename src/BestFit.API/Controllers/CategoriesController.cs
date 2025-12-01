@@ -1,4 +1,4 @@
-﻿using BestFit.Application.Services.AdminServices;
+﻿using BestFit.Application.Services;
 using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;

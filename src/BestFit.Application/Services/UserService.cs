@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BestFit.Application.Services.AdminServices
+namespace BestFit.Application.Services
 {
     public class UserService
     {
