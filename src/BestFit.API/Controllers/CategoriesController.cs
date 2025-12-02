@@ -20,21 +20,25 @@ namespace BestFit.API.Controllers
         private readonly CategoryService categoryService;
         
         private readonly IMapper mapper;
+        private readonly ILogger<CategoriesController> logger;
 
-        public CategoriesController(CategoryService categoryService,IMapper mapper)
+        public CategoriesController(CategoryService categoryService,IMapper mapper,ILogger<CategoriesController> logger)
         {
             this.categoryService = categoryService;
            
             this.mapper = mapper;
+            this.logger = logger;
         }
         
         //GetAll Categories
         [HttpGet]
         public IActionResult GetAll()
         {
+            logger.LogInformation("Received Get all categories request");
             IEnumerable<Category> categoryList = categoryService.GetAllCategories();
             
             var categoryListResponseDTO = mapper.Map<List<CategoryResponseDTO>>(categoryList);
+            logger.LogInformation("responding to client");
             return Ok(categoryList);
         }
 

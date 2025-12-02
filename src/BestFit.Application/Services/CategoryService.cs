@@ -1,5 +1,6 @@
 ﻿using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,25 @@ namespace BestFit.Application.Services
     public class CategoryService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly ILogger<CategoryService> logger;
 
-        public CategoryService(IUnitOfWork unitOfWork)
+        public CategoryService(IUnitOfWork unitOfWork,ILogger<CategoryService> logger)
         {
             this.unitOfWork = unitOfWork;
+            this.logger = logger;
         }
 
         public IEnumerable<Category> GetAllCategories()
         {
+            logger.LogInformation(@"...
+                                    Processing Get all Categories Request
+                                    ");
             var categoryList = unitOfWork.CategoryRepository.GetAll();
+            logger.LogInformation(@"...
+                                    Succsessfully processed get all categories request
+                                    ");
             return categoryList;
+
         }
 
         public Category CreateCategory(Category category)
