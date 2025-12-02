@@ -1,5 +1,5 @@
 ﻿using BestFit.Domain.Entities;
-
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -31,6 +31,49 @@ namespace BestFit.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+            //Seeding roles
+            var handlerRoleId = "3c7b2bba-99ab-4768-b124-4abb40a94daa";
+            var shopperRoleId = "6afa6e31-910f-4963-94ac-d7a23c6d377d";
+            var administratorRoleId = "38c6732b-f36b-4e3a-b8f6-26be2dce3973";
+            var staffRoleId = "cfab018d-40e3-4f0c-af89-00e7cd9f9724";
+
+
+            var roles = new List<IdentityRole>
+            {
+                new IdentityRole
+                {
+                    Id = handlerRoleId,
+                    ConcurrencyStamp = handlerRoleId,
+                    Name ="Handler",
+                    NormalizedName ="Handler".ToUpper()
+                },
+                new IdentityRole
+                {
+                    Id = shopperRoleId,
+                    ConcurrencyStamp = shopperRoleId,
+                    Name ="Shopper",
+                    NormalizedName ="Shopper".ToUpper()
+                },
+                new IdentityRole
+                {
+                    Id = administratorRoleId,
+                    ConcurrencyStamp = administratorRoleId,
+                    Name ="Administrator",
+                    NormalizedName ="Administrator".ToUpper()
+                },
+                new IdentityRole
+                {
+                    Id = staffRoleId,
+                    ConcurrencyStamp = staffRoleId,
+                    Name ="Staff",
+                    NormalizedName ="Staff".ToUpper()
+                },
+            };
+
+            modelBuilder.Entity<IdentityRole>().HasData(roles);
+
              modelBuilder.Entity<Product>()
             .HasOne(p => p.ProductMeasurementProfile)           // Product has one profile
             .WithOne(pmp => pmp.Product)                        // Profile has one product

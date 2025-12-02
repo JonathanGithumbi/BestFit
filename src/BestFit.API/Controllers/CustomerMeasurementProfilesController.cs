@@ -5,6 +5,7 @@ using BestFit.Application.DTOs.RequestDTOs.UpdateCustomerMeasurementProfileReque
 using BestFit.Application.DTOs.ResponseDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace BestFit.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CustomerMeasurementProfilesController : ControllerBase
     {
         private readonly CustomerMeasurementProfileService customerMeasurementProfileService;

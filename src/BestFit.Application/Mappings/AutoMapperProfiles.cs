@@ -62,6 +62,10 @@ namespace BestFit.Application.Mappings
             CreateMap<ProductMeasurementProfile, AddProductMeasurementProfileRequestDTO>().ReverseMap();
             CreateMap<ProductMeasurementProfile, UpdateProductMeasurementProfileRequestDTO>().ReverseMap();
 
+
+            //ApplicationUser
+            //CreateMap<ApplicationUser, RegisterRequestDTO>().ReverseMap();
+      
         }
     }
 }

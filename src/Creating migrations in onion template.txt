@@ -6,6 +6,7 @@ dotnet ef migrations add [Name] --project [InfrastructureLayer.csproj directory]
 
 dotnet ef migrations add Initial --project C:\Users\User\source\repos\BestFit\src\BestFit.Infrastructure\BestFit.Infrastructure.csproj --startup-project C:\Users\User\source\repos\BestFit\src\BestFit.API\BestFit.API.csproj
 
+dotnet ef migrations add SeedRoles --project C:\Users\User\source\repos\BestFit\src\BestFit.Infrastructure\BestFit.Infrastructure.csproj --startup-project C:\Users\User\source\repos\BestFit\src\BestFit.API\BestFit.API.csproj
 
 
 --remove migration

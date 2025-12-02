@@ -7,10 +7,14 @@ using BestFit.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+using Microsoft.AspNetCore.Authorization;
+
+
 namespace BestFit.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class CategoriesController : ControllerBase
     {
         private readonly CategoryService categoryService;
@@ -37,6 +41,7 @@ namespace BestFit.API.Controllers
         //Get CategoryByID
         [HttpGet]
         [Route("{id:guid}")]
+        [Authorize]
         public IActionResult GetById([FromRoute]Guid id)
         {
             var category = categoryService.GetCategoryById(id);
