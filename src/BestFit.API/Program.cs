@@ -12,6 +12,7 @@ using System.Text;
 using System.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using BestFit.API.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -121,6 +122,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
