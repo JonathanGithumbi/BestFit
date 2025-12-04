@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "BestFit.API\\BestFit.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "BestFit.UI\\BestFit.UI.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
