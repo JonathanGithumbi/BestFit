@@ -14,3 +14,6 @@
 /src/BestFit.Domain/bin/Debug/net8.0
 /src/BestFit.Infrastructure/bin/Debug/net8.0
 /src/BestFit.UI/bin/Debug
+/src/BestFit.UI/obj/.cache
+/src/BestFit.UI/obj/Debug/net8.0-android/android/assets/BestFit.UI.dll
+/src/BestFit.UI/obj/Debug/net8.0-android/android/assets/_Microsoft.Android.Resource.Designer.dll
