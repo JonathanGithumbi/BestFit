@@ -4,11 +4,17 @@
     "Projects": [
       {
         "Path": "BestFit.API\\BestFit.API.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "BestFit.UI\\BestFit.UI\\BestFit.UI.csproj",
         "Action": "Start"
       },
       {
-        "Path": "BestFit.UI\\BestFit.UI.csproj",
-        "Action": "Start"
+        "Path": "BestFit.UI\\BestFit.UI.Web\\BestFit.UI.Web.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
       }
     ]
   }
