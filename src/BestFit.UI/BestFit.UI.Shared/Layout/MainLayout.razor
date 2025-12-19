@@ -18,9 +18,13 @@
 <MudLayout>
     <MudAppBar Color="Color.Transparent" Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudPaper Height="40px" Class="mud-theme-dark pa-2 ma-2" >
+        <MudPaper Height="40px"  Class="mud-theme-dark pa-2 ma-2" >
             <MudText Typo="Typo.h5">BestFit</MudText>
         </MudPaper>
+        <MudSpacer />
+        <MudBadge Content="3" Overlap="true" Class="mx-3 my-2">
+            <MudIconButton Href="/cart" Class="mr-4" Variant="Variant.Filled" Color="Color.Dark" Icon="@Icons.Material.Filled.ShoppingCart" aria-label="cart" />
+        </MudBadge>
         <MudSpacer />
         <MudText Class="mr-1">Avatar: </MudText>
         <MudButtonGroup  Variant="Variant.Filled">
