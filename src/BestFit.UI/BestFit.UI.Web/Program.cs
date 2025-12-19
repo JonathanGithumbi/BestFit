@@ -1,6 +1,8 @@
 using BestFit.UI.Shared.Services;
 using BestFit.UI.Web.Components;
 using BestFit.UI.Web.Services;
+using MudBlazor.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,7 @@ builder.Services.AddRazorComponents()
 
 // Add device-specific services used by the BestFit.UI.Shared project
 builder.Services.AddSingleton<IFormFactor, FormFactor>();
-
+builder.Services.AddMudServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

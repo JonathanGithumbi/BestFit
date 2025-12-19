@@ -3,12 +3,98 @@
 @inject IFormFactor FormFactor
 
 <PageTitle>Home</PageTitle>
+<MudPaper Color="@Color.Dark" Class="mud-theme-dark">
+    @* Stack *@
+    <MudStack Spacing="3" Justify="Justify.SpaceEvenly">
+        @* Quick Search *@
+        <MudPaper Class="pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLight};")">
+            <MudForm Class="pa-3 ma-3">
+                <MudTextField rounded-pill @bind-Value="Search" Label="Search" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Dark" />
+            </MudForm>
+        </MudPaper>
+        @* Information Carousel, for offers, ads, marketing etc *@
+        <MudPaper Class="pa-3 mr-2 ml-2" Style="@($"background:{Theme.PaletteLight.GrayLight};")">
+            <MudStack Spacing="4">
+                <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+                    <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                        <div class="d-flex" style="height:100%">
+                            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                        </div>
+                    </MudCarouselItem>
+                    <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                        <div class="d-flex" style="height:100%">
+                            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                        </div>
+                    </MudCarouselItem>
+                    <MudCarouselItem Transition="transition">
+                        <div class="d-flex" style="height:100%">
+                            <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
+                        </div>
+                    </MudCarouselItem>
+                </MudCarousel>
 
-<h1>Hello, world!</h1>
+            </MudStack>
+        </MudPaper>
+        @* Cataegories *@
+        <MudPaper Style="@($"background:{Theme.PaletteLight.GrayLight};")" Class="pa-3 mr-2 ml-2 d-flex flex-nowrap gap-4 overflow-auto" Elevation="0">
+            <MudPaper Class="flex-none" Outlined="false" Width="256px">
+                <MudButton class="flex-none flex-shrink-0 " Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Search" Color="@Color.Primary" FullWidth="true">Categories</MudButton>
 
-Welcome to your new app running on <em>@factor</em> using <em>@platform</em>.
+            </MudPaper>
+
+            <MudPaper Class="flex-none mud-theme-primary" Width="256px" Height="64px">
+                <MudImage Fluid="true" Src="images/zippedhoody.png" Alt="zipped-hoody" Class="rounded-lg" />
+            </MudPaper>
+            <MudPaper Class="flex-none mud-theme-primary" Width="256px" Height="64px">
+                <MudImage Fluid="true" Src="images/purpletshirt.png" Alt="purple-tishirt" Class="rounded-lg" />
+            </MudPaper>
+            <MudPaper Class="flex-none mud-theme-primary" Width="256px" Height="64px">
+                <MudImage Fluid="true" Src="images/blackhoody.png" Alt="black-hoody" Class="rounded-lg" />
+            </MudPaper>
+
+        </MudPaper>
+        @*  Products Grid *@
+        <MudPaper Class="pa-3 mr-2 ml-2 " Style="@($"background:{Theme.PaletteLight.GrayLight};")" Elevation="3">
+            <MudGrid Spacing="4" Justify="Justify.Center">
+                <MudItem>
+                    <MudPaper Class="mud-theme-primary" Height="140px" Width="140px" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Class="mud-theme-primary" Height="140px" Width="140px" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Height="140px" Width="140px" Class="mud-theme-primary" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Height="140px" Width="140px" Class="mud-theme-primary" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Class="mud-theme-primary" Height="140px" Width="140px" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Class="mud-theme-primary" Height="140px" Width="140px" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Height="140px" Width="140px" Class="mud-theme-primary" />
+                </MudItem>
+                <MudItem>
+                    <MudPaper Height="140px" Width="140px" Class="mud-theme-primary" />
+                </MudItem>
+            </MudGrid>
+        </MudPaper>
+
+    </MudStack>
+</MudPaper>
+
+
 
 @code {
-    private string factor => FormFactor.GetFormFactor();
-    private string platform => FormFactor.GetPlatform();
+    public string Search { get; set; }
+    private Transition transition = Transition.Slide;
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    public int Spacing { get; set; } = 3;
+    private MudTheme Theme = new MudTheme();
 }

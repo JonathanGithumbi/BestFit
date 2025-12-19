@@ -1,6 +1,7 @@
 ﻿using BestFit.UI.Services;
 using BestFit.UI.Shared.Services;
 using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
 
 namespace BestFit.UI
 {
@@ -18,7 +19,7 @@ namespace BestFit.UI
 
             // Add device-specific services used by the BestFit.UI.Shared project
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
-
+            builder.Services.AddMudServices();
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG

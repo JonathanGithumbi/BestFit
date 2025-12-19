@@ -1,0 +1,71 @@
+﻿<MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <MudNavMenu Class="mud-width-full">
+
+        <MudNavLink Match="NavLinkMatch.All"
+                    Href="/"
+                    Icon="@Icons.Material.Filled.Home">
+            Home
+        </MudNavLink>
+
+        <MudNavLink Href="/products"
+                    Icon="@Icons.Material.Filled.Storefront">
+            Shop
+        </MudNavLink>
+
+        <MudNavLink Href="/cart"
+                    Icon="@Icons.Material.Filled.ShoppingCart">
+            Cart
+        </MudNavLink>
+
+        <MudNavLink Href="/orders"
+                    Icon="@Icons.Material.Filled.ReceiptLong">
+            Orders
+        </MudNavLink>
+        @* Measurement Profiles (Avatars) *@
+        <MudNavGroup Title="Avatars"
+                     Icon="@Icons.Material.Filled.Boy"
+                     Expanded="false">
+
+            <MudNavLink Href="/CustomerMeasurementProfiles/Me">
+                Me
+            </MudNavLink>
+
+            <MudNavLink Href="/CustomerMeasurementProfiles/Leon">
+                Leon
+            </MudNavLink>
+
+            <MudNavLink Href="/CustomerMeasurementProfiles/Jason">
+                Jason
+            </MudNavLink>
+
+            <MudNavLink Href="/CustomerMeasurementProfiles"
+                        Icon="@Icons.Material.Filled.Add">
+                Add
+            </MudNavLink>
+        </MudNavGroup>
+
+        <MudDivider Class="my-2" />
+
+        <MudNavGroup Title="Account"
+                     Icon="@Icons.Material.Filled.Person"
+                     Expanded="false">
+
+            <MudNavLink Href="/account/profile"
+                        Icon="@Icons.Material.Filled.AccountCircle">
+                Profile
+            </MudNavLink>
+
+            <MudNavLink Href="/account/addresses"
+                        Icon="@Icons.Material.Filled.LocationOn">
+                Addresses
+            </MudNavLink>
+
+            <MudNavLink Href="/logout"
+                        Icon="@Icons.Material.Filled.Logout">
+                Logout
+            </MudNavLink>
+
+        </MudNavGroup>
+
+    </MudNavMenu>
+</MudPaper>
