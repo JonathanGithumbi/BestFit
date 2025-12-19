@@ -21,22 +21,23 @@
             <MudPaper Elevation="3" Height="500px" Class="pa-3 mt-2 mb-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
                 <MudStack Spacing="1">
                     <MudExpansionPanels>
-                        <MudExpansionPanel Text="Head" MaxHeight="150" Expanded="true">
+                        <MudExpansionPanel Text="Head" MaxHeight="150" >
+                            <MudSlider @bind-Value="HeadCircumference" Min="20" Max="80" Color="Color.Info">HeadCircumference: @HeadCircumference.ToString()</MudSlider>
+                            <MudSlider @bind-Value="NeckCircumference" Min="20" Max="80" Color="Color.Info">NeckCircumference: @NeckCircumference.ToString()</MudSlider>
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Torso" MaxHeight="150" >
+                            <MudSlider @bind-Value="ShoulderWidth" Min="20" Max="80" Color="Color.Info">ShoulderWidth: @ShoulderWidth.ToString()</MudSlider>
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Arm & Hand" MaxHeight="150" >
                             Panel One Content
                         </MudExpansionPanel>
-                        <MudExpansionPanel Text="Torso" MaxHeight="150" Expanded="true">
+                        <MudExpansionPanel Text="Lower Body" MaxHeight="150" >
                             Panel One Content
                         </MudExpansionPanel>
-                        <MudExpansionPanel Text="Arm & Hand" MaxHeight="150" Expanded="true">
+                        <MudExpansionPanel Text="Leg" MaxHeight="150" >
                             Panel One Content
                         </MudExpansionPanel>
-                        <MudExpansionPanel Text="Lower Body" MaxHeight="150" Expanded="true">
-                            Panel One Content
-                        </MudExpansionPanel>
-                        <MudExpansionPanel Text="Leg" MaxHeight="150" Expanded="true">
-                            Panel One Content
-                        </MudExpansionPanel>
-                        <MudExpansionPanel Text="Foot" MaxHeight="150" Expanded="true">
+                        <MudExpansionPanel Text="Foot" MaxHeight="150" >
                             Panel One Content
                         </MudExpansionPanel>
                     </MudExpansionPanels>
@@ -56,6 +57,9 @@
     private MudForm _form;
     private string profileName;
     private string _buttonText = "CM";
+    private decimal HeadCircumference = 20;
+    private decimal NeckCircumference = 15;
+    private decimal ShoulderWidth = 15;
     private bool _success;
     private string[] _errors = [];
     private void SetButtonText(int id)
