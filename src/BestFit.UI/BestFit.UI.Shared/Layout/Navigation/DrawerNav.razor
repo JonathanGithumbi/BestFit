@@ -1,13 +1,16 @@
 ﻿<MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
-    <MudNavMenu Class="mud-width-full">
-
-        <MudNavLink Match="NavLinkMatch.All"
+    <MudNavMenu Rounded="true" Bordered="true" Margin="Margin.Dense" Color="Color.Info" Class="mud-width-full ma-2 pa-2">
+        <MudPaper Width="100%" Square="true" Class="mud-theme-dark mud-width-full pa-2 mt-n1 ">
+            <MudText Typo="Typo.h5">BestFit</MudText>
+        </MudPaper>
+        <MudDivider Class="my-4" />
+        <MudNavLink  Match="NavLinkMatch.All"
                     Href="/"
                     Icon="@Icons.Material.Filled.Home">
             Home
         </MudNavLink>
 
-        <MudNavLink Href="/products"
+        <MudNavLink Href="/shop"
                     Icon="@Icons.Material.Filled.Storefront">
             Shop
         </MudNavLink>
@@ -22,42 +25,20 @@
             Orders
         </MudNavLink>
         @* Measurement Profiles (Avatars) *@
-        <MudNavGroup Title="Avatars"
-                     Icon="@Icons.Material.Filled.Boy"
-                     Expanded="false">
-
-            <MudNavLink Href="/CustomerMeasurementProfiles/Me">
-                Me
-            </MudNavLink>
-
-            <MudNavLink Href="/CustomerMeasurementProfiles/Leon">
-                Leon
-            </MudNavLink>
-
-            <MudNavLink Href="/CustomerMeasurementProfiles/Jason">
-                Jason
-            </MudNavLink>
-
-            <MudNavLink Href="/CustomerMeasurementProfiles"
-                        Icon="@Icons.Material.Filled.Add">
-                Add
-            </MudNavLink>
-        </MudNavGroup>
-
+        <MudNavLink Href="/avatar"
+                    Icon="@Icons.Material.Filled.Boy">
+            Avatars
+        </MudNavLink>
+        
         <MudDivider Class="my-2" />
 
         <MudNavGroup Title="Account"
                      Icon="@Icons.Material.Filled.Person"
                      Expanded="false">
 
-            <MudNavLink Href="/account/profile"
+            <MudNavLink Href="/profile"
                         Icon="@Icons.Material.Filled.AccountCircle">
                 Profile
-            </MudNavLink>
-
-            <MudNavLink Href="/account/addresses"
-                        Icon="@Icons.Material.Filled.LocationOn">
-                Addresses
             </MudNavLink>
 
             <MudNavLink Href="/logout"

@@ -16,9 +16,20 @@
 <MudThemeProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1">
+    <MudAppBar Color="Color.Transparent" Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudPaper Height="40px" Class="mud-theme-dark pa-2 ma-2" >
+            <MudText Typo="Typo.h5">BestFit</MudText>
+        </MudPaper>
         <MudSpacer />
+        <MudText Class="mr-1">Avatar: </MudText>
+        <MudButtonGroup  Variant="Variant.Filled">
+            <MudButton Color="Color.Dark">@_buttonText</MudButton>
+            <MudMenu Icon="@Icons.Material.Filled.Boy" Style="align-self: auto;">
+                <MudMenuItem OnClick="() => SetButtonText(0)">None</MudMenuItem>
+                <MudMenuItem OnClick="() => SetButtonText(1)">Me</MudMenuItem>
+            </MudMenu>
+        </MudButtonGroup>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
         
@@ -37,5 +48,20 @@
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+    private string _buttonText = "None";
+
+    private void SetButtonText(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                _buttonText = "None";
+                break;
+            case 1:
+                _buttonText = "Me";
+                break;
+            
+        }
     }
 }

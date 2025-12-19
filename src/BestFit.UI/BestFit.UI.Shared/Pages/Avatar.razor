@@ -1,0 +1,74 @@
+﻿@page "/avatar"
+<PageTitle>Avatar</PageTitle>
+<MudPaper Class="mud-theme-dark">
+    <MudForm @ref="_form" @bind-IsValid="@_success" @bind-Errors="@_errors">
+        <MudStack Spacing="3" Justify="Justify.SpaceEvenly">
+            <MudPaper Elevation="3" Class="pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+
+                <MudTextField Class="mb-2" Variant="Variant.Filled" @bind-Value="profileName" Immediate="true" Label="Name" />
+                <MudButtonGroup Variant="Variant.Outlined">
+
+                    <MudText>Dimensions:</MudText>
+                    <MudButton Class="ml-1">@_buttonText</MudButton>
+
+                    <MudMenu Icon="@Icons.Material.Filled.InsertChartOutlined" Style="align-self: auto;">
+                        <MudMenuItem OnClick="() => SetButtonText(0)">CM</MudMenuItem>
+                        <MudMenuItem OnClick="() => SetButtonText(1)">Inches</MudMenuItem>
+                    </MudMenu>
+                </MudButtonGroup>
+            </MudPaper>
+            <MudPaper Elevation="3" Height="300px" Class="pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">Measurement Guide</MudPaper>
+            <MudPaper Elevation="3" Height="500px" Class="pa-3 mt-2 mb-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+                <MudStack Spacing="1">
+                    <MudExpansionPanels>
+                        <MudExpansionPanel Text="Head" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Torso" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Arm & Hand" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Lower Body" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Leg" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Foot" MaxHeight="150" Expanded="true">
+                            Panel One Content
+                        </MudExpansionPanel>
+                    </MudExpansionPanels>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" DropShadow="false">Save</MudButton>
+
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" DropShadow="false" OnClick="@(() => _form.ResetAsync())">Delete</MudButton>
+
+
+                </MudStack>
+
+            </MudPaper>
+        </MudStack>
+    </MudForm>
+</MudPaper>
+@code {
+    private MudTheme Theme = new MudTheme();
+    private MudForm _form;
+    private string profileName;
+    private string _buttonText = "CM";
+    private bool _success;
+    private string[] _errors = [];
+    private void SetButtonText(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                _buttonText = "CM";
+                break;
+            case 1:
+                _buttonText = "Inches";
+                break;
+
+        }
+    }
+}

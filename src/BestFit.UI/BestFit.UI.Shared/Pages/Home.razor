@@ -1,4 +1,4 @@
-﻿                                                                                                                                      @page "/"
+﻿@page "/"
 @using BestFit.UI.Shared.Services
 @inject IFormFactor FormFactor
 
@@ -7,13 +7,13 @@
     @* Stack *@
     <MudStack Spacing="3" Justify="Justify.SpaceEvenly">
         @* Quick Search *@
-        <MudPaper Class="pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLight};")">
+        <MudPaper Class="pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
             <MudForm Class="pa-3 ma-3">
                 <MudTextField rounded-pill @bind-Value="Search" Label="Search" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Dark" />
             </MudForm>
         </MudPaper>
         @* Information Carousel, for offers, ads, marketing etc *@
-        <MudPaper Class="pa-3 mr-2 ml-2" Style="@($"background:{Theme.PaletteLight.GrayLight};")">
+        <MudPaper Class="pa-3 mr-2 ml-2" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
             <MudStack Spacing="4">
                 <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
                     <MudCarouselItem Transition="transition" Color="@Color.Primary">
@@ -36,11 +36,11 @@
             </MudStack>
         </MudPaper>
         @* Cataegories *@
-        <MudPaper Style="@($"background:{Theme.PaletteLight.GrayLight};")" Class="pa-3 mr-2 ml-2 d-flex flex-nowrap gap-4 overflow-auto" Elevation="0">
-            <MudPaper Class="flex-none" Outlined="false" Width="256px">
-                <MudButton class="flex-none flex-shrink-0 " Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Search" Color="@Color.Primary" FullWidth="true">Categories</MudButton>
+        <MudPaper Style="@($"background:{Theme.PaletteLight.GrayLighter};")" Class="pa-3 mr-2 ml-2 d-flex flex-nowrap gap-4 overflow-auto" Elevation="0">
+            @* <MudPaper Class="flex-none" Outlined="false" Width="150px">
+            </MudPaper> *@
+            <MudButton Class="flex-none" Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Search" Color="@Color.Primary">Categories</MudButton>
 
-            </MudPaper>
 
             <MudPaper Class="flex-none mud-theme-primary" Width="256px" Height="64px">
                 <MudImage Fluid="true" Src="images/zippedhoody.png" Alt="zipped-hoody" Class="rounded-lg" />
@@ -54,7 +54,7 @@
 
         </MudPaper>
         @*  Products Grid *@
-        <MudPaper Class="pa-3 mr-2 ml-2 " Style="@($"background:{Theme.PaletteLight.GrayLight};")" Elevation="3">
+        <MudPaper Class="pa-3 mr-2 ml-2 " Style="@($"background:{Theme.PaletteLight.GrayLighter};")" Elevation="3">
             <MudGrid Spacing="4" Justify="Justify.Center">
                 <MudItem>
                     <MudPaper Class="mud-theme-primary" Height="140px" Width="140px" />
