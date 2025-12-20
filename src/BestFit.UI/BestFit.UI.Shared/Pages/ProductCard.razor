@@ -1,0 +1,51 @@
+﻿<MudLink Href="/product-details">
+    <MudCard Class="d-flex align-left mud-theme-dark mud-width-full ">
+        <MudCardContent Class="mud-theme-dark">
+            <MudCarousel Class="mud-width-full" Style="height:200px;" ShowArrows="@arrows" ShowBullets="@bullets" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+                <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                    <div class="d-flex" style="height:100%">
+                        <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                    <div class="d-flex" style="height:100%">
+                        <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Size="@Size.Large" />
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="transition">
+                    <div class="d-flex" style="height:100%">
+                        <MudIcon Class="mx-auto my-auto" Icon="@Icons.Custom.Brands.MudBlazor" Color="@Color.Primary" Size="@Size.Large" />
+                    </div>
+                </MudCarouselItem>
+            </MudCarousel>
+            
+        </MudCardContent>
+        <MudSpacer/>
+        <MudCardContent>
+            <MudText Typo="Typo.h5">Black Hoody</MudText>
+            <MudText Typo="Typo.body2">Price: 300.00KSH</MudText>
+        </MudCardContent>
+        <MudSpacer />
+        <MudCardActions Class="mud-theme-dark">
+            
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.Boy" Color="Color.Primary" />
+            <MudSpacer />
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Primary" />
+            <MudSpacer />
+            <MudIconButton Variant="Variant.Filled" Icon="@Icons.Material.Filled.ThumbUp" Color="Color.Primary" />
+        </MudCardActions>
+    </MudCard>
+
+</MudLink>
+
+
+@code {
+    private Transition transition = Transition.Slide;
+    public string Search { get; set; }
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    public int Spacing { get; set; } = 3;
+    private MudTheme Theme = new MudTheme();
+}

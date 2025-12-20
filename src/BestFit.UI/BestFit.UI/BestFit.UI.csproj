@@ -65,6 +65,7 @@
 
   <ItemGroup>
     <None Include="..\BestFit.UI.Shared\Layout\Navigation\MudBottomNavigation.razor" Link="MudBottomNavigation.razor" />
+    <None Include="..\BestFit.UI.Shared\Pages\Component.razor" Link="Component.razor" />
   </ItemGroup>
 
   <ItemGroup>

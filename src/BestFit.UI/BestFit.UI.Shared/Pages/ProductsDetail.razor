@@ -1,0 +1,12 @@
+﻿@page "/product-details"
+<PageTitle>Details</PageTitle>
+<MudPaper Class="mud-theme-dark">
+    <MudIconButton Class="ml-2 mt-1" Style="@($"background:{Theme.PaletteLight.GrayLighter};")" Variant="Variant.Filled" Icon="@Icons.Material.Filled.ArrowBack" aria-label="back" />
+    <TryOnCanvas /> 
+    <MudPaper Elevation="3" Height="400px" Class=" pa-3 mt-2 mr-2 ml-2 mb-3 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+        <ProductCard/>
+    </MudPaper>
+</MudPaper>
+@code{
+    private MudTheme Theme = new MudTheme();
+}

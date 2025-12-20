@@ -1,5 +1,27 @@
-﻿<h3>TryOnCanvas</h3>
+﻿<MudStack>
+    <MudBadge Icon="@Icons.Material.Filled.Cancel" Overlap="true">
+        <MudPaper Elevation="3" Height="420px" Class=" pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+            @*  *@
+            <MudCard Outlined="true">
+                <MudCardContent Class="pa-2">
+                    <div class="d-flex flex-grow-1 gap-4">
+                        <MudPaper Height="300px" Class="flex-1 d-flex py-8 " Style="@($"background:{Theme.PaletteLight.GrayLighter};")" Elevation="0">
+                            Try on Canvas
+                        </MudPaper>
+                    </div>
 
-@code {
 
+                </MudCardContent>
+
+                <MudCardActions Class="mud-theme-dark">
+                    <MudIconButton Class="mr-3" Icon="@Icons.Material.Filled._3dRotation" Variant="Variant.Filled" Color="Color.Primary" />
+                    <MudIconButton Class="ml-2" Icon="@Icons.Material.Filled.FileUpload" Variant="Variant.Filled" Color="Color.Primary" />
+                </MudCardActions>
+            </MudCard>
+            @* </MudBadge> *@
+        </MudPaper>
+    </MudBadge>
+</MudStack>
+@code{
+    private MudTheme Theme = new MudTheme();
 }

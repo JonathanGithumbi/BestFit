@@ -1,6 +1,60 @@
 ﻿@page "/shop"
-<h3>Shop</h3>
-
+<PageTitle>Shop</PageTitle>
+<MudPaper Class="mud-theme-dark">
+    <MudStack Row="true" Spacing="100" Justify="Justify.SpaceBetween">
+        <MudPaper Width="800px" Class=" mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+            <MudForm Class=" ma-3">
+                <MudTextField rounded-pill @bind-Value="Search" Label="Search" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Dark" />
+                
+            </MudForm>
+        </MudPaper>
+        <MudPaper Class="mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.Dark};")">
+            <MudFileUpload Class="mt-3" T="IBrowserFile" FilesChanged="UploadFiles">
+                <ActivatorContent>
+                    <MudFab Style="@($"background:{Theme.PaletteLight.GrayLight};")"
+                            StartIcon="@Icons.Material.Filled.ImageSearch" />
+                </ActivatorContent>
+            </MudFileUpload>
+        </MudPaper>
+    </MudStack>
+    <TryOnCanvas/>
+    <MudStack>
+        
+        <MudPaper Elevation="3" Height="1200px" Class=" pa-3 mt-2 mr-2 ml-2 " Variant="Variant.Filled" Style="@($"background:{Theme.PaletteLight.GrayLighter};")">
+            <MudTabs AlwaysShowScrollButtons="true" SortDirection="SortDirection.Ascending" Elevation="2" Rounded="true" ApplyEffectsToContainer="true" TabPanelsClass="pa-3">
+                <MudTabPanel Text="Outfit" SortKey="A" Icon="@Icons.Material.Filled.Bolt">
+                    <OutfitsGrid/>
+                </MudTabPanel>
+                <MudTabPanel Text="Bookmark" SortKey="B" Icon="@Icons.Material.Filled.ThumbUp">
+                    <ProductsGrid/>
+                </MudTabPanel>
+                <MudTabPanel Text="Tops" SortKey="E" Icon="">
+                    <ProductsGrid />
+                </MudTabPanel>
+                <MudTabPanel Text="Bottoms" SortKey="F">
+                    <ProductsGrid />
+                </MudTabPanel>
+                <MudTabPanel Text="Shoes" SortKey="G">
+                    <ProductsGrid />
+                </MudTabPanel>
+                <MudTabPanel Text="Headgear" SortKey="C">
+                    <ProductsGrid />
+                </MudTabPanel>
+                <MudTabPanel Text="Accessories" SortKey="D">
+                    <ProductsGrid />
+                </MudTabPanel>
+            </MudTabs>
+            
+        </MudPaper>
+    </MudStack>
+</MudPaper>
 @code {
-
+    private string Search;
+    private MudTheme Theme = new MudTheme();
+    IList<IBrowserFile> _files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        _files.Add(file);
+        //TODO upload the files to the server
+    }
 }
