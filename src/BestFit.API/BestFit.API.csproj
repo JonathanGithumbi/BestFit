@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BestFit.Application\BestFit.Application.csproj" />
+    <ProjectReference Include="..\BestFit.Domain\BestFit.Domain.csproj" />
     <ProjectReference Include="..\BestFit.Infrastructure\BestFit.Infrastructure.csproj" />
   </ItemGroup>
 
