@@ -36,7 +36,7 @@ namespace BestFit.API.Middlewares
                 var error = new
                 {
                     Id = errorId,
-                    ErrorMessage = "Error: Something Went Wrong.Please contact your system administrator"
+                    ErrorMessage = "Something Went Wrong, Please try again!"
                 };
 
                 await httpContext.Response.WriteAsJsonAsync(error);

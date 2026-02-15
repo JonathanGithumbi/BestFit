@@ -47,3 +47,7 @@
 /src/BestFit.Infrastructure/bin/Release/net8.0
 /src/BestFit.UI/BestFit.UI/bin
 /src/BestFit.UI/BestFit.UI.Shared/bin/Release/net9.0
+/src/BestFit.API/logs
+/src/BestFit.Web/bin/Release/net8.0
+/src/BestFit.Web/obj/Debug/net8.0
+/src/BestFit.Web/obj
