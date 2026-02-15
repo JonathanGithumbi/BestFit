@@ -1,6 +1,6 @@
 [
   {
-    "Name": "New Profile",
+    "Name": "API & Web",
     "Projects": [
       {
         "Path": "BestFit.API\\BestFit.API.csproj",
@@ -8,11 +8,27 @@
         "DebugTarget": "https"
       },
       {
-        "Path": "BestFit.UI\\BestFit.UI\\BestFit.UI.csproj",
-        "Action": "Start"
-      },
+        "Path": "BestFit.Web\\BestFit.Web.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      }
+    ]
+  },
+  {
+    "Name": "Web",
+    "Projects": [
       {
-        "Path": "BestFit.UI\\BestFit.UI.Web\\BestFit.UI.Web.csproj",
+        "Path": "BestFit.Web\\BestFit.Web.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  },
+  {
+    "Name": "API",
+    "Projects": [
+      {
+        "Path": "BestFit.API\\BestFit.API.csproj",
         "Action": "Start",
         "DebugTarget": "https"
       }

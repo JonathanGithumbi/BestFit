@@ -1,50 +1,90 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BestFit.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BestFit.Web.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BestFit.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - BestFit.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewData["Title"] - BestFit</title>
+    <!-- Mobile Web-app fullscreen -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Meta tags -->
+
+    <meta name="description" content="BestFit e-commerce store">
+    <meta name="author" content="Jonathan Githumbi">
+    <link rel="icon" href="/assets/svg/favicon.ico">
+
+    <!-- Title -->
+
+    <title>Reveal - Clothing template</title>
+
+    <!-- Vendor stylesheets -->
+
+    <link rel="stylesheet" media="all" href="/css/vendor/animate.css" />
+    <link rel="stylesheet" media="all" href="/css/vendor/font-awesome.css" />
+    <link rel="stylesheet" media="all" href="/css/vendor/linear-icons.css" />
+    <link rel="stylesheet" media="all" href="/css/vendor/owl.carousel.css" />
+    <link rel="stylesheet" media="all" href="/css/vendor/jquery.lavalamp.css" />
+
+    <!-- Template stylesheets -->
+
+    <link rel="stylesheet" media="all" href="/css/style.css" />
+
+    <!--HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries-->
+    <!--[if lt IE 9]><script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+</head>
+
+<body>
+    <div class="loader">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    @RenderBody()
+    <hr class="m-0">
+
+    <!-- Footer -->
+
+    <footer class="bg-white">
+        <div class="container text-center">
+            <div class="wow fadeIn" data-wow-delay=".4s">
+                <p><i class="icon icon-layer display-4"></i></p>
+                <ul class="list-group list-group-horizontal list-group-clean justify-content-center">
+                    <li class="list-group-item pr-3"><a href="#">Our store</a></li>
+                    <li class="list-group-item pr-3"><a href="#">Shop</a></li>
+                    <li class="list-group-item pr-3"><a href="#">Categories</a></li>
+                    <li class="list-group-item pr-3"><a href="#">Info</a></li>
+                    <li class="list-group-item pr-3"><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="wow fadeIn" data-wow-delay=".8s">
+                <p class="text-muted">
+                    <small>All rights reserved 2026 © BestFit</small>
+                </p>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Vendor Scripts -->
+
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/vendor/bootstrap.bundle.js"></script>
+    <script src="/js/vendor/in-view.min.js"></script>
+    <script src="/js/vendor/jquery.lavalamp.js"></script>
+    <script src="/js/vendor/owl.carousel.js"></script>
+    <script src="/js/vendor/rellax.js"></script>
+    <script src="/js/vendor/wow.js"></script>
+    <script src="/js/vendor/tabzy.js"></script>
+    <script src="/js/vendor/isotope.pkgd.js"></script>
+
+    <!-- Template Scripts -->
+
+    <script src="/js/main.js"></script>
+    <script src="/js/custom.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
