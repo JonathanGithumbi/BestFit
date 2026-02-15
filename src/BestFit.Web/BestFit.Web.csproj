@@ -246,7 +246,6 @@
     <None Include="wwwroot\assets\images\templates\hotel\services-4.jpg" />
     <None Include="wwwroot\assets\images\templates\hotel\services-5.jpg" />
     <None Include="wwwroot\assets\images\templates\hotel\services-6.jpg" />
-    <None Include="wwwroot\assets\svg\favicon.ico" />
     <None Include="wwwroot\assets\svg\mobile-usage.svg" />
     <None Include="wwwroot\assets\svg\reveal-logo.svg" />
     <None Include="wwwroot\assets\svg\reveal-symbol.svg" />
