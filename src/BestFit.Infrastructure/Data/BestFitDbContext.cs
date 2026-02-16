@@ -1,4 +1,5 @@
 ﻿using BestFit.Domain.Entities;
+using BestFit.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,9 @@ namespace BestFit.Infrastructure.Data
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductMeasurementProfile> ProductMeasurementProfiles { get; set; }
         public DbSet<CustomerMeasurementProfile> CustomerMeasurementProfiles { get; set; }
+        public DbSet<FeaturedContent> FeaturedContents { get; set; }
+        public DbSet<FeaturedContentImage> FeaturedContentImage{ get; set; }
+        public DbSet<Image> Images { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -73,6 +77,9 @@ namespace BestFit.Infrastructure.Data
             };
 
             modelBuilder.Entity<IdentityRole>().HasData(roles);
+
+            
+
 
              modelBuilder.Entity<Product>()
             .HasOne(p => p.ProductMeasurementProfile)           // Product has one profile
@@ -147,6 +154,8 @@ namespace BestFit.Infrastructure.Data
            .WithMany(u => u.CustomerMeasurementProfiles)
            .HasForeignKey(c => c.CustomerId)
            .OnDelete(DeleteBehavior.Cascade);
+
+           
             // HEAD
             profile.OwnsOne(p => p.Head, h =>
             {

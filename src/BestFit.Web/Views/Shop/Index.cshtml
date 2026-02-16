@@ -4,16 +4,12 @@
     <div class="pb-2 py-lg-3">
         <div class="container text-light">
             <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h2 class="mb-0 h4">Product grid</h2>
-                    <small class="pre-label d-none d-lg-block">Cards grid preview</small>
-                </div>
+                
                 <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
                     <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Library</a></li>
-                        <li class="breadcrumb-item"><a href="#">Category</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Shop" asp-action="Index" >Shop </a></li>
+                        
                     </ol>
                 </div>
             </div>
@@ -22,7 +18,7 @@
 </header>
 
 <!-- SVG Divider -->
-
+@* 
 <section class="divider bg-dark">
     <svg class="svg svg-light" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="100" viewBox="0 0 1920 100" preserveAspectRatio="none meet">
         <path d="M0,11S168.915,69.242,406.27,70.7,685.853,57.593,850.4,37.207,1259.752,73.448,1517.323,70.7,1920,19.667,1920,19.667V101H0Z" transform="translate(0 -1)" />
@@ -30,7 +26,7 @@
         <path d="M0,102.147S407.045,189.7,555.574,121.265C717.953,58.549,760.893,69.884,840.982,85.957c188.351,79.39,348.351-56.61,532.351,70.057C1489,91.538,1920,110.8,1920,110.8v62.551H0Z" transform="translate(0 -73.347)" fill-opacity=".4" />
     </svg>
 </section>
-
+ *@
 <!-- Products grid -->
 
 <section class="py-3">

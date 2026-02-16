@@ -25,7 +25,7 @@ namespace BestFit.Infrastructure.Repositories
         public IProductImageRepository ProductImageRepository => new ProductImageRepository(bestFitDbContext);
         public IProductMeasurementProfileRepository ProductMeasurementProfileRepository => new ProductMeasurementProfileRepository(bestFitDbContext);
         public IProductRepository ProductRepository => new ProductRepository(bestFitDbContext);
-
+        public IFeaturedContentRepository FeaturedContentRepository => new FeaturedContentRepository(bestFitDbContext);
         public void Dispose()
         {
             bestFitDbContext.Dispose();

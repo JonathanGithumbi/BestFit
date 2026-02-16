@@ -4,6 +4,7 @@ using BestFit.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BestFit.Infrastructure.Migrations
 {
     [DbContext(typeof(BestFitDbContext))]
-    partial class BestFitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260215233903_AddingFeatureContentImageModel")]
+    partial class AddingFeatureContentImageModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -356,30 +359,16 @@ namespace BestFit.Infrastructure.Migrations
             modelBuilder.Entity("BestFit.Web.Models.FeaturedContent", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Heading")
+                    b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ImageId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RunFromDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RunToDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SubHeading")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -390,8 +379,6 @@ namespace BestFit.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("FeaturedContents");
                 });
@@ -1043,8 +1030,8 @@ namespace BestFit.Infrastructure.Migrations
                 {
                     b.HasOne("BestFit.Domain.Entities.FeaturedContentImage", "Image")
                         .WithMany("FeaturedContents")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Image");
