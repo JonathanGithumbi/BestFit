@@ -33,7 +33,7 @@ namespace BestFit.Application.Services
 
             //Todays Featured Content
             var contents = new List<FeaturedContent>();
-            var pageContents = new List<string>{ "top-page","mid-page"};
+            var pageContents = new List<string>{ "top-page","mid-page","bottom-page"};
             var today = DateTime.Now;
             foreach (var content in pageContents)
             {
