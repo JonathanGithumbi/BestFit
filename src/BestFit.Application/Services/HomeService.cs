@@ -97,6 +97,11 @@ namespace BestFit.Application.Services
             }
             dataDictionary.Add("popularWomenProducts", popWomenProducts);
 
+            //clothing categories
+            //8 in total
+            
+            var clothingCategoriesList =  categoryService.GetAllCategories().Take<Category>(8);
+            dataDictionary.Add("clothingCategories", clothingCategoriesList);
             return dataDictionary;
         }
     }

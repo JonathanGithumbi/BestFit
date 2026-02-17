@@ -321,34 +321,18 @@
             <div class="row py-4">
                 <div class="col-lg-3 mb-4 mb-lg">
                     <h2 class="mb-0">Clothing</h2>
-                    <p><a href="#" class="link link-main link-dark">Explore all categories</a></p>
+                    <p><a asp-controller="Category" asp-action="Index"  class="link link-main link-dark">Explore all categories</a></p>
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Jackets</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Coats</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">West</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Pullover</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Sweatshirts</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Hoodies</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Wheelchairs</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">Long sleeve shirts</a>
-                        </div>
+                        @foreach(var clothingCategory in Model.clothingCategories)
+                        {
+                            <div class="col col-lg-3 mb-3">
+                                <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>
+                            </div>
+                        }
+                        
+                       
                     </div>
                 </div>
             </div>
@@ -360,34 +344,17 @@
             <div class="row py-4">
                 <div class="col-lg-3 mb-4 mb-lg">
                     <h2 class="mb-0">Shoes</h2>
-                    <p><a href="#" class="link link-main link-dark">Explore all categories</a></p>
+                    <p><a asp-controller="Category" asp-action="Index" class="link link-main link-dark">Explore all categories</a></p>
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Running shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Sneaker</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Outdoor shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Soccer shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Indoor shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Bathing shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">tennis shoes</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Cycling shoes</a>
-                        </div>
+                        @foreach (var clothingCategory in Model.clothingCategories)
+                        {
+                            <div class="col col-lg-3 mb-3">
+                                <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>
+                            </div>
+                        }
+                        
                     </div>
                 </div>
             </div>
@@ -399,34 +366,16 @@
             <div class="row py-4">
                 <div class="col-lg-3 mb-4 mb-lg">
                     <h2 class="mb-0">Equipment</h2>
-                    <p><a href="#" class="link link-main link-dark">Explore all categories</a></p>
+                    <p><a asp-controller="Category" asp-action="Index" class="link link-main link-dark">Explore all categories</a></p>
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Hiking</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Fitness</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Camping gear</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Running gear</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Soccer</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Cycling</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Water sports</a>
-                        </div>
-                        <div class="col col-lg-3 mb-3">
-                            <a href="#" class="btn btn-rounded btn-block btn-outline-dark text-nowrap">Tennis</a>
-                        </div>
+                        @foreach (var clothingCategory in Model.clothingCategories)
+                        {
+                            <div class="col col-lg-3 mb-3">
+                                <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

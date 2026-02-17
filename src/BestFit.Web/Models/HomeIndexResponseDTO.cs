@@ -10,5 +10,6 @@ namespace BestFit.Web.Models
         public List<CategoryResponseDTO> popularCategories { get; set; }
         public List<ProductResponseDTO> blackFridaySales { get; set; }
         public List<ProductResponseDTO> popularWomenProducts { get; set; }
+        public List<CategoryResponseDTO> clothingCategories { get; set; }
     }
 }
