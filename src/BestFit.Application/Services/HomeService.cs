@@ -86,6 +86,17 @@ namespace BestFit.Application.Services
             dataDictionary.Add("blackFridaySales", products);
 
 
+            //Products Populr Womens section
+            //Coretta,Tonya,Raven,Mufi
+            var popWomenProducts = new List<Product>();
+            var popWomenProductsList = new List<string> { "Coretta", "Tonya", "Raven", "Mufi" };
+            foreach (var womenProduct in popWomenProductsList)
+            {
+                var result = productService.GetSingleProduct(x => x.Name == womenProduct);
+                popWomenProducts.Add(result);
+            }
+            dataDictionary.Add("popularWomenProducts", popWomenProducts);
+
             return dataDictionary;
         }
     }

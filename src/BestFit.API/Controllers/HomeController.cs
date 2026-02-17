@@ -32,6 +32,7 @@ namespace BestFit.API.Controllers
                 sportCollectionCategories = mapper.Map<List<CategoryResponseDTO>>(dataDictionary["sportCollectionCategories"]),
                 popularCategories = mapper.Map<List<CategoryResponseDTO>>(dataDictionary["popularCategories"]),
                 blackFridaySales = mapper.Map<List<ProductResponseDTO>>(dataDictionary["blackFridaySales"]),
+                popularWomenProducts = mapper.Map<List<ProductResponseDTO>>(dataDictionary["popularWomenProducts"]),
             };
             return Ok(homeIndexResponseDTO);
         }
