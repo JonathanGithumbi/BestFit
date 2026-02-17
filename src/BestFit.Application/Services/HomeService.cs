@@ -54,6 +54,19 @@ namespace BestFit.Application.Services
             dataDictionary.Add("sportCollectionCategories", sportCollectionCategories);
 
 
+            //Categories for the Popular  Categories Section
+            //Jackets,Bags,Outdoor,Winterski,Sport
+            var popularCategories = new List<Category>();
+            var popularCategoriesList = new List<string> { "Jackets", "Bags", "Outdoor", "Winterski", "Sport" };
+            foreach (var category in popularCategoriesList)
+            {
+                var result = categoryService.GetSingleCategory(x => x.Name == category);
+                popularCategories.Add(result);
+            }
+            dataDictionary.Add("popularCategories", popularCategories);
+
+
+
             return dataDictionary;
         }
     }

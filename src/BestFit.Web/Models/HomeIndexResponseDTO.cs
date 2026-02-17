@@ -7,6 +7,6 @@ namespace BestFit.Web.Models
         public FeaturedContentResponseDTO featuredContent { get; set; }
         public List<CategoryResponseDTO> categories { get; set; }
         public List<CategoryResponseDTO> sportCollectionCategories { get; set; }
-
+        public List<CategoryResponseDTO> popularCategories { get; set; }
     }
 }

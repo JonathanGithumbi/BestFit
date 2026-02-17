@@ -6,6 +6,7 @@ namespace BestFit.Application.DTOs.ResponseDTOs
     {
         public FeaturedContentResponse featuredContent { get; set; }
         public IEnumerable<CategoryResponseDTO> categories { get; set; }
-        public IList<CategoryResponseDTO> sportCollectionCategories { get  ;set; }
+        public List<CategoryResponseDTO> sportCollectionCategories { get  ;set; }
+        public List<CategoryResponseDTO> popularCategories { get  ;set; }
     }
 }
