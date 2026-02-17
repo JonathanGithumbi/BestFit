@@ -4,6 +4,7 @@ using BestFit.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BestFit.Infrastructure.Migrations
 {
     [DbContext(typeof(BestFitDbContext))]
-    partial class BestFitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260216133036_AddFeaturedContentImgeSoloTable")]
+    partial class AddFeaturedContentImgeSoloTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,48 +174,6 @@ namespace BestFit.Infrastructure.Migrations
                     b.HasIndex("CustomerId", "ProfileName");
 
                     b.ToTable("CustomerMeasurementProfiles");
-                });
-
-            modelBuilder.Entity("BestFit.Domain.Entities.FeaturedContent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Heading")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RunFromDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RunToDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("SubHeading")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FeaturedContents");
                 });
 
             modelBuilder.Entity("BestFit.Domain.Entities.FeaturedContentImage", b =>
@@ -404,6 +365,48 @@ namespace BestFit.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductMeasurementProfiles");
+                });
+
+            modelBuilder.Entity("BestFit.Web.Models.FeaturedContent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Heading")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Picture")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RunFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RunToDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SubHeading")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FeaturedContents");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -781,7 +784,7 @@ namespace BestFit.Infrastructure.Migrations
 
             modelBuilder.Entity("BestFit.Domain.Entities.FeaturedContentImage", b =>
                 {
-                    b.HasOne("BestFit.Domain.Entities.FeaturedContent", "FeaturedContent")
+                    b.HasOne("BestFit.Web.Models.FeaturedContent", "FeaturedContent")
                         .WithMany()
                         .HasForeignKey("FeaturedContentId")
                         .OnDelete(DeleteBehavior.Cascade)

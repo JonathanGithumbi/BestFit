@@ -1,6 +1,7 @@
-﻿using BestFit.Domain.Interfaces;
+﻿using BestFit.Domain.Entities;
+using BestFit.Domain.Interfaces;
 using BestFit.Infrastructure.Data;
-using BestFit.Web.Models;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,15 @@ using System.Threading.Tasks;
 
 namespace BestFit.Infrastructure.Repositories
 {
-    public class FeaturedContentRepository : Repository<FeaturedContent>,IFeaturedContentRepository
+    public class FeaturedContentRepository : Repository<FeaturedContent>, IFeaturedContentRepository
     {
         private readonly BestFitDbContext bestFitDbContext;
+        private string wwwRootPath;
 
         public FeaturedContentRepository(BestFitDbContext bestFitDbContext) : base(bestFitDbContext)
         {
             this.bestFitDbContext = bestFitDbContext;
         }
+
     }
 }

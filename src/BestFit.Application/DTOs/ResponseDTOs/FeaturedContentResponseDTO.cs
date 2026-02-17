@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BestFit.Application.DTOs.ResponseDTOs
 {
-    public class FeaturedContentResponseDTO
+    public class FeaturedContentResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Heading { get; set; }
         public string SubHeading { get; set; }
 
-        public Guid ImageId { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

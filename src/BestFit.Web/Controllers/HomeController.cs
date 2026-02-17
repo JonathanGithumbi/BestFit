@@ -20,17 +20,17 @@ namespace BestFit.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<CategoryResponseDTO> response = new List<CategoryResponseDTO>();  
+            HomeIndexResponseDTO response  = new HomeIndexResponseDTO(); 
             try
             {
                 var client = httpClientFactory.CreateClient();
 
                 
-                var httpResponseMessage = await client.GetAsync( "https://localhost:7198/api/Categories");
+                var httpResponseMessage = await client.GetAsync( "https://localhost:7198/api/Home");
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
-                response.AddRange (await httpResponseMessage.Content.ReadFromJsonAsync<IEnumerable<CategoryResponseDTO>>());
+                response = await httpResponseMessage.Content.ReadFromJsonAsync<HomeIndexResponseDTO>();
 
                 
             }

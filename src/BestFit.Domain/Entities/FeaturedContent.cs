@@ -1,7 +1,9 @@
 ﻿using BestFit.Domain.Entities;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BestFit.Web.Models
+namespace BestFit.Domain.Entities
 {
     public class FeaturedContent
     {
@@ -10,10 +12,13 @@ namespace BestFit.Web.Models
         public string Heading { get; set; }
         public string SubHeading { get; set; }
 
-        public Guid ImageId { get; set; }
+        [NotMapped]
+        [Required]
+        public IFormFile? File { get; set; }
 
-        [ForeignKey("ImageId")]
-        public FeaturedContentImage Image { get; set; }
+        public string ImageUrl { get; set; }
+
+        
         public DateTime CreatedOn { get; set; }
         public DateTime UpdatedOn { get; set; }
         public DateTime RunFromDate { get; set; }

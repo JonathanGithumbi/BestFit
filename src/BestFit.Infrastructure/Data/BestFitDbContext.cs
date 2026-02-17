@@ -1,5 +1,4 @@
 ﻿using BestFit.Domain.Entities;
-using BestFit.Web.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

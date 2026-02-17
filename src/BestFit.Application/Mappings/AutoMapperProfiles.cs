@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BestFit.Web.Models;
 
 
 
@@ -21,7 +20,7 @@ namespace BestFit.Application.Mappings
         public AutoMapperProfiles() 
         {
             //Featured Content
-            CreateMap<FeaturedContent, FeaturedContentResponseDTO>().ReverseMap();
+            CreateMap<FeaturedContent, FeaturedContentResponse>().ReverseMap();
             CreateMap<FeaturedContent, AddFeaturedContentRequestDTO>().ReverseMap();
             CreateMap<FeaturedContent, UpdateFeaturedContentRequestDTO>().ReverseMap();
 
