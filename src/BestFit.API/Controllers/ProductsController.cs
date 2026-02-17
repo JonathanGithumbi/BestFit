@@ -40,7 +40,7 @@ namespace BestFit.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] AddProductRequestDTO addProductRequestDTO)
+        public IActionResult Post([FromForm] AddProductRequestDTO addProductRequestDTO)
         {
             var productDomainModel = mapper.Map<Product>(addProductRequestDTO);
 

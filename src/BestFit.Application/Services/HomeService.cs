@@ -15,12 +15,14 @@ namespace BestFit.Application.Services
         private readonly FeaturedContentService featuredContentService;
         private readonly IMapper mapper;
         private readonly CategoryService categoryService;
+        private readonly ProductService productService;
 
-        public HomeService(FeaturedContentService featuredContentService,IMapper mapper,CategoryService categoryService)
+        public HomeService(FeaturedContentService featuredContentService,IMapper mapper,CategoryService categoryService,ProductService productService)
         {
             this.featuredContentService = featuredContentService;
             this.mapper = mapper;
             this.categoryService = categoryService;
+            this.productService = productService;
         }
         public Dictionary<string,object> Home()
         {
@@ -53,7 +55,6 @@ namespace BestFit.Application.Services
             }
             dataDictionary.Add("sportCollectionCategories", sportCollectionCategories);
 
-
             //Categories for the Popular  Categories Section
             //Jackets,Bags,Outdoor,Winterski,Sport
             var popularCategories = new List<Category>();
@@ -65,6 +66,18 @@ namespace BestFit.Application.Services
             }
             dataDictionary.Add("popularCategories", popularCategories);
 
+
+
+            //Products for Black Friday Sale
+            //Coretta,Tonya,Raven,Mufi
+            var products = new List<Product>();
+            var popularList = new List<string> { "Coretta", "Tonya", "Raven", "Mufi" };
+            foreach (var category in popularList)
+            {
+                var result = productService.GetSingleProduct(x => x.Name == category);
+                products.Add(result);
+            }
+            dataDictionary.Add("blackFridaySales", products);
 
 
             return dataDictionary;

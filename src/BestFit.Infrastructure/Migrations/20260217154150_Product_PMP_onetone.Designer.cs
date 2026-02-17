@@ -4,6 +4,7 @@ using BestFit.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BestFit.Infrastructure.Migrations
 {
     [DbContext(typeof(BestFitDbContext))]
-    partial class BestFitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260217154150_Product_PMP_onetone")]
+    partial class Product_PMP_onetone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -361,7 +364,13 @@ namespace BestFit.Infrastructure.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<Guid>("ProductMeasurementProfileId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductMeasurementProfileId")
+                        .IsUnique();
 
                     b.ToTable("Products");
                 });
@@ -392,29 +401,23 @@ namespace BestFit.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("UnitSystem")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductId")
-                        .IsUnique();
 
                     b.ToTable("ProductMeasurementProfiles");
                 });
 
             modelBuilder.Entity("CategoryProduct", b =>
                 {
-                    b.Property<Guid>("CategoryId")
+                    b.Property<Guid>("CategoriesId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("CategoryId", "ProductsId");
+                    b.HasKey("CategoriesId", "ProductsId");
 
                     b.HasIndex("ProductsId");
 
@@ -835,6 +838,17 @@ namespace BestFit.Infrastructure.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("BestFit.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("BestFit.Domain.Entities.ProductMeasurementProfile", "ProductMeasurementProfile")
+                        .WithOne()
+                        .HasForeignKey("BestFit.Domain.Entities.Product", "ProductMeasurementProfileId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ProductMeasurementProfile");
+                });
+
             modelBuilder.Entity("BestFit.Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("BestFit.Domain.Entities.Product", "Product")
@@ -848,12 +862,6 @@ namespace BestFit.Infrastructure.Migrations
 
             modelBuilder.Entity("BestFit.Domain.Entities.ProductMeasurementProfile", b =>
                 {
-                    b.HasOne("BestFit.Domain.Entities.Product", "Product")
-                        .WithOne()
-                        .HasForeignKey("BestFit.Domain.Entities.ProductMeasurementProfile", "ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.OwnsOne("BestFit.Domain.ValueObjects.AccessoryDimensions", "Accessories", b1 =>
                         {
                             b1.Property<Guid>("ProductMeasurementProfileId")
@@ -1044,8 +1052,6 @@ namespace BestFit.Infrastructure.Migrations
 
                     b.Navigation("MaterialInfo");
 
-                    b.Navigation("Product");
-
                     b.Navigation("Shoes");
 
                     b.Navigation("Tops");
@@ -1055,7 +1061,7 @@ namespace BestFit.Infrastructure.Migrations
                 {
                     b.HasOne("BestFit.Domain.Entities.Category", null)
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CategoriesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,15 +18,14 @@ namespace BestFit.Domain.Entities
         public string Description { get; set; }
         public string BarCode { get; set; }
         public double Price { get; set; }
-        public string? Picture { get; set; }
+        public string? ImageUrl { get; set; }
+        
+        [NotMapped]
+        public IFormFile File { get; set; }
+        
 
-        public Guid CategoryId { get; set; }
-        public Guid ProductMeasurementProfileId { get; set; }
 
-        [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
 
         
-        public ProductMeasurementProfile ProductMeasurementProfile { get; set; }
     }
 }

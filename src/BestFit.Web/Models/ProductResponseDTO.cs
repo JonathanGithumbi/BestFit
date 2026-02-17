@@ -1,6 +1,4 @@
-﻿using BestFit.Domain.Entities;
-
-namespace BestFit.Application.DTOs.ResponseDTOs
+﻿namespace BestFit.Web.Models
 {
     public class ProductResponseDTO
     {

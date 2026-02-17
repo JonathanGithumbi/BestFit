@@ -1,5 +1,6 @@
 ﻿using BestFit.Domain.Entities;
 using BestFit.Domain.ValueObjects;
+using BestFit.Web.Models;
 
 namespace BestFit.Application.DTOs.ResponseDTOs
 {
@@ -10,6 +11,8 @@ namespace BestFit.Application.DTOs.ResponseDTOs
         /// <summary>
         /// Links to the specific Stock Keeping Unit (Size S, M, L each have their own profile).
         /// </summary>
+        public Guid ProductId { get; set; }
+        public ProductResponseDTO Product { get; set; }
 
         public MeasurementUnit UnitSystem { get; set; }
 

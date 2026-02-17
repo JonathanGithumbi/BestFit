@@ -21,5 +21,6 @@ namespace BestFit.Domain.Entities
 
         [NotMapped]
         public IFormFile File { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

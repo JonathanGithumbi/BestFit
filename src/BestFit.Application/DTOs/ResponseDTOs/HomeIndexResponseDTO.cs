@@ -8,5 +8,6 @@ namespace BestFit.Application.DTOs.ResponseDTOs
         public IEnumerable<CategoryResponseDTO> categories { get; set; }
         public List<CategoryResponseDTO> sportCollectionCategories { get  ;set; }
         public List<CategoryResponseDTO> popularCategories { get  ;set; }
+        public List<ProductResponseDTO> blackFridaySales { get  ;set; }
     }
 }

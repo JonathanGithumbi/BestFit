@@ -36,6 +36,16 @@ namespace BestFit.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
 
+            //ManyTOMany config for Product - Category
+            modelBuilder.Entity<Category>()
+                .HasMany(p => p.Products)
+                .WithMany();
+
+            modelBuilder.Entity<ProductMeasurementProfile>()
+           .HasOne(pmp => pmp.Product)           // Product has one profile
+           .WithOne();
+
+
             //Seeding roles
             var handlerRoleId = "3c7b2bba-99ab-4768-b124-4abb40a94daa";
             var shopperRoleId = "6afa6e31-910f-4963-94ac-d7a23c6d377d";
@@ -77,13 +87,9 @@ namespace BestFit.Infrastructure.Data
             modelBuilder.Entity<IdentityRole>().HasData(roles);
 
             //ToDo:Seed Men,Women,Kids Categories
-            
 
-             modelBuilder.Entity<Product>()
-            .HasOne(p => p.ProductMeasurementProfile)           // Product has one profile
-            .WithOne(pmp => pmp.Product)                        // Profile has one product
-            .HasForeignKey<ProductMeasurementProfile>(pmp => pmp.Id) // PK of profile is FK to Product
-            .OnDelete(DeleteBehavior.Cascade);
+
+            
             modelBuilder.Entity<ProductMeasurementProfile>(entity =>
             {
                 entity.HasKey(p => p.Id);
