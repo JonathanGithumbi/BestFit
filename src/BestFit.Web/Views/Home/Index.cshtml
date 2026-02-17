@@ -66,23 +66,15 @@
 
         <div class="wow fadeInUp" data-wow-delay=".2s">
             <div class="row">
+                @foreach(var category in Model.sportCollectionCategories)
+                {
+                    <div class="col mb-3 mb-lg-0">
+                        <a asp-controller="Shop" asp-action="Index" asp-route-category="@category.Id" class="btn btn-rounded btn-block btn-outline-dark">@category.Name</a>
+                    </div>
+                }
+                
                 <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-outline-dark">Outdoor</a>
-                </div>
-                <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-outline-dark">Training</a>
-                </div>
-                <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-outline-dark">Running</a>
-                </div>
-                <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-outline-dark">Fintess</a>
-                </div>
-                <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-outline-dark">Wintersport</a>
-                </div>
-                <div class="col mb-3 mb-lg-0">
-                    <a href="#" class="btn btn-rounded btn-block btn-dark text-nowrap">All categories</a>
+                    <a asp-controller="Categories" asp-action="Index" class="btn btn-rounded btn-block btn-dark text-nowrap">All categories</a>
                 </div>
             </div>
         </div>
