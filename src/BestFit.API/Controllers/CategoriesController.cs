@@ -56,7 +56,7 @@ namespace BestFit.API.Controllers
 
         //post to create a new category
         [HttpPost]
-        public IActionResult Post([FromBody] AddCategoryRequestDTO addCategoryRequestDTO)
+        public IActionResult Post([FromForm] AddCategoryRequestDTO addCategoryRequestDTO)
         {
             var categoryDomainModel = mapper.Map<Category>(addCategoryRequestDTO);
 

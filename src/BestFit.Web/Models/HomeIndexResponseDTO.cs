@@ -5,7 +5,7 @@ namespace BestFit.Web.Models
     public class HomeIndexResponseDTO
     {
         public FeaturedContentResponseDTO featuredContent { get; set; }
-        public IEnumerable<CategoryResponseDTO> categories { get; set; }
+        public IList<CategoryResponseDTO> categories { get; set; }
 
     }
 }

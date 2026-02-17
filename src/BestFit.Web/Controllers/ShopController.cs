@@ -8,6 +8,14 @@ namespace BestFit.Web.Controllers
         {
             return View();
         }
+        public IActionResult NewArrivals()
+        {
+            return View();
+        }
+        public IActionResult DiscountSales()
+        {
+            return View();
+        }
 
         
     }

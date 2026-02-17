@@ -26,7 +26,8 @@ namespace BestFit.API.Controllers
 
             var homeIndexResponseDTO = new HomeIndexResponseDTO()
             {
-                featuredContent = mapper.Map<FeaturedContentResponse>(dataDictionary["featuredContentDomain"])
+                featuredContent = mapper.Map<FeaturedContentResponse>(dataDictionary["featuredContentDomain"]),
+                categories = mapper.Map<List<CategoryResponseDTO>>(dataDictionary["categories"])
             };
             return Ok(homeIndexResponseDTO);
         }

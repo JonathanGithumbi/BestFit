@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Domain.Entities;
 
 namespace BestFit.Application.Services
 {
@@ -13,11 +14,13 @@ namespace BestFit.Application.Services
     {
         private readonly FeaturedContentService featuredContentService;
         private readonly IMapper mapper;
+        private readonly CategoryService categoryService;
 
-        public HomeService(FeaturedContentService featuredContentService,IMapper mapper)
+        public HomeService(FeaturedContentService featuredContentService,IMapper mapper,CategoryService categoryService)
         {
             this.featuredContentService = featuredContentService;
             this.mapper = mapper;
+            this.categoryService = categoryService;
         }
         public Dictionary<string,object> Home()
         {
@@ -30,11 +33,16 @@ namespace BestFit.Application.Services
 
             dataDictionary.Add("featuredContentDomain",contentDomain);
 
-
-
-
+            var categories = new List<Category>();
             //Categories Mens Kids & Womens
+            var men = categoryService.GetSingleCategory(x => x.Name == "Men");
+            var women = categoryService.GetSingleCategory(x => x.Name == "Women");
+            var kids = categoryService.GetSingleCategory(x => x.Name == "Kids");
 
+            categories.AddRange([men,women,kids]);
+
+
+            dataDictionary.Add("categories", categories);
 
 
             return dataDictionary;

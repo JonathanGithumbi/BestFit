@@ -74,11 +74,10 @@ namespace BestFit.Infrastructure.Data
                     NormalizedName ="Staff".ToUpper()
                 },
             };
-
             modelBuilder.Entity<IdentityRole>().HasData(roles);
 
+            //ToDo:Seed Men,Women,Kids Categories
             
-
 
              modelBuilder.Entity<Product>()
             .HasOne(p => p.ProductMeasurementProfile)           // Product has one profile
