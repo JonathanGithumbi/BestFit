@@ -42,14 +42,7 @@ namespace BestFit.API.Controllers
             return Ok(mapper.Map<FeaturedContentResponse>(featuredContent));
         }
 
-        [HttpGet]
-        [Route("{today:datetime}")]
-        public IActionResult GetTodayContent(DateTime today)
-        {
-            var todayFeaturedContent = featuredContentService.GetTodayContent(today);
-            return Ok(mapper.Map<FeaturedContentResponse>(todayFeaturedContent));
-
-        }
+        
 
         [HttpPost]
         public IActionResult Post([FromForm] AddFeaturedContentRequestDTO  addFeaturedContentRequestDTO)

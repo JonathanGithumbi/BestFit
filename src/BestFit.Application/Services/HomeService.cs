@@ -27,14 +27,20 @@ namespace BestFit.Application.Services
         public Dictionary<string,object> Home()
         {
             var dataDictionary = new Dictionary<string,object>();
-            //here we build the data model for the index page
+            
             var indexPageDTO = new HomeIndexResponseDTO();
 
 
             //Todays Featured Content
+            var contents = new List<FeaturedContent>();
+            var pageContents = new List<string>{ "top-page","mid-page"};
             var today = DateTime.Now;
-            var contentDomain = featuredContentService.GetTodayContent(today.Date);
-            dataDictionary.Add("featuredContentDomain",contentDomain);
+            foreach (var content in pageContents)
+            {
+                var contentResult = featuredContentService.GetTodayContent(content);
+                contents.Add(contentResult);
+            }
+            dataDictionary.Add("featuredContentDomain",contents);
 
             //Categories Mens Kids & Womens
             var categories = new List<Category>();

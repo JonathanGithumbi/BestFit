@@ -103,9 +103,9 @@ namespace BestFit.Application.Services
             return false;
         }
 
-        public FeaturedContent GetTodayContent(DateTime today)
+        public FeaturedContent GetTodayContent(string content)
         {
-            var featuredContent = unitOfWork.FeaturedContentRepository.GetFirstOrDefault(x => x.RunFromDate > today && today < x.RunToDate);
+            var featuredContent = unitOfWork.FeaturedContentRepository.GetFirstOrDefault(x => x.Name==content);
 
             return featuredContent;
 

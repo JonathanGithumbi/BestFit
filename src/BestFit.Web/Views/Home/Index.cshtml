@@ -7,16 +7,17 @@
 
 <!-- Header -->
 
-<!--Featured Content Hero-->
+
+<!--Featured Content Banner-->
 <section class="section bg-white">
     <div class="container">
-        <div class="box box-image box-parallax br-md" style="background-image:url(@Model.featuredContent.ImageUrl)">
+        <div class="box box-image box-parallax br-md" style="background-image:url(@Model.featuredContent.Find(x => x.Name == "top-page").ImageUrl)">
             <div class="box-content px-5 text-center text-white">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <h1 class="display-4">@Model.featuredContent.Heading</h1>
+                        <h1 class="display-4">@Model.featuredContent.Find(x => x.Name == "top-page").Heading</h1>
                         <p class="lead mb-5">
-                            @Model.featuredContent.SubHeading
+                            @Model.featuredContent.Find(x => x.Name == "top-page")SubHeading
                         </p>
                     </div>
                 </div>
@@ -225,13 +226,12 @@
 
 <!-- Banner winter is beautiful -->
 
-<section class="bg-dark cover" style="background-image: url(../assets/images/templates//clothing/gallery-5.jpg);">
+<section class="bg-dark cover" style="background-image: url(@Model.featuredContent.Find(x => x.Name == "mid-page").ImageUrl);">
     <div class="container">
         <div class="row justify-content-start">
             <div class="col-md-6">
-                <h2 class="display-4">Winter is <strong>beautiful</strong></h2>
-                <p>Jackets, shoes and accessories for all weathers.</p>
-                <a href="#" class="btn btn-rounded btn-outline-dark">View collection</a>
+                <h2 class="display-4">@Model.featuredContent.Find(x => x.Name == "mid-page").Heading</h2>
+                <p>@Model.featuredContent.Find(x => x.Name == "mid-page").SubHeading</p>
             </div>
         </div>
     </div>
