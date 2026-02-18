@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Application.Services;
+using BestFit.Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BestFit.API.Controllers
@@ -7,10 +11,28 @@ namespace BestFit.API.Controllers
     [ApiController]
     public class ShopController : ControllerBase
     {
-        //[HttpGet]
-        //public IActionResult Index()
-        //{
+        private readonly IUnitOfWork unitOfWork;
+        private readonly ProductService productService;
+        private readonly IMapper mapper;
 
-        //}
+        public ShopController(IUnitOfWork unitOfWork, ProductService productService,IMapper mapper)
+        {
+            this.unitOfWork = unitOfWork;
+            this.productService = productService;
+            this.mapper = mapper;
+        }
+        [HttpGet]
+        // api/Shop?filterOn=
+        public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery)
+        {
+            var productsDomain = productService.GetAllProduct(filterOn, filterQuery);
+
+            var responseDTO = new ShopIndexResponseDTO
+            {
+                productsResponseDTOs = mapper.Map<List<ProductResponseDTO>>(productsDomain)
+            };
+
+            return Ok(responseDTO);
+        }
     }
 }

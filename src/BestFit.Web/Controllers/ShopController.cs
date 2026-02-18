@@ -13,24 +13,36 @@ namespace BestFit.Web.Controllers
             this.logger = logger;
             this.httpClientFactory = httpClientFactory;
         }
-        public  IActionResult Index()
-        {
-            //ShopIndexResponseDTO response = new ShopIndexResponseDTO();
 
-            //try
-            //{
-            //    var client = httpClientFactory.CreateClient();
-            //    var httpResponseMessage = await client.GetAsync("https://localhost:7198/api/Shop");
-            //    httpResponseMessage.EnsureSuccessStatusCode();
-            //    response = await httpResponseMessage.Content.ReadFromJsonAsync<ShopIndexResponseDTO>(); 
-            //}
-            //catch(Exception)
-            //{
-            //    //Log
-            //    throw;
-            //}
-            return View();
+        [HttpGet]
+        public async Task<IActionResult> Index(string Name,[FromQuery]string? filterOn=null, [FromQuery] string? filterQuery=null)
+        {
+            if(string.IsNullOrEmpty(Name) ==false)
+            {
+                filterOn = "Name";
+                filterQuery = Name;
+
+            }
+            ShopIndexResponseDTO response = new ShopIndexResponseDTO();
+
+            try
+            {
+                var client = httpClientFactory.CreateClient();
+                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Shop?filterOn={filterOn}&filterQuery={filterQuery}");
+                httpResponseMessage.EnsureSuccessStatusCode();
+                response = await httpResponseMessage.Content.ReadFromJsonAsync<ShopIndexResponseDTO>();
+            }
+            catch (Exception)
+            {
+                //Log
+                throw;
+            }
+            return View(response);
         }
+
+
+        
+        
         public IActionResult NewArrivals()
         {
             return View();

@@ -26,8 +26,18 @@ namespace BestFit.Application.Services
             this.wwwRootPath = Path.Combine(env.ContentRootPath, "wwwroot");
         }
 
-        public IEnumerable<Product> GetAllProduct()
+        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null)
         {
+            //Filtering
+            if(string.IsNullOrEmpty(filterOn) == false && string.IsNullOrEmpty(filterQuery)==false)
+            {
+                if(filterOn.Equals("Name",StringComparison.OrdinalIgnoreCase))
+                {
+                    return unitOfWork.ProductRepository.GetAll(x=>x.Name.Contains(filterQuery));
+                }
+            }
+
+
             var productList = unitOfWork.ProductRepository.GetAll();
             return productList;
         }

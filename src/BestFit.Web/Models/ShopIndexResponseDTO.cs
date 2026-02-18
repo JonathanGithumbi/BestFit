@@ -1,10 +1,7 @@
 ﻿namespace BestFit.Web.Models
 {
-    internal class ShopIndexResponseDTO
+    public class ShopIndexResponseDTO
     {
-        public ShopIndexResponseDTO()
-        {
-
-        }
+        public List<ProductResponseDTO> productsResponseDTOs { get; set; }
     }
 }
