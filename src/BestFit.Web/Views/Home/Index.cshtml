@@ -6,7 +6,21 @@
 
 
 <!-- Header -->
+<header class="header header-main header-sticky">
+    <div class="pb-2 py-lg-3">
+        <div class="container text-light">
+            <div class="row align-items-center">
 
+                <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
+                    <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 <!--Featured Content Banner-->
 <section class="section bg-white">
@@ -17,7 +31,7 @@
                     <div class="col-md-8">
                         <h1 class="display-4">@Model.featuredContent.Find(x => x.Name == "top-page").Heading</h1>
                         <p class="lead mb-5">
-                            @Model.featuredContent.Find(x => x.Name == "top-page")SubHeading
+                            @Model.featuredContent.Find(x => x.Name == "top-page").SubHeading
                         </p>
                     </div>
                 </div>
