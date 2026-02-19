@@ -41,8 +41,13 @@ namespace BestFit.Web.Controllers
         }
 
 
-        
-        
+        [HttpGet]
+        public async Task<IActionResult> ListView(string? Name = null, [FromQuery] string? filterOn = null, [FromQuery] string? filterQuery = null, string? sortBy = null, bool isAscending = true)
+        {
+            return View();
+        }
+
+
         public IActionResult NewArrivals()
         {
             return View();

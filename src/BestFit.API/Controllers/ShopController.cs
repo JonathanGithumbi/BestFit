@@ -22,10 +22,10 @@ namespace BestFit.API.Controllers
             this.mapper = mapper;
         }
         [HttpGet]
-        // api/Shop?filterOn=
-        public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool isAscending=true)
+        public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery
+            , [FromQuery] string? sortBy, [FromQuery] bool isAscending = true, [FromQuery] int pageNumber =1, [FromQuery] int pageSize = 10)
         {
-            var productsDomain = productService.GetAllProduct(filterOn, filterQuery,sortBy,isAscending);
+            var productsDomain = productService.GetAllProduct(filterOn, filterQuery,sortBy,isAscending,pageNumber,pageSize);
 
             var responseDTO = new ShopIndexResponseDTO
             {

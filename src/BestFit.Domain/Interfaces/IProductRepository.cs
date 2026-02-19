@@ -11,7 +11,8 @@ namespace BestFit.Domain.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
-        IEnumerable<Product> GetAll(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true);
+        IEnumerable<Product> GetAll(string? filterOn = null, string? filterQuery = null, string? sortBy = null
+            , bool isAscending = true,int pageNumber = 1, int pageSize=10);
 
     }
 }
