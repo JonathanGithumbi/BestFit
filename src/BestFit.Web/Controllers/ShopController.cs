@@ -15,7 +15,7 @@ namespace BestFit.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(string Name,[FromQuery]string? filterOn=null, [FromQuery] string? filterQuery=null)
+        public async Task<IActionResult> Index(string? Name = null,[FromQuery]string? filterOn=null, [FromQuery] string? filterQuery=null, string? sortBy = null,bool isAscending=true)
         {
             if(string.IsNullOrEmpty(Name) ==false)
             {
@@ -28,7 +28,7 @@ namespace BestFit.Web.Controllers
             try
             {
                 var client = httpClientFactory.CreateClient();
-                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Shop?filterOn={filterOn}&filterQuery={filterQuery}");
+                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Shop?filterOn={filterOn}&filterQuery={filterQuery}&sortBy={sortBy}&isAscending={isAscending}");
                 httpResponseMessage.EnsureSuccessStatusCode();
                 response = await httpResponseMessage.Content.ReadFromJsonAsync<ShopIndexResponseDTO>();
             }

@@ -26,19 +26,10 @@ namespace BestFit.Application.Services
             this.wwwRootPath = Path.Combine(env.ContentRootPath, "wwwroot");
         }
 
-        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null)
+        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null,string?sortBy = null,bool isAscending=true)
         {
-            //Filtering
-            if(string.IsNullOrEmpty(filterOn) == false && string.IsNullOrEmpty(filterQuery)==false)
-            {
-                if(filterOn.Equals("Name",StringComparison.OrdinalIgnoreCase))
-                {
-                    return unitOfWork.ProductRepository.GetAll(x=>x.Name.Contains(filterQuery));
-                }
-            }
-
-
-            var productList = unitOfWork.ProductRepository.GetAll();
+            
+            var productList = unitOfWork.ProductRepository.GetAll(filterOn,filterQuery, sortBy ,  isAscending );
             return productList;
         }
         public Product CreateProduct(Product product)

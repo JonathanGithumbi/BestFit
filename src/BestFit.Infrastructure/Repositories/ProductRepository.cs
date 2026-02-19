@@ -17,5 +17,33 @@ namespace BestFit.Infrastructure.Repositories
         {
             this.bestFitDbContext = bestFitDbContext;
         }
+
+        public IEnumerable<Product> GetAll(string? filterOn = null, string? filterQuery = null, string? sortBy = null, bool isAscending = true)
+        {
+            var products = bestFitDbContext.Products.AsQueryable();
+
+
+            //Filtering
+            if (string.IsNullOrEmpty(filterOn) == false && string.IsNullOrEmpty(filterQuery) == false)
+            {
+                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    products= products.Where(x => x.Name.Contains(filterQuery));
+                }
+            }
+
+            //Sorting
+            if (string.IsNullOrEmpty(sortBy) == false)
+            {
+                if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    products =  isAscending ? products.OrderBy(x=>x.Name) : products.OrderByDescending(x=>x.Name);  
+                }
+            }
+
+            return products.AsEnumerable<Product>();
+        }
+
+        
     }
 }

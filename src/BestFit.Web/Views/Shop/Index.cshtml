@@ -289,13 +289,18 @@
                                         <i class="fa fa-list-ul"></i>
                                     </a>
                                 </div>
-                                <div class="form-group mb-0">
-                                    <label for="exampleFormControlSelect2" class="mr-3 d-none d-lg-block"><small>Sort by</small></label>
-                                    <select class="form-control form-control-sm" id="exampleFormControlSelect2">
-                                        <option>Name</option>
-                                        <option>Price</option>
-                                    </select>
-                                </div>
+                                <form method="get">
+                                    <div class="form-group mb-0">
+                                        <label for="exampleFormControlSelect2" class="mr-3 d-none d-lg-block"><small>Sort by</small></label>
+                                        <select type="submit" onchange="this.form.submit()" name="sortBy" class="form-control form-control-sm" id="exampleFormControlSelect2">
+                                            <option>Default</option>
+                                            <option>Name</option>
+                                            <option>Price</option>
+                                        </select>
+                                    </div>
+
+                                </form>
+                                
                                 <div class="d-lg-none ml-2">
                                     <button class="btn btn-primary btn-sm toggle-show" data-show="open-mobile-filters">
                                         <strong>

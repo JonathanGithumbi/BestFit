@@ -23,9 +23,9 @@ namespace BestFit.API.Controllers
         }
         [HttpGet]
         // api/Shop?filterOn=
-        public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery)
+        public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery, [FromQuery] string? sortBy, [FromQuery] bool isAscending=true)
         {
-            var productsDomain = productService.GetAllProduct(filterOn, filterQuery);
+            var productsDomain = productService.GetAllProduct(filterOn, filterQuery,sortBy,isAscending);
 
             var responseDTO = new ShopIndexResponseDTO
             {
