@@ -23,9 +23,10 @@ namespace BestFit.API.Controllers
         }
         [HttpGet]
         public IActionResult Index([FromQuery] string?filterOn,[FromQuery]string? filterQuery
-            , [FromQuery] string? sortBy, [FromQuery] bool isAscending = true, [FromQuery] int pageNumber =1, [FromQuery] int pageSize = 10)
+            , [FromQuery] string? sortBy, [FromQuery] bool isAscending = true, [FromQuery] int pageNumber =1,
+            [FromQuery] int pageSize = 10, [FromQuery] double fromPrice = 0, [FromQuery] double toPrice = 10000 )
         {
-            var productsDomain = productService.GetAllProduct(filterOn, filterQuery,sortBy,isAscending,pageNumber,pageSize);
+            var productsDomain = productService.GetAllProduct(filterOn, filterQuery,sortBy,isAscending,pageNumber,pageSize,fromPrice,toPrice);
 
             var responseDTO = new ShopIndexResponseDTO
             {

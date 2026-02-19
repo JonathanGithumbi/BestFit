@@ -26,10 +26,10 @@ namespace BestFit.Application.Services
             this.wwwRootPath = Path.Combine(env.ContentRootPath, "wwwroot");
         }
 
-        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null,string?sortBy = null,bool isAscending=true,int pageNumber=1,int pageSize=10)
+        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null,string?sortBy = null,bool isAscending=true,int pageNumber=1,int pageSize=10,double fromPrice =0,double toPrice =10000)
         {
             
-            var productList = unitOfWork.ProductRepository.GetAll(filterOn,filterQuery, sortBy ,  isAscending ,pageNumber,pageSize);
+            var productList = unitOfWork.ProductRepository.GetAll(filterOn,filterQuery, sortBy ,  isAscending ,pageNumber,pageSize,fromPrice,toPrice);
             return productList;
         }
         public Product CreateProduct(Product product)

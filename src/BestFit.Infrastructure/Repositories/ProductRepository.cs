@@ -19,19 +19,23 @@ namespace BestFit.Infrastructure.Repositories
         }
 
         public IEnumerable<Product> GetAll(string? filterOn = null, string? filterQuery = null,
-            string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 10)
+            string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 10,double fromPrice = 0,double toPrice=10000)
         {
             var products = bestFitDbContext.Products.AsQueryable();
 
 
-            //Filtering
+            //Filtering Name & Description
             if (string.IsNullOrEmpty(filterOn) == false && string.IsNullOrEmpty(filterQuery) == false)
             {
-                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                if (filterOn.Equals("Name", StringComparison.OrdinalIgnoreCase)) // Filter on product name and description
                 {
-                    products= products.Where(x => x.Name.Contains(filterQuery));
+                    products= products.Where(x => x.Name.Contains(filterQuery) || x.Description.Contains(filterQuery));
                 }
+                
             }
+            //Filter price
+            products = products.Where(x=>x.Price >= fromPrice && x.Price <= toPrice);
+
 
             //Sorting
             if (string.IsNullOrEmpty(sortBy) == false)
@@ -39,6 +43,10 @@ namespace BestFit.Infrastructure.Repositories
                 if (sortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
                 {
                     products =  isAscending ? products.OrderBy(x=>x.Name) : products.OrderByDescending(x=>x.Name);  
+                }
+                if (sortBy.Equals("Price", StringComparison.OrdinalIgnoreCase))
+                {
+                    products =  isAscending ? products.OrderBy(x=>x.Price) : products.OrderByDescending(x=>x.Price);  
                 }
             }
 
