@@ -1,6 +1,27 @@
-﻿@*
+﻿@model BestFit.Web.Models.ShopIndexResponseDTO
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
+<!-- Breadcrumbs -->
+
+<header class="header header-main header-sticky ">
+    <div class="pb-2 py-lg-3">
+        <div class="container text-light">
+            <div class="row align-items-center">
+
+                <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
+                    <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Shop" asp-action="Index">Shop </a></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
 <!-- Products list -->
 
 <section class="py-3">
@@ -283,271 +304,42 @@
                 <!-- Products collection -->
 
                 <div class="clearfix">
+                    @if(Model.productsResponseDTOs !=null)
+                    {
+                        @foreach(var product in Model.productsResponseDTOs)
+                        {
+                            <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
+                                <div class="row align-items-center no-gutters">
+                                    <div class="col-5">
+                                        <div class="card-image">
+                                            <img src="@product.ImageUrl" class="card-img-top" alt="Product image">
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="px-3 px-lg-4 py-3 py-lg-4">
+                                            <h4 class="card-title mb-2">
+                                                <a asp-controller="Product" asp-action="Index" asp-route-productId="@product.Id">Coretta</a>
+                                            </h4>
+                                            <div class="d-none d-xl-block mb-4">
+                                                <p>@product.Description</p>
+                                            </div>
+                                            <div class="text-muted pre-label">
+                                                <span>Ksh @product.Price</span>
+                                            </div>
+                                            <div class="pt-4 d-none d-lg-block">
+                                                <a asp-controller="Cart" asp-action="Add" asp-route-id="@product.Id" class="btn btn-primary">
+                                                    Add to cart
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    
 
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-1.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Coretta</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$490</span>
-                                        <s>$877</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-2.png" class="card-img-top" alt="Product image">
-                                    <span class="card-badge badge badge-danger text-uppercase mr-2">50%</span>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Tonya</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum et ultrices posuere cubilia Curae; Donec pharetra.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$419</span>
-                                        <s>$958</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-3.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Raven</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$502</span>
-                                        <s>$857</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-4.png" class="card-img-top" alt="Product image">
-                                    <span class="card-badge badge badge-dark text-uppercase mr-2">Last offer</span>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Mufi</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus primis in faucibus orci luctus.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$584</span>
-                                        <s>$838</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-5.png" class="card-img-top" alt="Product image">
-                                    <span class="card-badge badge badge-success text-uppercase mr-2">New</span>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Audrie</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Fusce consequat. Nulla nisl. Nunc nisl.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$470</span>
-                                        <s>$937</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-6.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Kira</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$579</span>
-                                        <s>$915</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-7.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Dianne</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$526</span>
-                                        <s>$1111</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-8.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Chery</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$424</span>
-                                        <s>$901</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card card-fill border-0 mb-2 mb-lg-4 shadow-sm">
-                        <div class="row align-items-center no-gutters">
-                            <div class="col-5">
-                                <div class="card-image">
-                                    <img src="assets/images//demo/product-9.png" class="card-img-top" alt="Product image">
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <div class="px-3 px-lg-4 py-3 py-lg-4">
-                                    <h4 class="card-title mb-2">
-                                        <a href="product.html">Willi</a>
-                                    </h4>
-                                    <div class="d-none d-xl-block mb-4">
-                                        <p>Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.</p>
-                                    </div>
-                                    <div class="text-muted pre-label">
-                                        <span>$494</span>
-                                        <s>$1088</s>
-                                    </div>
-                                    <div class="pt-4 d-none d-lg-block">
-                                        <a href="product.html" class="btn btn-primary">
-                                            Add to cart
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
 
                 <!-- Pagination -->

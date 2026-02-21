@@ -44,7 +44,27 @@ namespace BestFit.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> ListView(string? Name = null, [FromQuery] string? filterOn = null, [FromQuery] string? filterQuery = null, string? sortBy = null, bool isAscending = true)
         {
-            return View();
+            if (string.IsNullOrEmpty(Name) == false)
+            {
+                filterOn = "Name";
+                filterQuery = Name;
+
+            }
+            ShopIndexResponseDTO response = new ShopIndexResponseDTO();
+
+            try
+            {
+                var client = httpClientFactory.CreateClient();
+                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Shop?filterOn={filterOn}&filterQuery={filterQuery}&sortBy={sortBy}&isAscending={isAscending}");
+                httpResponseMessage.EnsureSuccessStatusCode();
+                response = await httpResponseMessage.Content.ReadFromJsonAsync<ShopIndexResponseDTO>();
+            }
+            catch (Exception)
+            {
+                //Log
+                throw;
+            }
+            return View(response);
         }
 
 
