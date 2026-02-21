@@ -1,0 +1,222 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Breadcrumbs -->
+
+<header class="header header-main header-sticky bg-dark">
+    <div class="pb-2 py-lg-3">
+        <div class="container text-light">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-0 h4">Login and registration</h2>
+                    <small class="pre-label d-none d-lg-block">Login on your profile</small>
+                </div>
+                <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
+                    <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item"><a href="#">Category</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Checkout login &amp; register -->
+
+<section class="pt-0">
+
+    <!-- Checkout steps -->
+
+    <div class="pt-3 pt-lg-4 pb-5 pb-lg-6 mb-2 mb-lg-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="steps steps-sm">
+                        <ul class="row">
+                            <li class="col  active">
+                                <a href="checkout.html">
+                                    <span class="step-item" data-text="Checkout">
+                                        <span>1</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col current">
+                                <a href="checkout-login.html">
+                                    <span class="step-item" data-text="Login">
+                                        <span>2</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col ">
+                                <a href="checkout-delivery.html">
+                                    <span class="step-item" data-text="Delivery">
+                                        <span>3</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col">
+                                <a href="checkout-payment.html">
+                                    <span class="step-item" data-text="Payment">
+                                        <span>4</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="col">
+                                <a href="checkout-receipt.html">
+                                    <span class="step-item" data-text="Receipt">
+                                        <span>5</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login &amp; register -->
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-8">
+                <div class="accordion" id="accordion1">
+
+                    <!-- Checkout registration -->
+
+                    <div class="card card-panel bg-white shadow-sm mb-2">
+
+                        <div class="card-header py-4 bg-white" role="button" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h2 class="h4 mb-0">Register now</h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion1">
+                            <div class="card-body p-0">
+                                <hr class="m-0">
+                                <div class="p-4 p-md-6">
+                                    <form>
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="First name: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Last name: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Company name:">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Zip code: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="City: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Email: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Phone: *">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+
+                                                <div class="custom-control custom-checkbox custom-checkbox-primary py-2">
+                                                    <input type="checkbox" class="custom-control-input" id="customExampleCheck1">
+                                                    <label class="custom-control-label" for="customExampleCheck1">
+                                                        I have read and accepted the <a href="#">terms and conditions</a>
+                                                    </label>
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox custom-checkbox-primary py-2">
+                                                    <input type="checkbox" class="custom-control-input" id="customExampleCheck2">
+                                                    <label class="custom-control-label" for="customExampleCheck2">
+                                                        Subscribe to exciting newsletters and great tips
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 text-right py-4">
+                                                <a href="checkout-delivery.html" class="btn btn-primary">Create an account</a>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkout login -->
+
+                    <div class="card card-panel bg-white shadow-sm mb-2">
+
+                        <div class="card-header py-4 collapsed bg-white" role="button" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo1">
+                            <h2 class="h4 mb-0"> Already member?</h2>
+                        </div>
+
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion1">
+                            <div class="card-body p-0">
+                                <hr class="m-0">
+                                <div class="p-4 p-md-6">
+                                    <form>
+                                        <div class="row justify-content-center py-4">
+                                            <div class="col-md-8">
+
+                                                <div class="form-group">
+                                                    <input type="text" value="" class="form-control form-control-simple" placeholder="Email">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <input type="password" value="" class="form-control form-control-simple" placeholder="Password">
+                                                </div>
+
+                                                <div class="custom-control custom-checkbox custom-checkbox-primary py-2">
+                                                    <input type="checkbox" class="custom-control-input" id="rememberCheck">
+                                                    <label class="custom-control-label" for="rememberCheck">
+                                                        Remember me
+                                                    </label>
+                                                </div>
+
+                                                <div class=" text-right py-4">
+                                                    <a href="checkout-delivery.html" class="btn btn-dark">Sign in</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

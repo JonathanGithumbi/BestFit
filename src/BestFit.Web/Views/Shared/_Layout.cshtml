@@ -63,6 +63,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a asp-controller="Profile" asp-action="Profile" class="d-flex nav-link " >
+                            <div class="px-2 py-1">Profile</div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#" class="d-flex nav-link toggle-show" data-show="cartComponent">
                             <div class="px-2 py-1">Cart <sup>3</sup></div>
                         </a>
@@ -322,14 +327,14 @@
 
                 <div class="row justify-content-center pt-3 m-0">
                     <div class="col-8">
-                        <button type="submit" class="btn btn-rounded btn-sm btn-block btn-dark px-5">Go to checkout</button>
+                        <a type="submit" asp-controller="Checkout" asp-action="Checkout" class="btn btn-rounded btn-sm btn-block btn-dark px-5">Go to checkout</a>
 
                         <div class="divider-separator">
                             <span>Or</span>
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-block px-3">Continue shopping</button>
+                            <a type="submit" asp-controller="Shop" asp-action="Index" class="btn btn-sm btn-block px-3">Continue shopping</a>
                         </div>
                     </div>
                 </div>

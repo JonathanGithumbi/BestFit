@@ -8,11 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\About.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Home\About.cshtml" />
     <None Include="wwwroot\assets\images\demo\banner-1.jpg" />
     <None Include="wwwroot\assets\images\demo\card-amex.png" />
     <None Include="wwwroot\assets\images\demo\card-diners-club.png" />
