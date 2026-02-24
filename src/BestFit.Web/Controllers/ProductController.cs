@@ -16,19 +16,19 @@ namespace BestFit.Web.Controllers
             this.httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index([FromQuery] string productId)
+        public async Task<IActionResult> Index([FromRoute] string id)
         {
-            ProductDetailsResponseDTO response = new ProductDetailsResponseDTO();
+            ProductResponseDTO response = new ProductResponseDTO();
             try
             {
                 var client = httpClientFactory.CreateClient();
 
 
-                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Product/{productId}");
+                var httpResponseMessage = await client.GetAsync($"https://localhost:7198/api/Product/{id}");
 
                 httpResponseMessage.EnsureSuccessStatusCode();
 
-                response = await httpResponseMessage.Content.ReadFromJsonAsync<ProductDetailsResponseDTO>();
+                response = await httpResponseMessage.Content.ReadFromJsonAsync<ProductResponseDTO>();
 
 
             }

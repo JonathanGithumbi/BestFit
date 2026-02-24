@@ -9,5 +9,8 @@
         public double Price { get; set; }
         public string? ImageUrl { get; set; }
 
+
+        public CategoryResponseDTO Category { get; set; }
+        public List<ProductImageResponseDTO> ProductImages { get; set; }
     }
 }

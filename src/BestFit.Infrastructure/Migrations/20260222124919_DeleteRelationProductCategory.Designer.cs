@@ -4,6 +4,7 @@ using BestFit.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BestFit.Infrastructure.Migrations
 {
     [DbContext(typeof(BestFitDbContext))]
-    partial class BestFitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260222124919_DeleteRelationProductCategory")]
+    partial class DeleteRelationProductCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -347,9 +350,6 @@ namespace BestFit.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -365,8 +365,6 @@ namespace BestFit.Infrastructure.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -825,19 +823,10 @@ namespace BestFit.Infrastructure.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("BestFit.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("BestFit.Domain.Entities.Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("BestFit.Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("BestFit.Domain.Entities.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1104,16 +1093,6 @@ namespace BestFit.Infrastructure.Migrations
             modelBuilder.Entity("BestFit.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Navigation("CustomerMeasurementProfiles");
-                });
-
-            modelBuilder.Entity("BestFit.Domain.Entities.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("BestFit.Domain.Entities.Product", b =>
-                {
-                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

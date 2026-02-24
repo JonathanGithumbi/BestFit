@@ -4,6 +4,7 @@ using BestFit.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BestFit.Infrastructure.Migrations
 {
     [DbContext(typeof(BestFitDbContext))]
-    partial class BestFitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260224100536_CreateOneToManyRelonProduct_Category")]
+    partial class CreateOneToManyRelonProduct_Category
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -837,7 +840,7 @@ namespace BestFit.Infrastructure.Migrations
             modelBuilder.Entity("BestFit.Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("BestFit.Domain.Entities.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1109,11 +1112,6 @@ namespace BestFit.Infrastructure.Migrations
             modelBuilder.Entity("BestFit.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("BestFit.Domain.Entities.Product", b =>
-                {
-                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }

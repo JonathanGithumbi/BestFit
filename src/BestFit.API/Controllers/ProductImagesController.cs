@@ -40,15 +40,14 @@ namespace BestFit.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] AddProductImageRequestDTO addProductImageRequestDTO)
+        public IActionResult Post([FromForm] AddProductImageRequestDTO addProductImageRequestDTO)
         {
             var productImageDomainModel = mapper.Map<ProductImage>(addProductImageRequestDTO);
-
-            productImageDomainModel = productImageService.CreateProductImage(productImageDomainModel);
-            var productImageResponseDTO = mapper.Map<ProductImageResponseDTO>(productImageDomainModel);
-
-            return CreatedAtAction(nameof(GetById), new { id = productImageDomainModel.Id }, productImageResponseDTO);
-
+            if(productImageService.CreateProductImage(productImageDomainModel))
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
         [HttpPut]
         [Route("{id:guid}")]

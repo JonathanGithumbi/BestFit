@@ -1,4 +1,4 @@
-﻿namespace BestFit.Application.DTOs.ResponseDTOs
+﻿namespace BestFit.Web.Models
 {
     public class ProductImageResponseDTO
     {

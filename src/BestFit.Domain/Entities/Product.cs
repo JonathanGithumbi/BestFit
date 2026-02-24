@@ -23,9 +23,10 @@ namespace BestFit.Domain.Entities
         [NotMapped]
         public IFormFile File { get; set; }
         
+        public Guid? CategoryId {  get; set; }                                                                                                           
+        public Category? Category { get; set; }
 
-
-
+        public ICollection<ProductImage>? ProductImages { get; set; }
         
     }
 }

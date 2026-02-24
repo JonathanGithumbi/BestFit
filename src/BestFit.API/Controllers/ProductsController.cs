@@ -23,7 +23,7 @@ namespace BestFit.API.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            IEnumerable<Product> productList = productService.GetAllProduct();
+            IEnumerable<Product> productList = productService.GetAllProduct(includeProperties:"Category,ProductImages");
 
 
             return Ok(mapper.Map<List<ProductResponseDTO>>(productList));
@@ -33,7 +33,7 @@ namespace BestFit.API.Controllers
         [Route("{id:guid}")]
         public IActionResult GetById([FromRoute] Guid id)
         {
-            var product = productService.GetProductById(id);
+            var product = productService.GetProductById(id, includeProperties: "Category,ProductImages");
 
 
             return Ok(mapper.Map<ProductResponseDTO>(product));

@@ -1,0 +1,187 @@
+﻿@model BestFit.Web.Models.ProductResponseDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Breadcrumbs -->
+
+<header class="header header-main header-sticky bg-dark">
+    <div class="pb-2 py-lg-3">
+        <div class="container text-light">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-0 h4">@Model.Name</h2>
+                    <small class="pre-label d-none d-lg-block">@Model.Category.Name</small>
+                </div>
+                <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
+                    <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Library</a></li>
+                        <li class="breadcrumb-item"><a href="#">Category</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Product -->
+
+<section class="bg-white py-3">
+    <div class="container">
+        <div class="row align-items-lg-center">
+
+            <!-- Product gallery -->
+
+            <div class="col-lg-7 col-xl-8 pb-5">
+
+                <div class="owl-carousel" data-items="1" data-nav="false" data-margin="15" data-dots="true">
+                    @foreach(var image in Model.ProductImages)
+                    {
+                        <img src="@image.ImageURL" alt="Product image" />
+                    }
+                    
+                    
+                </div>
+            </div>
+
+            <!-- Product info -->
+
+            <div class="col-lg-5 col-xl-4">
+                <div class="bg-light shadow-sm br-sm p-3 p-lg-4">
+
+                    <!-- Product order -->
+
+                    <div class="clearfix">
+
+                        <!-- Product price -->
+
+                        <div class="h2 mb-0">
+                            <span>Ksh @Model.Price</span>
+                            <small>
+                            </small>
+                        </div>
+
+                        <hr />
+
+                        
+
+                        <!-- Product quantity -->
+
+                        <div class="mb-2">
+                            <div class="row">
+                                
+                                <div class="col-7">
+                                    <button class="btn btn-block btn-primary">
+                                        <i class="icon icon-cart"></i> Add to cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                    </div>
+
+                    <!-- Add to basket -->
+
+                    <div class="btn-group w-100">
+                        <span class="btn btn-sm btn-outline-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <span class="show"><i class="fa fa-heart-o"></i> Whish</span>
+                            <span class="hide"><i class="fa fa-heart"></i> Whislisted</span>
+                        </span>
+                        <span class="btn btn-sm btn-outline-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+                            <span class="show"><i class="fa fa-eye-slash"></i> Watch</span>
+                            <span class="hide"><i class="fa fa-eye"></i> Watching</span>
+                        </span>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Product details -->
+
+<section>
+    <div class="container">
+
+        <!-- Product tabs -->
+
+        <ul class="nav nav-tabs nav-lavalamp justify-content-center mb-4" id="productTab" role="tablist">
+            
+            <li class="nav-item">
+                <a class="nav-link" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">
+                    Description
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="shipping-tab" data-toggle="tab" href="#shipping" role="tab" aria-controls="shipping" aria-selected="false">
+                    Shipping
+                </a>
+            </li>
+        </ul>
+
+        <!-- Product tab content -->
+
+        <div class="tab-content" id="productTabContent">
+            
+            <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="py-3 py-lg-4">
+
+                            <header>
+                                <div class="h3 mb-1">Product description</div>
+                                <p>Specfication</p>
+                            </header>
+
+                            <div class="py-3 py-lg-4">
+                                @Model.Description
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="py-3 py-lg-4">
+
+                            <header>
+                                <div class="h3 mb-1">Shipping information</div>
+                                <p>Specfication</p>
+                            </header>
+
+                            <div class="py-3 py-lg-4">
+
+                                <h5>Money Back Guarantee</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus odio quam, facilisis vel placerat at, convallis at ipsum. Quisque posuere justo non imperdiet volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec vehicula felis lorem, at sodales mauris convallis in. Quisque elementum augue justo, at rutrum velit eleifend sed. Mauris vitae metus erat. Duis augue purus, ornare vitae mauris eget, dictum tincidunt leo. Sed quis felis blandit, aliquam sapien eget, pulvinar dolor. Vivamus vulputate egestas justo non ullamcorper.</p>
+
+                                <h5>Need to Return an Item?</h5>
+                                <p>Sed eget erat justo. Curabitur scelerisque sagittis molestie. Nunc sit amet porttitor odio. In blandit sem eu ante pellentesque, ornare placerat metus fringilla. Ut eu arcu finibus, aliquam libero nec, porta elit. Praesent sit amet odio a quam vehicula molestie eu ut quam. Vivamus viverra augue nulla, ac commodo sapien dictum ut. Pellentesque vehicula maximus velit vitae imperdiet.</p>
+
+                                <h5>Check an open return request</h5>
+                                <p>Praesent mattis justo sit amet dui semper tempus vel eu turpis. Donec sem nulla, porta vitae sollicitudin et, finibus vel ligula. Fusce et lorem pharetra, egestas tortor sit amet, ultricies mi. Cras ac tellus et eros maximus cursus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Mauris ultricies leo tempor, ullamcorper magna nec, consectetur sapien. Maecenas rhoncus non eros id tristique. Aenean condimentum in quam sed rhoncus. Nunc aliquet, dolor rhoncus imperdiet faucibus, est ipsum sollicitudin massa, a placerat justo leo vel turpis. In venenatis felis vitae volutpat viverra. Donec sit amet urna tempus, convallis nunc eget, tempor neque. Nunc gravida tincidunt lectus. Mauris molestie sit amet dolor sit amet luctus. Maecenas ligula mi, tempor at dignissim ut, fermentum ut arcu.</p>
+
+                                <h5>Send the item back</h5>
+                                <p>Curabitur non ipsum sit amet elit ultricies venenatis. Sed blandit vitae justo sit amet convallis. Aliquam tristique, odio quis vestibulum interdum, magna risus luctus augue, vitae lobortis est enim vel mauris. In eu nibh sed neque auctor efficitur. Aenean quis congue urna. Suspendisse id ultrices eros. Aliquam bibendum massa eget ex scelerisque, vitae convallis felis rutrum. Integer sed augue quam.</p>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,4 +1,5 @@
 ﻿using BestFit.Domain.Entities;
+using BestFit.Infrastructure.EntityConfigurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -34,12 +35,9 @@ namespace BestFit.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration<Product>(new ProductConfiguration());
 
-
-            //ManyTOMany config for Product - Category
-            modelBuilder.Entity<Category>()
-                .HasMany(p => p.Products)
-                .WithMany();
+            
 
             modelBuilder.Entity<ProductMeasurementProfile>()
            .HasOne(pmp => pmp.Product)           // Product has one profile

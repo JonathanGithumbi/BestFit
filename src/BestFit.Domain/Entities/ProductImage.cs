@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,5 +21,8 @@ namespace BestFit.Domain.Entities
         [ForeignKey("ProductId")]
         [ValidateNever]
         public Product Product { get; set; }
+
+        [NotMapped]
+        public List<IFormFile> Files { get; set; }
     }
 }

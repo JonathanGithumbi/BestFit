@@ -26,10 +26,11 @@ namespace BestFit.Application.Services
             this.wwwRootPath = Path.Combine(env.ContentRootPath, "wwwroot");
         }
 
-        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null,string?sortBy = null,bool isAscending=true,int pageNumber=1,int pageSize=10,double fromPrice =0,double toPrice =10000)
+        public IEnumerable<Product> GetAllProduct(string? filterOn=null,string?filterQuery=null,string?sortBy = null,
+            bool isAscending=true,int pageNumber=1,int pageSize=10,double fromPrice =0,double toPrice =10000,string? includeProperties=null)
         {
             
-            var productList = unitOfWork.ProductRepository.GetAll(filterOn,filterQuery, sortBy ,  isAscending ,pageNumber,pageSize,fromPrice,toPrice);
+            var productList = unitOfWork.ProductRepository.GetAll(filterOn,filterQuery, sortBy ,  isAscending ,pageNumber,pageSize,fromPrice,toPrice,includeProperties=includeProperties);
             return productList;
         }
         public Product CreateProduct(Product product)
@@ -72,9 +73,9 @@ namespace BestFit.Application.Services
             unitOfWork.Save();
             return product;
         }
-        public Product GetProductById(Guid id)
+        public Product GetProductById(Guid id,string? includeProperties=null)
         {
-            var product = unitOfWork.ProductRepository.GetFirstOrDefault(x => x.Id == id);
+            var product = unitOfWork.ProductRepository.GetFirstOrDefault(x => x.Id == id,includeProperties);
             return product;
         }
         public Product UpdateProduct(Product product)

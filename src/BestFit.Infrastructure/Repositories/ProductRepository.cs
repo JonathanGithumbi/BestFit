@@ -1,11 +1,13 @@
 ﻿using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
 using BestFit.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BestFit.Infrastructure.Repositories
 {
@@ -19,7 +21,8 @@ namespace BestFit.Infrastructure.Repositories
         }
 
         public IEnumerable<Product> GetAll(string? filterOn = null, string? filterQuery = null,
-            string? sortBy = null, bool isAscending = true, int pageNumber = 1, int pageSize = 10,double fromPrice = 0,double toPrice=10000)
+            string? sortBy = null, bool isAscending = true, int pageNumber = 1, 
+            int pageSize = 10,double fromPrice = 0,double toPrice=10000,string? includeProperties=null)
         {
             var products = bestFitDbContext.Products.AsQueryable();
 
@@ -50,8 +53,18 @@ namespace BestFit.Infrastructure.Repositories
                 }
             }
 
+
             //pagination 
             var skipResults = (pageNumber - 1) * pageSize;
+
+            //Include Properties
+            if (includeProperties != null)
+            {
+                foreach (var item in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    products = products.Include(item);
+                }
+            }
 
             return products.Skip(skipResults).Take(pageSize).AsEnumerable<Product>();
         }
