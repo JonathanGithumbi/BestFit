@@ -114,7 +114,22 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
     });
 
+//Session & Cookie
+builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddSession(
+    opts =>
+    {
+        opts.IdleTimeout = TimeSpan.FromMinutes(120);
+        opts.Cookie.HttpOnly = true;
+    });
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -126,6 +141,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseHttpsRedirection();
+
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();

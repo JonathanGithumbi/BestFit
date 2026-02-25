@@ -24,14 +24,13 @@ namespace BestFit.Shared.DTOs.RequestDTOs
         [DataType(DataType.Password),Compare("Password")]
         public string ConfirmPassword { get; set; }
 
-        public string Address { get; set; }
-        public string PostalCode { get; set; }
-        public string CellPhone { get; set; }
+        public string? Address { get; set; } = null;
+        public string? PostalCode { get; set; } = null;
+        public string? CellPhone { get; set; } = null;
 
 
 
         
-        public string[] Roles { get; set; }
        
     }
 }

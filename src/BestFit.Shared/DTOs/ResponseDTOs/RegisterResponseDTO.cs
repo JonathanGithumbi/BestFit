@@ -10,6 +10,8 @@ namespace BestFit.Shared.DTOs.ResponseDTOs
     public class RegisterResponseDTO
     {
         public IdentityResult identityResult { get; set; }
+        public bool Succeeded { get; set; }
+        public IEnumerable<IdentityError> Errors { get; set; }
         public string Message { get; set; }
     }
 }

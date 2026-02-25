@@ -33,19 +33,20 @@ namespace BestFit.Web.Controllers
 
                 var client = httpClientFactory.CreateClient();
 
-                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/Register", registerRequestDTO);
+                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Register", registerRequestDTO);
                 httpResponseMessage.EnsureSuccessStatusCode();
 
-                RegisterResponseDTO responseDTO = await httpResponseMessage.Content.ReadFromJsonAsync<RegisterResponseDTO>();
+                var responseDTO = await httpResponseMessage.Content.ReadFromJsonAsync<RegisterResponseDTO>();
 
-                if(responseDTO.identityResult.Succeeded)
+                if(responseDTO.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account", responseDTO.Message);
+                    return RedirectToAction("Index", "Home");
 
                 }
                 else
                 {
-                    return View(responseDTO.identityResult);
+                    ModelState.AddModelError("", responseDTO.Message);
+                    return View(registerRequestDTO);
                 }
 
 
@@ -53,7 +54,7 @@ namespace BestFit.Web.Controllers
             }
             catch
             {
-                ModelState.AddModelError("", "Bad Request");
+                ModelState.AddModelError("", "Bad Request, please try again.");
                 return View(registerRequestDTO);
             }
 

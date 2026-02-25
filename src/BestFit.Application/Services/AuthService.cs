@@ -32,16 +32,17 @@ namespace BestFit.Application.Services
 
             if (identityResult.Succeeded)
             {
-                identityResult = await userManager.AddToRolesAsync(user, ["Shopper"]);
-                if (identityResult.Succeeded)
+                var roleResult = await userManager.AddToRolesAsync(user, ["Shopper", "Administrator"]);
+                if (roleResult.Succeeded)
                 {
-                    registerResponseDTO.Message = "Registered succsessfully";
-                    registerResponseDTO.identityResult = identityResult;
+                    registerResponseDTO.Message = "Registered succsessfully!";
+                    registerResponseDTO.Succeeded = identityResult.Succeeded;
                     return registerResponseDTO;
                 }else
                 {
-                    registerResponseDTO.Message = "Failed trying to registrer, please try again";
-                    registerResponseDTO.identityResult = IdentityResult.Failed(identityResult.Errors.ToArray());
+                    registerResponseDTO.Errors = roleResult.Errors;
+                    registerResponseDTO.Succeeded = roleResult.Succeeded;
+                    registerResponseDTO.Message = "Registration interrupted, please try again";
                     return registerResponseDTO;
                     
                 }
@@ -49,8 +50,9 @@ namespace BestFit.Application.Services
             }
             else
             {
-                registerResponseDTO.Message = "Failed trying to registrer, please try again";
-                registerResponseDTO.identityResult = IdentityResult.Failed(identityResult.Errors.ToArray());
+                registerResponseDTO.Succeeded = identityResult.Succeeded;
+                registerResponseDTO.Errors = identityResult.Errors.ToArray();
+                registerResponseDTO.Message = "Registration Failed, please try again";
             }
                 return registerResponseDTO;
 

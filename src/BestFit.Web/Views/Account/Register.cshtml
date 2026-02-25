@@ -1,4 +1,5 @@
 ﻿@model BestFit.Shared.DTOs.RequestDTOs.RegisterRequestDTO
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -28,14 +29,15 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input asp-for="@Model.FirstName" class="form-control form-control-simple" type="text" value="" class="" placeholder="First name: *" />
+                                            <input asp-for="FirstName" class="form-control form-control-simple" type="text" value="" class="" placeholder="First name " />
+                                            <span asp-validation-for=FirstName></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input asp-for=@Model.LastName type="text" value="" class="form-control form-control-simple" placeholder="Last Name">
-                                            <span asp-validation-for=@Model.LastName></span>
+                                            <input asp-for="LastName" type="text" value="" class="form-control form-control-simple" placeholder="Last Name">
+                                            <span asp-validation-for=LastName></span>
                                         </div>
                                     </div>
 
@@ -43,40 +45,28 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <input asp-for=@Model.Email type="email" value="" class="form-control form-control-simple" placeholder="Email">
+                                            <input asp-for="Email" type="email" value="" class="form-control form-control-simple" placeholder="Email">
+                                            <span asp-validation-for=Email></span>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-8">
+                                    <br />
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <input asp-for="@Model.Password" type="password" value="" class="form-control form-control-simple" placeholder="Password">
+                                            <input asp-for="Password" type="password" value="" class="form-control form-control-simple" placeholder="Password">
+                                            <span asp-validation-for=Password></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input asp-for="@Model.ConfirmPassword" type="password" value="" class="form-control form-control-simple" placeholder="Confirm Password">
+                                            <input asp-for="ConfirmPassword" type="password" value="" class="form-control form-control-simple" placeholder="Confirm Password">
+                                            <span asp-validation-for=ConfirmPassword></span>
                                         </div>
                                     </div>
 
 
 
-                                    <div class="col-md-12">
-
-                                        <div class="custom-control custom-checkbox custom-checkbox-primary py-2">
-                                            <input type="checkbox" class="custom-control-input" id="customExampleCheck1">
-                                            <label class="custom-control-label" for="customExampleCheck1">
-                                                I have read and accepted the <a href="#">terms and conditions</a>
-                                            </label>
-                                        </div>
-
-                                        <div class="custom-control custom-checkbox custom-checkbox-primary py-2">
-                                            <input type="checkbox" class="custom-control-input" id="customExampleCheck2">
-                                            <label class="custom-control-label" for="customExampleCheck2">
-                                                Subscribe to exciting newsletters and great tips
-                                            </label>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="col-md-12 text-right py-4">
                                         <button type="submit" class="btn btn-primary">Register</button>
