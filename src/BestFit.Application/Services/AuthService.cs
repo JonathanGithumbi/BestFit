@@ -1,6 +1,5 @@
-﻿using BestFit.API.Controllers;
-using BestFit.Application.DTOs.RequestDTOs;
-using BestFit.Application.DTOs.ResponseDTOs;
+﻿using BestFit.Shared.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -17,62 +16,67 @@ namespace BestFit.Application.Services
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly ITokenRepository tokenRepository;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public AuthService(UserManager<ApplicationUser> userManager,ITokenRepository tokenRepository)
+        public AuthService(UserManager<ApplicationUser> userManager,ITokenRepository tokenRepository,SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.tokenRepository = tokenRepository;
+            this.signInManager = signInManager;
         }
            
-        public async Task<bool> Register(ApplicationUser user, RegisterRequestDTO registerRequestDTO)
+        public async Task<RegisterResponseDTO> Register(ApplicationUser user, RegisterRequestDTO registerRequestDTO)
         {
-            var appUser = new ApplicationUser
-            {
-                UserName = registerRequestDTO.Username,
-                Email = registerRequestDTO.Username,
-                Address = registerRequestDTO.Address,
-                CellPhone = registerRequestDTO.Phone,
-                PostalCode = registerRequestDTO.PostalCode
-            };
-
+            var registerResponseDTO = new RegisterResponseDTO();
             var identityResult = await userManager.CreateAsync(user, registerRequestDTO.Password);
 
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
-                //Add roles to this user
-                if(registerRequestDTO.Roles != null && registerRequestDTO.Roles.Any())
+                identityResult = await userManager.AddToRolesAsync(user, ["Shopper"]);
+                if (identityResult.Succeeded)
                 {
-                    identityResult =await userManager.AddToRolesAsync(user, registerRequestDTO.Roles);
-                    if(identityResult.Succeeded)
-                    {
-                        return true;
-                    }
-
+                    registerResponseDTO.Message = "Registered succsessfully";
+                    registerResponseDTO.identityResult = identityResult;
+                    return registerResponseDTO;
+                }else
+                {
+                    registerResponseDTO.Message = "Failed trying to registrer, please try again";
+                    registerResponseDTO.identityResult = IdentityResult.Failed(identityResult.Errors.ToArray());
+                    return registerResponseDTO;
+                    
                 }
-                
+
             }
-            return false;
+            else
+            {
+                registerResponseDTO.Message = "Failed trying to registrer, please try again";
+                registerResponseDTO.identityResult = IdentityResult.Failed(identityResult.Errors.ToArray());
+            }
+                return registerResponseDTO;
 
 
         }
 
         public async Task<LoginResponseDTO> Login(LoginRequestDTO loginRequestDTO)
         {  
-            var user = await userManager.FindByEmailAsync(loginRequestDTO.Username);
+            var user = await userManager.FindByEmailAsync(loginRequestDTO.Email);
             var loginResponseDto = new LoginResponseDTO();
-            loginResponseDto.Message = "Login Failed";
+            loginResponseDto.Message = "Incorrect username or password";
             
             if (user !=null)
             {
                 var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
                 if(checkPasswordResult == true)
                 {
+                    var signInResult = signInManager.PasswordSignInAsync(loginRequestDTO.Email, loginRequestDTO.Password, loginRequestDTO.RememberMe, false);
+
                     var roles = await userManager.GetRolesAsync(user);
                     if(roles != null)
                     {
                         var jwtToken = tokenRepository.CreateJWTToken(user, roles.ToList());
                         loginResponseDto.jwtToken = jwtToken;
                         loginResponseDto.Message = "Login Succsessfull";
+                        loginResponseDto.signInResult = await signInResult;
                     }
                     
                 }
@@ -80,5 +84,9 @@ namespace BestFit.Application.Services
 
             return loginResponseDto;
         }
+
+        public Task LogoutAsync()
+            => signInManager.SignOutAsync();
+        
     }
 }

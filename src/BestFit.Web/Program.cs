@@ -1,7 +1,7 @@
-using BestFit.Web.Data;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using BestFit.Web.Data;
 namespace BestFit.Web
 {
     public class Program

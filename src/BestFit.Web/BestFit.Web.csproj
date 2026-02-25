@@ -186,6 +186,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BestFit.Domain\BestFit.Domain.csproj" />
+    <ProjectReference Include="..\BestFit.Shared\BestFit.Shared.csproj" />
   </ItemGroup>
 
 </Project>

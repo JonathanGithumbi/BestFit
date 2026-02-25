@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using BestFit.API.Controllers;
-using BestFit.Application.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.RequestDTOs;
 
-using BestFit.Application.DTOs.ResponseDTOs;
-using BestFit.Application.DTOs.RequestDTOs.UpdateCustomerMeasurementProfileRequestDTO;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,8 +17,11 @@ namespace BestFit.Application.Mappings
     {
         public AutoMapperProfiles() 
         {
+            //ApplicationUser
+            //CreateMap<ApplicationUser, RegisterRequestDTO>().ReverseMap();
+
             //Featured Content
-            CreateMap<FeaturedContent, FeaturedContentResponse>().ReverseMap();
+            CreateMap<FeaturedContent, FeaturedContentResponseDTO>().ReverseMap();
             CreateMap<FeaturedContent, AddFeaturedContentRequestDTO>().ReverseMap();
             CreateMap<FeaturedContent, UpdateFeaturedContentRequestDTO>().ReverseMap();
 
@@ -68,9 +69,7 @@ namespace BestFit.Application.Mappings
             CreateMap<ProductMeasurementProfile, UpdateProductMeasurementProfileRequestDTO>().ReverseMap();
 
 
-            //ApplicationUser
-            //CreateMap<ApplicationUser, RegisterRequestDTO>().ReverseMap();
-      
+            
         }
     }
 }

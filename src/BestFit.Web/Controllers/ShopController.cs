@@ -1,4 +1,5 @@
-﻿using BestFit.Web.Models;
+﻿using BestFit.Shared.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.RequestDTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BestFit.Web.Controllers

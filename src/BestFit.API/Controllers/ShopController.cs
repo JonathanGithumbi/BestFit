@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Interfaces;
 using Microsoft.AspNetCore.Http;

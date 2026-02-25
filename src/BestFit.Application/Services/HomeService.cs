@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Domain.Entities;
 
 namespace BestFit.Application.Services

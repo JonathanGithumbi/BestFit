@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.RequestDTOs;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
+using BestFit.Shared.DTOs.RequestDTOs;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ namespace BestFit.API.Controllers
             var featuredContent = featuredContentService.GetFeaturedContentById(id);
 
 
-            return Ok(mapper.Map<FeaturedContentResponse>(featuredContent));
+            return Ok(mapper.Map<FeaturedContentResponseDTO>(featuredContent));
         }
 
         
@@ -54,7 +54,7 @@ namespace BestFit.API.Controllers
 
                 contentDomainModel = featuredContentService.CreateFeaturedContent(contentDomainModel, contentDomainModel.File);
 
-                var featuredContentDTO = mapper.Map<FeaturedContentResponse>(contentDomainModel);
+                var featuredContentDTO = mapper.Map<FeaturedContentResponseDTO>(contentDomainModel);
 
                 return CreatedAtAction(nameof(GetById), new { id = contentDomainModel.Id }, featuredContentDTO);
 
@@ -76,7 +76,7 @@ namespace BestFit.API.Controllers
             }
             else
             {
-                return Ok(mapper.Map<FeaturedContentResponse>(contentDomainModel));
+                return Ok(mapper.Map<FeaturedContentResponseDTO>(contentDomainModel));
             }
         }
 
@@ -92,7 +92,7 @@ namespace BestFit.API.Controllers
             }
             else
             {
-                return Ok(mapper.Map<FeaturedContentResponse>(content));
+                return Ok(mapper.Map<FeaturedContentResponseDTO>(content));
             }
         }
 

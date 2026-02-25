@@ -1,7 +1,7 @@
-﻿using BestFit.Web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
-
+using BestFit.Shared.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 
 namespace BestFit.Web.Controllers
 {

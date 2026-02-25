@@ -36,7 +36,6 @@ builder.Services.AddScoped<OrderProductService>();
 builder.Services.AddScoped<ProductImageService>();
 builder.Services.AddScoped<ProductMeasurementProfileService>();
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<FeaturedContentService>();
 builder.Services.AddScoped<HomeService>();

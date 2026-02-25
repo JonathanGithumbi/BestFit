@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+	  <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BestFit.Domain\BestFit.Domain.csproj" />
+    <ProjectReference Include="..\BestFit.Shared\BestFit.Shared.csproj" />
   </ItemGroup>
 
 </Project>

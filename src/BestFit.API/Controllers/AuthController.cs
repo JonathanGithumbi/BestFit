@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.RequestDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -28,23 +28,15 @@ namespace BestFit.API.Controllers
         {
             var appUser = new ApplicationUser
             {
-                UserName = registerRequestDTO.Username,
-                Email = registerRequestDTO.Username,
-                Address = registerRequestDTO.Address,
-                CellPhone = registerRequestDTO.Phone,
-                PostalCode = registerRequestDTO.PostalCode
+                UserName = registerRequestDTO.Email,
+                FirstName = registerRequestDTO.FirstName,
+                LastName = registerRequestDTO.LastName,
+                Email = registerRequestDTO.Email,
             };
 
-            var registrationResult = await authService.Register(appUser, registerRequestDTO);
+            var registerResponseDTO = await authService.Register(appUser, registerRequestDTO);
 
-            if (registrationResult == true)
-            {
-                return Ok("User was registered,please login");
-            }
-            else
-            {
-                return BadRequest("Something wet Wrong");
-            }
+            return Ok(registerResponseDTO);
         }
 
 
@@ -58,5 +50,24 @@ namespace BestFit.API.Controllers
             return Ok(loginResponseDTO);
 
         }
+
+        [HttpPost]
+        [Route("Logout")]
+        public async Task<IActionResult> Logout([FromBody] LogoutRequestDTO logoutRequestDTO)
+        {
+            try
+            {
+                await authService.LogoutAsync();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+            
+
+        }
+
+
     }
 }

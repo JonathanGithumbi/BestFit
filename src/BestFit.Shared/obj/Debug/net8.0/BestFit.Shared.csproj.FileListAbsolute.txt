@@ -1,0 +1,16 @@
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\bin\Debug\net8.0\BestFit.Shared.deps.json
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\bin\Debug\net8.0\BestFit.Shared.dll
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\bin\Debug\net8.0\BestFit.Shared.pdb
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\bin\Debug\net8.0\BestFit.Domain.dll
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\bin\Debug\net8.0\BestFit.Domain.pdb
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.AssemblyInfo.cs
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.sourcelink.json
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit..0C8CB68F.Up2Date
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.dll
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\refint\BestFit.Shared.dll
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\BestFit.Shared.pdb
+C:\Users\User\source\repos\BestFit\src\BestFit.Shared\obj\Debug\net8.0\ref\BestFit.Shared.dll

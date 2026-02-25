@@ -1,0 +1,23 @@
+﻿using BestFit.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BestFit.Shared.DTOs.RequestDTOs
+{
+    public class UpdateFeaturedContentRequestDTO
+    {
+        public string Name { get; set; }
+        public string Heading { get; set; }
+        public string SubHeading { get; set; }
+
+        public Guid ImageId { get; set; }
+
+      
+        
+    }
+
+}

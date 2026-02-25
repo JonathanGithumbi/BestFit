@@ -1,8 +1,8 @@
-using BestFit.Web.Models;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Net.Http;
-
+using BestFit.Shared.DTOs;
 namespace BestFit.Web.Controllers
 {
     public class HomeController : Controller

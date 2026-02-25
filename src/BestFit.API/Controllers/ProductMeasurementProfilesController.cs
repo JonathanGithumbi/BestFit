@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.RequestDTOs;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
+using BestFit.Shared.DTOs.RequestDTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

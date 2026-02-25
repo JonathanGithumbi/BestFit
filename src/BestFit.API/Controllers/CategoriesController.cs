@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using BestFit.Application.DTOs.RequestDTOs;
-using BestFit.Application.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Application.Services;
 using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
@@ -8,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.AspNetCore.Authorization;
+using BestFit.Shared.DTOs.RequestDTOs;
 
 
 namespace BestFit.API.Controllers
