@@ -70,7 +70,7 @@ namespace BestFit.Application.Services
                 var checkPasswordResult = await userManager.CheckPasswordAsync(user, loginRequestDTO.Password);
                 if(checkPasswordResult == true)
                 {
-                    var signInResult = signInManager.PasswordSignInAsync(loginRequestDTO.Email, loginRequestDTO.Password, loginRequestDTO.RememberMe, false);
+                    var signInResult = await signInManager.PasswordSignInAsync(loginRequestDTO.Email, loginRequestDTO.Password, loginRequestDTO.RememberMe, false);
 
                     var roles = await userManager.GetRolesAsync(user);
                     if(roles != null)
@@ -78,7 +78,13 @@ namespace BestFit.Application.Services
                         var jwtToken = tokenRepository.CreateJWTToken(user, roles.ToList());
                         loginResponseDto.jwtToken = jwtToken;
                         loginResponseDto.Message = "Login Succsessfull";
-                        loginResponseDto.signInResult = await signInResult;
+                        loginResponseDto.Email = user.Email;
+                        loginResponseDto.Name = $"{user.FirstName} {user.LastName}";
+                        loginResponseDto.Succeeded = signInResult.Succeeded;
+                        loginResponseDto.IsLockedOut = signInResult.IsLockedOut;
+                        loginResponseDto.IsNotAllowed = signInResult.IsNotAllowed;
+                        loginResponseDto.RequiresTwoFactor = signInResult.RequiresTwoFactor;
+
                     }
                     
                 }

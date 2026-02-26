@@ -81,10 +81,12 @@ builder.Services.AddDbContext<BestFitDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BestFitConnectionString"));
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options=>options.SignIn.RequireConfirmedAccount=false)
     .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("BestFit")
     .AddEntityFrameworkStores<BestFitDbContext>()
-    .AddDefaultTokenProviders();
+    .AddSignInManager()
+    .AddDefaultTokenProviders()
+    ;
 
 builder.Services.Configure<IdentityOptions>(options =>
 {

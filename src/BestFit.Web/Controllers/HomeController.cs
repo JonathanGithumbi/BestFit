@@ -20,7 +20,9 @@ namespace BestFit.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HomeIndexResponseDTO response  = new HomeIndexResponseDTO(); 
+            HomeIndexResponseDTO response  = new HomeIndexResponseDTO();
+            IndexPageDTO indexPageResponse = new IndexPageDTO();
+            
             try
             {
                 var client = httpClientFactory.CreateClient();
@@ -33,13 +35,15 @@ namespace BestFit.Web.Controllers
                 response = await httpResponseMessage.Content.ReadFromJsonAsync<HomeIndexResponseDTO>();
 
                 
+                indexPageResponse.HomeIndexResponseDTO = response;
+                
             }
             catch (Exception)
             {
                 //Log the exception
                 throw;
             }
-            return View(response);
+            return View(indexPageResponse);
            
         }
 

@@ -1,19 +1,28 @@
 ﻿using BestFit.Shared.DTOs.RequestDTOs;
 using BestFit.Shared.DTOs.ResponseDTOs;
+using BestFit.Shared.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace BestFit.Web.Controllers
 {
     public class AccountController : Controller
     {
+        [TempData]
+        public string RegisterSucceeded { get; set; }
+
+        [TempData] 
+        public string LoginSucceeded { get; set; }
 
         private readonly IHttpClientFactory httpClientFactory;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public AccountController( IHttpClientFactory httpClientFactory)
+        public AccountController( IHttpClientFactory httpClientFactory,IHttpContextAccessor httpContextAccessor)
         {
             this.httpClientFactory = httpClientFactory;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -23,30 +32,31 @@ namespace BestFit.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterRequestDTO registerRequestDTO)
+        public async Task<IActionResult> Register(IndexPageDTO indexResponseDTO)
         {
             if (!ModelState.IsValid)
-                return View(registerRequestDTO);
+                return View(indexResponseDTO);
             //Consume API
             try
             {
 
                 var client = httpClientFactory.CreateClient();
 
-                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Register", registerRequestDTO);
+                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Register", indexResponseDTO.NavbarComponentsDTO.RegisterRequest);
                 httpResponseMessage.EnsureSuccessStatusCode();
 
                 var responseDTO = await httpResponseMessage.Content.ReadFromJsonAsync<RegisterResponseDTO>();
 
                 if(responseDTO.Succeeded)
                 {
+                    RegisterSucceeded = "Registration successfull, please log in.";
                     return RedirectToAction("Index", "Home");
 
                 }
                 else
                 {
                     ModelState.AddModelError("", responseDTO.Message);
-                    return View(registerRequestDTO);
+                    return View(indexResponseDTO);
                 }
 
 
@@ -55,46 +65,45 @@ namespace BestFit.Web.Controllers
             catch
             {
                 ModelState.AddModelError("", "Bad Request, please try again.");
-                return View(registerRequestDTO);
+                return View(indexResponseDTO);
             }
 
 
         }
 
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        
         [HttpPost]
-        public async Task<IActionResult> Login(LoginRequestDTO loginRequestDTO)
+        public async Task<IActionResult> Login(IndexPageDTO indexResponseDTO)
         {
             if (!ModelState.IsValid)
-                return View(loginRequestDTO);
+                return View(indexResponseDTO);
             //Consume API
             try
             {
 
                 var client = httpClientFactory.CreateClient();
 
-                var response = await client.PostAsJsonAsync("https://localhost:7198/api/Login", loginRequestDTO);
+                var response = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Login", indexResponseDTO.NavbarComponentsDTO.LoginRequest);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    ModelState.AddModelError("", "Incorrect Email or Password");
-                    return View(loginRequestDTO);
+                    LoginSucceeded = "Incorrect username or password";
+                    return RedirectToAction("Index","Home");
                 }
 
                 var loginResult = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
 
-                if(loginResult.signInResult.Succeeded)
+                if(loginResult.Succeeded)
                 {
+                  
+
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password");
-                    return View(loginRequestDTO);
+                    LoginSucceeded = "Incorrect username or password";
+                    return RedirectToAction("Index","Home");
                 }
                 //var claims = new List<Claim>
                 //{
@@ -113,8 +122,8 @@ namespace BestFit.Web.Controllers
             }
             catch
             {
-                ModelState.AddModelError("", "Bad Request");
-                return View(loginRequestDTO);
+                LoginSucceeded = "Bad Request, please try again.";
+                return RedirectToAction("Index", "Home");
             }
 
 

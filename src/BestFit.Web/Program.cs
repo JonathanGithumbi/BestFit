@@ -10,6 +10,7 @@ namespace BestFit.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -19,6 +20,22 @@ namespace BestFit.Web
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+
+            //Session & Cookie
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(opts =>
+            {
+                opts.IdleTimeout = TimeSpan.FromMinutes(120);
+                opts.Cookie.HttpOnly = true;
+            });
+
+            builder.Services.ConfigureApplicationCookie(opts =>
+            {
+                opts.LoginPath = "/Account/Login";
+                opts.LogoutPath = "/Account/Logout";
+                opts.AccessDeniedPath = "/Account/AccessDenied";
+            });
 
             //Create httpclient for consuming API
             builder.Services.AddHttpClient();
@@ -42,12 +59,13 @@ namespace BestFit.Web
 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+                pattern: "{controller=Home}/{action=Index}");
+            
 
             app.Run();
         }

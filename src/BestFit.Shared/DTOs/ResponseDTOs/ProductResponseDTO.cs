@@ -1,5 +1,4 @@
-﻿using BestFit.Shared.DTOs.ResponseDTOs;
-
+﻿
 namespace BestFit.Shared.DTOs.ResponseDTOs
 {
     public class ProductResponseDTO

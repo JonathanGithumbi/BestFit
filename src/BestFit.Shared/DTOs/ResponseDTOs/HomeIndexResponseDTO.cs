@@ -11,5 +11,6 @@ namespace BestFit.Shared.DTOs.ResponseDTOs
         public List<ProductResponseDTO> blackFridaySales { get; set; }
         public List<ProductResponseDTO> popularWomenProducts { get; set; }
         public List<CategoryResponseDTO> clothingCategories { get; set; }
+
     }
 }

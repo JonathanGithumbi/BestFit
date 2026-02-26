@@ -13,7 +13,9 @@ namespace BestFit.Shared.DTOs.ResponseDTOs
         public string Message { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
-        public IdentityResult identityResult { get; set; }
-        public SignInResult signInResult { get; set; }
+        public bool Succeeded { get; set; }
+        public bool? IsLockedOut { get;set; }
+        public bool? IsNotAllowed { get; set; }
+        public bool RequiresTwoFactor { get; set; }
     }
 }
