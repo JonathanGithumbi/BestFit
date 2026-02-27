@@ -40,7 +40,7 @@ namespace BestFit.Web.Controllers
             }
             if (!ModelState.IsValid)
             {
-                TempData["LoginError"] = "Invlaid Submission, please try again.";
+                TempData["RegistrationError"] = "Invlaid Submission, please try again.";
                 TempData["OpenRegistration"] = true;
                 return Redirect(returnUrl);
             }
@@ -56,7 +56,7 @@ namespace BestFit.Web.Controllers
                 if (!httpResponseMessage.IsSuccessStatusCode)
                 {
                     TempData["OpenRegistration"] = true;
-                    TempData["RegisterError"] = responseDTO?.Message ?? "Registration failed.";
+                    TempData["RegistrationError"] = responseDTO?.Message ?? "Registration failed.";
                     return Redirect(returnUrl);
                 }
 
@@ -74,7 +74,7 @@ namespace BestFit.Web.Controllers
                 else
                 {
                     TempData["OpenRegistration"] = true;
-                    TempData["RegisterError"] = responseDTO?.Message ?? "Registration failed.";
+                    TempData["RegistrationError"] = responseDTO?.Message ?? "Registration failed.";
                     return Redirect(returnUrl);
                     
                 }
@@ -85,7 +85,7 @@ namespace BestFit.Web.Controllers
             catch
             {
                 TempData["OpenRegister"] = true;
-                TempData["RegisterError"] = "Bad request, please try again.";
+                TempData["RegistrationError"] = "Bad request, please try again.";
                 return Redirect(returnUrl);
             }
 
