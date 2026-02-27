@@ -1,10 +1,11 @@
-﻿using BestFit.Shared.DTOs.RequestDTOs;
-using BestFit.Shared.DTOs.ResponseDTOs;
-using BestFit.Domain.Entities;
+﻿using BestFit.Domain.Entities;
 using BestFit.Domain.Interfaces;
+using BestFit.Shared.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.ResponseDTOs;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,8 @@ namespace BestFit.Application.Services
 
             if (identityResult.Succeeded)
             {
-                var roleResult = await userManager.AddToRolesAsync(user, ["Shopper", "Administrator"]);
+
+                var roleResult = await userManager.AddToRolesAsync(user, ["Shopper"]);
                 if (roleResult.Succeeded)
                 {
                     registerResponseDTO.Message = "Registered succsessfully!";

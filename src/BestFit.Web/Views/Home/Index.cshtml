@@ -57,14 +57,14 @@
             @TempData["LoginSucceeded"]
         </div>
     }
-    
-    @if(Context.User.Identity.IsAuthenticated)
+    if (TempData["LogoutSucceeded"] != null)
     {
-        <div class="alert alert-secondary" role="alert">
-            Login Succsessfull
+        <div class="alert alert-info" role="alert">
+            @TempData["LogoutSucceeded"]
         </div>
-
     }
+    
+   
 }
 
 <!--Featured Content Banner-->

@@ -40,7 +40,7 @@ namespace BestFit.Web.Controllers
             }
             if (!ModelState.IsValid)
             {
-                TempData["RegistrationError"] = "Invlaid Submission, please try again.";
+                TempData["RegistrationError"] = "Invalid Submission, please try again.";
                 TempData["OpenRegistration"] = true;
                 return Redirect(returnUrl);
             }
@@ -84,7 +84,7 @@ namespace BestFit.Web.Controllers
             }
             catch
             {
-                TempData["OpenRegister"] = true;
+                TempData["OpenRegistration"] = true;
                 TempData["RegistrationError"] = "Bad request, please try again.";
                 return Redirect(returnUrl);
             }
@@ -170,19 +170,16 @@ namespace BestFit.Web.Controllers
 
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout(LogoutRequestDTO logoutRequestDTO,string returnUrl ="/")
+        [HttpGet]
+
+        public async Task<IActionResult> Logout()
         {
-            if (!Url.IsLocalUrl(returnUrl))
-            {
-                returnUrl = "/";
-            }
+            
             try
             {
                 var client = httpClientFactory.CreateClient();
 
-                var response = await client.PostAsJsonAsync("https://localhost:7198/api/Logout",logoutRequestDTO);
+                var response = await client.GetAsync("https://localhost:7198/api/auth/Logout");
 
                 if (response.IsSuccessStatusCode)
                 {

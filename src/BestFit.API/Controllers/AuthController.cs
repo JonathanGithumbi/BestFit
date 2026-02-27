@@ -51,9 +51,9 @@ namespace BestFit.API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("Logout")]
-        public async Task<IActionResult> Logout([FromBody] LogoutRequestDTO logoutRequestDTO)
+        public async Task<IActionResult> Logout()
         {
             try
             {

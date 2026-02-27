@@ -49,7 +49,7 @@
                         <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                         <div class="form-group">
-                            <input asp-for="Email" class="form-control form-control-simple" type="text"  class="" placeholder="Email" aria-describedby="emailHelp" />
+                            <input asp-for="Email" class="form-control form-control-simple" type="email"  class="" placeholder="Email" aria-describedby="emailHelp" />
                             <span asp-validation-for=Email></span>
                         </div>
                         <div class="form-group">
