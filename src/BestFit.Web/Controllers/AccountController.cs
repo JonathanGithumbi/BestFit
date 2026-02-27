@@ -32,31 +32,51 @@ namespace BestFit.Web.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(IndexPageDTO indexResponseDTO)
+        public async Task<IActionResult> Register(RegisterRequestDTO registerRequest,string returnUrl = "/")
         {
+            if (!Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = "/";
+            }
             if (!ModelState.IsValid)
-                return View(indexResponseDTO);
+            {
+                TempData["LoginError"] = "Invlaid Submission, please try again.";
+                TempData["OpenRegistration"] = true;
+                return Redirect(returnUrl);
+            }
+
             //Consume API
             try
             {
 
                 var client = httpClientFactory.CreateClient();
 
-                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Register", indexResponseDTO.NavbarComponentsDTO.RegisterRequest);
-                httpResponseMessage.EnsureSuccessStatusCode();
-
+                var httpResponseMessage = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Register", registerRequest);
                 var responseDTO = await httpResponseMessage.Content.ReadFromJsonAsync<RegisterResponseDTO>();
+                if (!httpResponseMessage.IsSuccessStatusCode)
+                {
+                    TempData["OpenRegistration"] = true;
+                    TempData["RegisterError"] = responseDTO?.Message ?? "Registration failed.";
+                    return Redirect(returnUrl);
+                }
+
 
                 if(responseDTO.Succeeded)
                 {
-                    RegisterSucceeded = "Registration successfull, please log in.";
-                    return RedirectToAction("Index", "Home");
+                    TempData["OpenLogin"] = true;
+                    TempData["LoginInfo"] = "Registration successful. Please log in.";
+                    return Redirect(returnUrl);
+                    
+
+
 
                 }
                 else
                 {
-                    ModelState.AddModelError("", responseDTO.Message);
-                    return View(indexResponseDTO);
+                    TempData["OpenRegistration"] = true;
+                    TempData["RegisterError"] = responseDTO?.Message ?? "Registration failed.";
+                    return Redirect(returnUrl);
+                    
                 }
 
 
@@ -64,8 +84,9 @@ namespace BestFit.Web.Controllers
             }
             catch
             {
-                ModelState.AddModelError("", "Bad Request, please try again.");
-                return View(indexResponseDTO);
+                TempData["OpenRegister"] = true;
+                TempData["RegisterError"] = "Bad request, please try again.";
+                return Redirect(returnUrl);
             }
 
 
@@ -73,57 +94,76 @@ namespace BestFit.Web.Controllers
 
         
         [HttpPost]
-        public async Task<IActionResult> Login(IndexPageDTO indexResponseDTO)
+        public async Task<IActionResult> Login(LoginRequestDTO loginRequestDTO,string returnUrl="/")
         {
+            if (!Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = "/";
+            }
             if (!ModelState.IsValid)
-                return View(indexResponseDTO);
+            {
+                TempData["LoginError"] = "Invlaid Submission, please try again.";
+                TempData["OpenLogin"] = true;
+                return Redirect(returnUrl);
+            }
+
             //Consume API
             try
             {
 
                 var client = httpClientFactory.CreateClient();
 
-                var response = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Login", indexResponseDTO.NavbarComponentsDTO.LoginRequest);
+                var response = await client.PostAsJsonAsync("https://localhost:7198/api/auth/Login", loginRequestDTO);
+                var loginResult = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    LoginSucceeded = "Incorrect username or password";
-                    return RedirectToAction("Index","Home");
+                    TempData["OpenLogin"] = true;
+                    TempData["LoginError"] = loginResult?.Message ?? "Login failed.";
+                    return Redirect(returnUrl);
                 }
 
-                var loginResult = await response.Content.ReadFromJsonAsync<LoginResponseDTO>();
 
-                if(loginResult.Succeeded)
+                if (loginResult.Succeeded)
                 {
-                  
 
-                    
+                    //  Create Claims
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, loginResult.Name),
+                        new Claim(ClaimTypes.Email, loginResult.Email),
+                        new Claim("AccessToken", loginResult.jwtToken)
+                    };
+                    foreach (var role in loginResult.Roles)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, role));
+                    }
+                    var identity = new ClaimsIdentity(
+                        claims,
+                        CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    var principal = new ClaimsPrincipal(identity);
+
+                    // 🔹 Sign In (creates authentication cookie)
+                    await HttpContext.SignInAsync(
+                        CookieAuthenticationDefaults.AuthenticationScheme,
+                        principal);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    LoginSucceeded = "Incorrect username or password";
-                    return RedirectToAction("Index","Home");
+                    TempData["OpenLogin"] = true;
+                    TempData["LoginError"] = "Incorrect username or password";
+                    return Redirect(returnUrl);
                 }
-                //var claims = new List<Claim>
-                //{
-                //    new Claim(ClaimTypes.Name,loginResult.Name),
-                //    new Claim(ClaimTypes.Email ,loginResult.Email),
-                //    new Claim("AccessToken",loginResult.jwtToken)
-                //};
 
-                //var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                //var principal = new ClaimsPrincipal(identity);
-
-                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-                
             }
             catch
             {
-                LoginSucceeded = "Bad Request, please try again.";
-                return RedirectToAction("Index", "Home");
+                TempData["OpenLogin"] = true;
+                TempData["LoginError"] = "\"Bad Request, please try again.";
+                return Redirect(returnUrl);
             }
 
 
@@ -132,23 +172,37 @@ namespace BestFit.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout(LogoutRequestDTO logoutRequestDTO)
+        public async Task<IActionResult> Logout(LogoutRequestDTO logoutRequestDTO,string returnUrl ="/")
         {
+            if (!Url.IsLocalUrl(returnUrl))
+            {
+                returnUrl = "/";
+            }
             try
             {
                 var client = httpClientFactory.CreateClient();
 
                 var response = await client.PostAsJsonAsync("https://localhost:7198/api/Logout",logoutRequestDTO);
 
-                response.EnsureSuccessStatusCode();
+                if (response.IsSuccessStatusCode)
+                {
+                    await HttpContext.SignOutAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme);
+                    TempData["LogoutSucceeded"] = "You have been logged out successfully.";
+
+                    return RedirectToAction("Index", "Home");
+                }
+                TempData["LogoutSucceeded"] = "Logout Failed";
+
 
                 return RedirectToAction("Index", "Home");
             }
             catch
             {
+                TempData["LogoutSucceeded"] = "Bad Request, please try again";
+
                 return RedirectToAction("Index", "Home");
             }
-            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
 
             

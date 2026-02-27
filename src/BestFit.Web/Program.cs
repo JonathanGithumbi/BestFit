@@ -2,6 +2,8 @@ using BestFit.Shared.DTOs.ResponseDTOs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using BestFit.Web.Data;
+using BestFit.Shared.DTOs;
+using Microsoft.AspNetCore.Authentication.Cookies;
 namespace BestFit.Web
 {
     public class Program
@@ -21,7 +23,17 @@ namespace BestFit.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSingleton(new IndexPageDTO());
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opts=>{
+                    opts.LoginPath = "/Account/Login";
+                    opts.LogoutPath = "/Account/Logout";
+                    opts.AccessDeniedPath = "/Account/AccessDenied";
+            });
+
+
+            builder.Services.AddAuthorization();
             //Session & Cookie
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(opts =>
@@ -60,6 +72,7 @@ namespace BestFit.Web
             app.UseRouting();
 
             app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

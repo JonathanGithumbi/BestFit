@@ -1,9 +1,12 @@
 ﻿using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Shared.DTOs.RequestDTOs;
 using Microsoft.AspNetCore.Mvc;
+using BestFit.Shared.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BestFit.Web.Controllers
 {
+    [Authorize]
     public class ShopController : Controller
     {
         private readonly ILogger<ShopController> logger;

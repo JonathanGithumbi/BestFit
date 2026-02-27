@@ -104,5 +104,7 @@ namespace BestFit.Application.Services
             dataDictionary.Add("clothingCategories", clothingCategoriesList);
             return dataDictionary;
         }
+
+
     }
 }

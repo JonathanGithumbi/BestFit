@@ -15,13 +15,11 @@ namespace BestFit.Web.Controllers
         {
             _logger = logger;
             this.httpClientFactory = httpClientFactory;
-            
         }
 
         public async Task<IActionResult> Index()
         {
             HomeIndexResponseDTO response  = new HomeIndexResponseDTO();
-            IndexPageDTO indexPageResponse = new IndexPageDTO();
             
             try
             {
@@ -35,7 +33,7 @@ namespace BestFit.Web.Controllers
                 response = await httpResponseMessage.Content.ReadFromJsonAsync<HomeIndexResponseDTO>();
 
                 
-                indexPageResponse.HomeIndexResponseDTO = response;
+                
                 
             }
             catch (Exception)
@@ -43,7 +41,7 @@ namespace BestFit.Web.Controllers
                 //Log the exception
                 throw;
             }
-            return View(indexPageResponse);
+            return View(response);
            
         }
 

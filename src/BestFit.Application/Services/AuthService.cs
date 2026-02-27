@@ -84,6 +84,7 @@ namespace BestFit.Application.Services
                         loginResponseDto.IsLockedOut = signInResult.IsLockedOut;
                         loginResponseDto.IsNotAllowed = signInResult.IsNotAllowed;
                         loginResponseDto.RequiresTwoFactor = signInResult.RequiresTwoFactor;
+                        loginResponseDto.Roles = roles.ToList();
 
                     }
                     

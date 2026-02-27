@@ -11,5 +11,6 @@ namespace BestFit.Shared.DTOs
     {
         public NavbarComponentsDTO? NavbarComponentsDTO { get; set; }
         public HomeIndexResponseDTO? HomeIndexResponseDTO { get; set; }
+        public ShopIndexResponseDTO? ShopIndexResponseDTO { get; set; }
     }
 }

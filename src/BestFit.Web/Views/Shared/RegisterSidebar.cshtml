@@ -1,0 +1,77 @@
+﻿@model BestFit.Shared.DTOs.RequestDTOs.RegisterRequestDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<nav id="registerComponent" class="sidebar bg-white border-right">
+    <div class="sidebar-content sidebar-content-warning">
+
+        <!-- Sidebar header -->
+
+        <div class="sidebar-header p-3">
+            <button type="button" class="toggle-show close" data-show="registerComponent">
+                <span class="icon icon-cross"></span>
+            </button>
+        </div>
+
+        <!-- Sidebar content -->
+
+        <div class="d-flex w-100 align-items-center">
+            <div class="w-100">
+                <div class="p-4 p-lg-5">
+                    <div class="mb-5 text-center">
+                        <img src="../assets/svg/favicon.png" alt="" width="80" />
+                    </div>
+                    <form asp-controller="Account"
+                          asp-action="Register"
+                          method="post">
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="form-group">
+                            <input asp-for="FirstName" class="form-control form-control-simple" type="text"  class="" placeholder="First Name" />
+                            <span asp-validation-for=FirstName></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="LastName" class="form-control form-control-simple" type="text"  class="" placeholder="Last Name" />
+                            <span asp-validation-for=LastName></span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-control form-control-simple" type="email"  class="" placeholder="Email" />
+                            <span asp-validation-for=Email></span>
+
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-control form-control-simple" type="password"  class="" placeholder="Password" />
+                            <span asp-validation-for=Password></span>
+
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="ConfirmPassword" class="form-control form-control-simple" type="password"  class="" placeholder="Confirm Password" />
+                            <span asp-validation-for=ConfirmPassword></span>
+
+
+                        </div>
+                        <div class="row justify-content-center pt-3">
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-sm btn-block btn-black btn-rounded px-5">Register</button>
+
+                                <div class="divider-separator">
+                                    <span>Or</span>
+                                </div>
+
+                                <button type="button" class="btn btn-sm btn-gray btn-icon  ">
+                                    <i class="icon icon-arrow-left toggle-show close" data-show="registerComponent"> </i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

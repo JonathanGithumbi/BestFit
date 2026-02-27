@@ -1,0 +1,74 @@
+﻿@model BestFit.Shared.DTOs.RequestDTOs.LoginRequestDTO
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Sidebar login -->
+
+<nav id="loginComponent" class="sidebar bg-white border-right">
+    <div class="sidebar-content sidebar-content-warning">
+
+        <!-- Sidebar header -->
+
+        <div class="sidebar-header p-3">
+            <button type="button" class="toggle-show close" data-show="loginComponent">
+                <span class="icon icon-cross"></span>
+            </button>
+        </div>
+
+        <!-- Sidebar content -->
+
+        <div class="d-flex w-100 align-items-center">
+            <div class="w-100">
+                <div class="p-4 p-lg-5">
+                    <div class="mb-5 text-center">
+                        <img src="../assets/svg/favicon.png" alt="" width="80" />
+                    </div>
+                    <form asp-controller="Account"
+                          asp-action="Login"
+                          method="post">
+                        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-control form-control-simple" type="text"  class="" placeholder="Email" aria-describedby="emailHelp" />
+                            <span asp-validation-for=Email></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-control form-control-simple" type="password"  class="" placeholder="Password" />
+                            <span asp-validation-for=Password></span>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <div class="custom-control custom-control-sm custom-checkbox custom-checkbox-primary">
+
+                                <input asp-for="RememberMe" type="checkbox" class="custom-control-input" id="customExampleCheck">
+                                <label class="custom-control-label" for="customExampleCheck">Remember me</label>
+                            </div>
+                            <small>
+                                <a asp-controller="Account" asp-action="ForgotPassword" class="text-muted">Forgot password?</a>
+                            </small>
+                        </div>
+                        <div class="row justify-content-center pt-3">
+                            <div class="col-md-10">
+                                <button type="submit" class="btn btn-sm btn-block btn-black btn-rounded px-5">Login</button>
+
+                                <div class="divider-separator">
+                                    <span>Or</span>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="button" class="toggle-show btn btn-sm btn-block btn-gray btn-rounded px-5" data-show="registerComponent">
+                                        Register
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -17,5 +17,6 @@ namespace BestFit.Shared.DTOs.ResponseDTOs
         public bool? IsLockedOut { get;set; }
         public bool? IsNotAllowed { get; set; }
         public bool RequiresTwoFactor { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

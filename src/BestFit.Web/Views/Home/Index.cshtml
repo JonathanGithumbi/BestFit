@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http        
-@model BestFit.Shared.DTOs.IndexPageDTO
+@model BestFit.Shared.DTOs.ResponseDTOs.HomeIndexResponseDTO
 
 
 
@@ -7,8 +7,24 @@
     ViewData["Title"] = "Home";
 }
 
+<!-- Breadcrumbs -->
 
-<!-- Header -->
+<header class="header header-main header-sticky bg-dark">
+    <div class="pb-2 py-lg-3">
+        <div class="container text-light">
+            <div class="row align-items-left">
+                
+                <div class="col-lg-4 text-lg-right pt-2 pt-lg-0">
+                    <ol class="breadcrumb breadcrumb-light justify-content-lg-end">
+                        <li class="breadcrumb-item"><a href="#">Home ></a></li>
+                        
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+@* <!-- Header -->
 <header class="header header-main header-sticky">
     <div class="pb-2 py-lg-3">
         <div class="container text-light">
@@ -23,7 +39,7 @@
             </div>
         </div>
     </div>
-</header>
+</header> *@
 
 
 
@@ -54,13 +70,13 @@
 <!--Featured Content Banner-->
 <section class="section bg-white">
     <div class="container">
-        <div class="box box-image box-parallax br-md" style="background-image:url(@Model.HomeIndexResponseDTO.featuredContent.Find(x => x.Name == "top-page").ImageUrl)">
+        <div class="box box-image box-parallax br-md" style="background-image:url(@Model.featuredContent.Find(x => x.Name == "top-page").ImageUrl)">
             <div class="box-content px-5 text-center text-white">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <h1 class="display-4">@Model.HomeIndexResponseDTO.featuredContent.Find(x => x.Name == "top-page").Heading</h1>
+                        <h1 class="display-4">@Model.featuredContent.Find(x => x.Name == "top-page").Heading</h1>
                         <p class="lead mb-5">
-                            @Model.HomeIndexResponseDTO.featuredContent.Find(x => x.Name == "top-page").SubHeading
+                            @Model.featuredContent.Find(x => x.Name == "top-page").SubHeading
                         </p>
                     </div>
                 </div>
@@ -75,7 +91,7 @@
 <section class="bg-white p-0">
     <div class="container">
         <div class="row">
-            @foreach (var category in @Model.HomeIndexResponseDTO.categories)
+            @foreach (var category in @Model.categories)
             {
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <div class="wow fadeInUp" data-wow-delay=".2s">
@@ -110,7 +126,7 @@
 
         <div class="wow fadeInUp" data-wow-delay=".2s">
             <div class="row">
-                @foreach (var category in @Model.HomeIndexResponseDTO.sportCollectionCategories)
+                @foreach (var category in @Model.sportCollectionCategories)
                 {
                     <div class="col mb-3 mb-lg-0">
                         <a asp-controller="Shop" asp-action="Index" asp-route-category="@category.Id" class="btn btn-rounded btn-block btn-outline-dark">@category.Name</a>
@@ -140,11 +156,11 @@
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="wow fadeInUp" data-wow-delay=".4s">
-                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.HomeIndexResponseDTO.popularCategories.Find(x=>x.Name=="Jackets").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(HomeIndexResponseDTO.popularCategories.Find(x=>x.Name=="Jackets").ImageUrl">
+                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.popularCategories.Find(x=>x.Name=="Jackets").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(HomeIndexResponseDTO.popularCategories.Find(x=>x.Name=="Jackets").ImageUrl">
                         <div class="box-spacer-xl"></div>
                         <div class="box-content text-white text-center">
                             <header>
-                                <div class="display-3"><strong>@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Jackets").Name</strong> </div>
+                                <div class="display-3"><strong>@Model.popularCategories.Find(x => x.Name == "Jackets").Name</strong> </div>
                             </header>
                             
                         </div>
@@ -154,11 +170,11 @@
             
             <div class="col-md-6 mb-4">
                 <div class="wow fadeInUp" data-wow-delay=".6s">
-                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Bags").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Bags").ImageUrl)">
+                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.popularCategories.Find(x => x.Name == "Bags").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Bags").ImageUrl)">
                         <div class="box-spacer-xl"></div>
                         <div class="box-content text-white text-center">
                             <header>
-                                <span class="display-3"><strong>@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Bags").Name</strong></span>
+                                <span class="display-3"><strong>@Model.popularCategories.Find(x => x.Name == "Bags").Name</strong></span>
                             </header>
                             
                         </div>
@@ -172,7 +188,7 @@
                         <div class="box-spacer-xl"></div>
                         <div class="box-content text-white text-center">
                             <header>
-                                <span class="display-4"><strong>@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Outdoor").Name</strong></span>
+                                <span class="display-4"><strong>@Model.popularCategories.Find(x => x.Name == "Outdoor").Name</strong></span>
                             </header>
                         </div>
                     </a>
@@ -181,11 +197,11 @@
 
             <div class="col-md-4 mb-4">
                 <div class="wow fadeInUp" data-wow-delay=".9s">
-                    <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="Model.omeIndexResponseDTO.popularCategories.Find(x => x.Name == "Winterski").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Winterski").ImageUrl)">
+                    <a asp-action="Index" asp-controller="Shop" asp-route-categoryId="Model.omeIndexResponseDTO.popularCategories.Find(x => x.Name == "Winterski").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(@Model.popularCategories.Find(x => x.Name == "Winterski").ImageUrl)">
                         <div class="box-spacer-xl"></div>
                         <div class="box-content text-white text-center">
                             <header>
-                                <span class="display-4"><strong>@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Winterski").Name</strong></span>
+                                <span class="display-4"><strong>@Model.popularCategories.Find(x => x.Name == "Winterski").Name</strong></span>
                             </header>
                            
                         </div>
@@ -195,11 +211,11 @@
 
             <div class="col-md-4 mb-4">
                 <div class="wow fadeInUp" data-wow-delay=".9s">
-                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Sport").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(../assets/images/templates//clothing/ladie-3.jpg)">
+                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.popularCategories.Find(x => x.Name == "Sport").Id" class="box box-image box-hover-pull br-sm" style="background-image:url(../assets/images/templates//clothing/ladie-3.jpg)">
                         <div class="box-spacer-xl"></div>
                         <div class="box-content text-white text-center">
                             <header>
-                                <span class="display-4"><strong>@Model.HomeIndexResponseDTO.popularCategories.Find(x => x.Name == "Sport").Name</strong></span>
+                                <span class="display-4"><strong>@Model.popularCategories.Find(x => x.Name == "Sport").Name</strong></span>
                             </header>
                         </div>
                     </a>
@@ -222,7 +238,7 @@
         </header>
 
         <div class="row mx-n1">
-            @foreach (var product in @Model.HomeIndexResponseDTO.blackFridaySales)
+            @foreach (var product in @Model.blackFridaySales)
             {
                 <div class="col-6 col-xl-3 p-1">
                     <div class="wow fadeInUp" data-wow-delay=".0s">
@@ -290,7 +306,7 @@
         </header>
 
         <div class="row mx-n1">
-            @foreach (var womenproduct in @Model.HomeIndexResponseDTO.popularWomenProducts)
+            @foreach (var womenproduct in @Model.popularWomenProducts)
             {
                 <div class="col-6 col-xl-3 p-1">
                     <div class="wow fadeInUp" data-wow-delay=".0s">
@@ -368,7 +384,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        @foreach (var clothingCategory in @Model.HomeIndexResponseDTO.clothingCategories)
+                        @foreach (var clothingCategory in @Model.clothingCategories)
                         {
                             <div class="col col-lg-3 mb-3">
                                 <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>
@@ -391,7 +407,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        @foreach (var clothingCategory in @Model.HomeIndexResponseDTO.clothingCategories)
+                        @foreach (var clothingCategory in @Model.clothingCategories)
                         {
                             <div class="col col-lg-3 mb-3">
                                 <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>
@@ -413,7 +429,7 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        @foreach (var clothingCategory in @Model.HomeIndexResponseDTO.clothingCategories)
+                        @foreach (var clothingCategory in @Model.clothingCategories)
                         {
                             <div class="col col-lg-3 mb-3">
                                 <a asp-controller="Category" asp-action="Index" asp-route-productId="@clothingCategory.Id" class="btn btn-rounded btn-block btn-sm btn-outline-dark text-nowrap">@clothingCategory.Name</a>

@@ -1,8 +1,4 @@
-﻿@model BestFit.Shared.DTOs.IndexPageDTO
-@using BestFit.Domain.Entities
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -55,7 +51,7 @@
 
             <a asp-controller="Home" asp-action="Index" class="navbar-brand text-dark" >
                 <img src="../assets/svg/favicon.png" alt="" width="60" />
-                <strong class="text-white bg-dark">BestFit</strong>
+                <strong class="text-muted  display-5 ">BestFit</strong>
                 
             </a>
 
@@ -83,7 +79,7 @@
                     </li>
                 </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="furnitureNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="icon icon-menu"></span>
+                    <span class="icon icon-menu text-muted"></span>
                 </button>
             </div>
 
@@ -105,19 +101,9 @@
                             </button>
                         </div>
                     </div>
+
                     <div class="bg-light">
-                        <form asp-controller="Search"
-                                  asp-action="Search"
-                                  method="post">
-                            <input type="hidden" name="returnUrl" value="@(ViewData["ReturnUrl"] ?? "/")" />
-                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                            <div class="form-group form-group-icon">
-                                <input asp-for="NavbarComponentsDTO.SearchContentRequest.Keyword" type="text" class="form-control form-control-simple" aceholder="Search site" />
-                                <span asp-validation-for=NavbarComponentsDTO.SearchContentRequest.Keyword></span>
-                                <button type="submit" class="btn btn-clean"><i class="icon icon-magnifier"></i></button>
-                            </div>
-                    
-                        </form>
+                        @await Html.PartialAsync("MobileSearch", new SearchContentRequestDTO())
                     </div>
                 </div>
 
@@ -162,317 +148,33 @@
         </div>
     </nav>
 
-    <!-- Sidebar login -->
-
-    <nav id="loginComponent" class="sidebar bg-white border-right">
-        <div class="sidebar-content sidebar-content-warning">
-
-            <!-- Sidebar header -->
-
-            <div class="sidebar-header p-3">
-                <button type="button" class="toggle-show close" data-show="loginComponent">
-                    <span class="icon icon-cross"></span>
-                </button>
-            </div>
-
-            <!-- Sidebar content -->
-
-            <div class="d-flex w-100 align-items-center">
-                <div class="w-100">
-                    <div class="p-4 p-lg-5">
-                        <div class="mb-5 text-center">
-                            <img src="../assets/svg/favicon.png" alt="" width="80" />
-                        </div>
-                        <form asp-controller="Account"
-                              asp-action="Login"
-                              method="post">
-                            <input type="hidden" name="returnUrl" value="@(ViewData["ReturnUrl"] ?? "/")" />
-                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.LoginRequest.Email" class="form-control form-control-simple" type="text" value="" class="" placeholder="Email" aria-describedby="emailHelp" />
-                                <span asp-validation-for=NavbarComponentsDTO.LoginRequest.Email></span>
-                            </div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.LoginRequest.Password" class="form-control form-control-simple" type="password" value="" class="" placeholder="Password" />
-                                <span asp-validation-for=NavbarComponentsDTO.LoginRequest.Password></span>
-                            </div>
-                            <div class="form-group d-flex justify-content-between">
-                                <div class="custom-control custom-control-sm custom-checkbox custom-checkbox-primary">
-
-                                    <input asp-for="NavbarComponentsDTO.LoginRequest.RememberMe" type="checkbox" class="custom-control-input" id="customExampleCheck">
-                                    <label class="custom-control-label" for="customExampleCheck">Remember me</label>
-                                </div>
-                                <small>
-                                    <a asp-controller="Account" asp-action="ForgotPassword" class="text-muted">Forgot password?</a>
-                                </small>
-                            </div>
-                            <div class="row justify-content-center pt-3">
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn btn-sm btn-block btn-black btn-rounded px-5">Login</button>
-
-                                    <div class="divider-separator">
-                                        <span>Or</span>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="button" class="toggle-show btn btn-sm btn-block btn-gray btn-rounded px-5" data-show="registerComponent">
-                                            Register
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-
+    <!--Sidebar Login-->
+    @await Html.PartialAsync("LoginSidebar",new LoginRequestDTO())
+    
     <!-- Sidebar Register-->
-
-    <nav id="registerComponent" class="sidebar bg-white border-right">
-        <div class="sidebar-content sidebar-content-warning">
-
-            <!-- Sidebar header -->
-
-            <div class="sidebar-header p-3">
-                <button type="button" class="toggle-show close" data-show="registerComponent">
-                    <span class="icon icon-cross"></span>
-                </button>
-            </div>
-
-            <!-- Sidebar content -->
-
-            <div class="d-flex w-100 align-items-center">
-                <div class="w-100">
-                    <div class="p-4 p-lg-5">
-                        <div class="mb-5 text-center">
-                            <img src="../assets/svg/favicon.png" alt="" width="80" />
-                        </div>
-                        <form asp-controller="Account"
-                              asp-action="Register"
-                              method="post">
-                            <input type="hidden" name="returnUrl" value="@(ViewData["ReturnUrl"] ?? "/")" />
-                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.RegisterRequest.FirstName" class="form-control form-control-simple" type="text" value="" class="" placeholder="First Name"  />
-                                <span asp-validation-for=NavbarComponentsDTO.RegisterRequest.FirstName></span>
-                            </div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.RegisterRequest.LastName" class="form-control form-control-simple" type="text" value="" class="" placeholder="Last Name" />
-                                <span asp-validation-for=NavbarComponentsDTO.RegisterRequest.LastName></span>
-                                
-                            </div>
-
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.RegisterRequest.Email" class="form-control form-control-simple" type="email" value="" class="" placeholder="Email" />
-                                <span asp-validation-for=NavbarComponentsDTO.RegisterRequest.Email></span>
-
-                            </div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.RegisterRequest.Password" class="form-control form-control-simple" type="password" value="" class="" placeholder="Password" />
-                                <span asp-validation-for=NavbarComponentsDTO.RegisterRequest.Password></span>
-
-                            </div>
-                            <div class="form-group">
-                                <input asp-for="NavbarComponentsDTO.RegisterRequest.ConfirmPassword" class="form-control form-control-simple" type="password" value="" class="" placeholder="Confirm Password" />
-                                <span asp-validation-for=NavbarComponentsDTO.RegisterRequest.ConfirmPassword></span>
-
-                                
-                            </div>
-                            <div class="row justify-content-center pt-3">
-                                <div class="col-md-10">
-                                    <button type="submit" class="btn btn-sm btn-block btn-black btn-rounded px-5">Register</button>
-
-                                    <div class="divider-separator">
-                                        <span>Or</span>
-                                    </div>
-
-                                    <button type="button" class="btn btn-sm btn-gray btn-icon  ">
-                                        <i class="icon icon-arrow-left toggle-show close" data-show="registerComponent"> </i>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @await Html.PartialAsync("RegisterSidebar", new RegisterRequestDTO())
 
 
     <!-- Sidebar cart -->
-
-    <nav id="cartComponent" class="sidebar sidebar-right bg-white border-left">
-        <div class="sidebar-content">
-
-            <!-- Sidebar header -->
-
-            <div class="sidebar-header px-3 pt-3">
-                <button type="button" class="toggle-show close" data-show="cartComponent">
-                    <span class="icon icon-cross"></span>
-                </button>
-                <div>Shopping cart</div>
-            </div>
-
-            <hr />
-
-            <!-- Sidebar items -->
-
-            <div>
-                <ul class="list-group list-group-flush mb-3">
-
-                    <li class="list-group-item p-4">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-md-2 mb-2 mb-lg-0">
-                                <img src="../assets/images/templates/clothing/shoe-1.jpg" alt="" class="img-fluid br-sm" />
-                            </div>
-                            <div class="col-md-6 pl-md-2 mb-2 mb-lg-0">
-                                <p class="my-0">First product</p>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <div class="col-6 col-md-2">
-                                <input type="number" value="2" class="form-control form-control-sm" />
-                            </div>
-                            <div class="col-6 col-md-2 text-right text-muted">
-                                <div>$1200</div>
-                                <small><del>$1499</del></small>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item p-4">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-md-2 mb-2 mb-lg-0">
-                                <img src="../assets/images/templates/clothing/shoe-1.jpg" alt="" class="img-fluid br-sm" />
-                            </div>
-                            <div class="col-md-6 pl-md-2 mb-2 mb-lg-0">
-                                <p class="my-0">Second product</p>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <div class="col-6 col-md-2">
-                                <input type="number" value="2" class="form-control form-control-sm" />
-                            </div>
-                            <div class="col-6 col-md-2 text-right text-muted">
-                                <div>$1200</div>
-                                <small><del>$1499</del></small>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item p-4">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-md-2 mb-2 mb-lg-0">
-                                <img src="../assets/images/templates/clothing/shoe-1.jpg" alt="" class="img-fluid br-sm" />
-                            </div>
-                            <div class="col-md-6 pl-md-2 mb-2 mb-lg-0">
-                                <p class="my-0">Third product</p>
-                                <small class="text-muted">Brief description</small>
-                            </div>
-                            <div class="col-6 col-md-2">
-                                <input type="number" value="2" class="form-control form-control-sm" />
-                            </div>
-                            <div class="col-6 col-md-2 text-right text-muted">
-                                <div>$1200</div>
-                                <small><del>$1499</del></small>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item p-4 bg-light text-muted">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <small>Promocode: EXAMPLECODE</small>
-                            </div>
-                            <span>-$500</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <small>Discount 15%</small>
-                            </div>
-                            <span>-$15</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <small>Shipping</small>
-                            </div>
-                            <span>$0</span>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item p-4 d-flex justify-content-between">
-                        <strong>Total (USD)</strong>
-                        <strong>$ 1290,00</strong>
-                    </li>
-
-                </ul>
-
-                <!-- Sidebar Buttons -->
-
-                <div class="row justify-content-center pt-3 m-0">
-                    <div class="col-8">
-                        <a type="submit" asp-controller="Checkout" asp-action="Checkout" class="btn btn-rounded btn-sm btn-block btn-dark px-5">Go to checkout</a>
-
-                        <div class="divider-separator">
-                            <span>Or</span>
-                        </div>
-
-                        <div class="form-group">
-                            <a type="submit" asp-controller="Shop" asp-action="Index" class="btn btn-sm btn-block px-3">Continue shopping</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </nav>
+    @await Html.PartialAsync("CartSidebar", new CartResponseDTO())
 
     <!-- Sidebar search -->
-
-    <nav id="searchComponent" class="sidebar sidebar-right bg-white border-left">
-        <div class="sidebar-content">
-            <div class="sidebar-header px-3 pt-3">
-                <button type="button" class="toggle-show close" data-show="searchComponent">
-                    <span class="icon icon-cross"></span>
-                </button>
-                <div>Search content</div>
-            </div>
-            <hr />
-            <div class="p-4">
-                <div class="form-group">
-                    <label class="label" for="searchContent">Enter keyword</label>
-                    <input type="email" class="form-control form-control-simple" id="searchContent" placeholder="Search key words like furniture, sofa...">
-                </div>
-                <div class="row justify-content-center pt-3">
-                    <div class="col-md-10">
-                        <button type="submit" class="btn btn-sm btn-block btn-dark btn-rounded px-5">Search the site</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+    @await Html.PartialAsync("SearchSidebar", new SearchContentRequestDTO())
 
     @RenderBody()
     <hr class="m-0">
 
     <!-- Footer -->
 
-    <footer class="bg-white">
+    <footer class="bg-dark">
         <div class="container text-center">
             <div class="wow fadeIn" data-wow-delay=".4s">
                 <p><i class="icon icon-layer display-4"></i></p>
                 <ul class="list-group list-group-horizontal list-group-clean justify-content-center">
-                    <li class="list-group-item pr-3"><a asp-controller="Shop" asp-action="Index">Shop</a></li>
-                    <li class="list-group-item pr-3"><a asp-controller="Category" asp-action="Index">Categories</a></li>
-                    <li class="list-group-item pr-3"><a asp-controller="About" asp-action="Index">About us</a></li>
-                    <li class="list-group-item pr-3"><a asp-controller="Contact" asp-action="Index">Contact</a></li>
+                    <li class="list-group-item pr-3"><a asp-controller="Shop" asp-action="Index"><p class="text-muted">Shop</p></a></li>
+                    <li class="list-group-item pr-3"><a asp-controller="Category" asp-action="Index"><p class="text-muted">Categories</p></a></li>
+                    <li class="list-group-item pr-3"><a asp-controller="About" asp-action="Index"><p class="text-muted">About us</p></a></li>
+                    <li class="list-group-item pr-3"><a asp-controller="Contact" asp-action="Index"><p class="text-muted">Contact</p></a></li>
                 </ul>
             </div>
             <div class="wow fadeIn" data-wow-delay=".8s">
@@ -499,6 +201,22 @@
     <script src="/js/main.js"></script>
     <script src="/js/custom.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @if (TempData["OpenLogin"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("loginComponent").classList.add("show");
+            });
+        </script>
+    }
+    @if (TempData["OpenRegistration"] != null)
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("registrationComponent").classList.add("show");
+            });
+        </script>
+    }
 </body>
 
 </html>
