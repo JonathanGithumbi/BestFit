@@ -39,6 +39,7 @@ builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<FeaturedContentService>();
 builder.Services.AddScoped<HomeService>();
+builder.Services.AddScoped<ProfileService>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();

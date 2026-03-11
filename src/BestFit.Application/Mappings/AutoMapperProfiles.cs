@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BestFit.Shared.DTOs.RequestDTOs;
+using BestFit.Shared.DTOs.ServiceResponse;
 
 using BestFit.Shared.DTOs.ResponseDTOs;
 using BestFit.Domain.Entities;
@@ -17,8 +18,11 @@ namespace BestFit.Application.Mappings
     {
         public AutoMapperProfiles() 
         {
+            //Profile Account
+            CreateMap<ProfileAccountResponseDTO, ProductAccountServiceResponse>().ReverseMap();
+
             //ApplicationUser
-            //CreateMap<ApplicationUser, RegisterRequestDTO>().ReverseMap();
+            CreateMap<ApplicationUser, ProfileAccountResponseDTO>().ReverseMap();
 
             //Featured Content
             CreateMap<FeaturedContent, FeaturedContentResponseDTO>().ReverseMap();

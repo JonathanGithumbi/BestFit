@@ -3,6 +3,7 @@ using BestFit.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,10 +18,15 @@ namespace BestFit.Application.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<CustomerMeasurementProfile> GetAllCustomerMeasurementProfiles()
+        public IEnumerable<CustomerMeasurementProfile> GetAllCustomerMeasurementProfiles(Expression<Func<CustomerMeasurementProfile, bool>>? filter = null)
         {
-            var profileList = unitOfWork.CustomerMeasurementProfileRepository.GetAll();
-            return profileList;
+            var profileList_U = unitOfWork.CustomerMeasurementProfileRepository.GetAll(filter);
+            if (filter !=null)
+            {
+                var profileList = unitOfWork.CustomerMeasurementProfileRepository.GetAll(filter);
+                return profileList;
+            }
+            return profileList_U;
         }
 
         public CustomerMeasurementProfile CreateCustomerMeasurementProfile(CustomerMeasurementProfile profile)

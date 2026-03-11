@@ -1,0 +1,156 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Menu sidebar -->
+
+<div class="col-lg-3">
+
+    <div class="br-sm pr-lg-4 mt-xl-n6">
+
+        <!-- Profile menu header -->
+
+        <div class="py-3 py-lg-4">
+            <div class="row align-items-center justify-content-center no-gutters text-lg-center">
+                <div class="col-9 col-lg-12">
+                </div>
+                <div class="col-3 d-lg-none text-right">
+                    <button class="btn btn-icon btn-primary btn-sm toggle-show" data-show="open-profile-sidebar">
+                        <i class="icon icon-text-align-center"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile sidebar -->
+
+        <div class="sidebar sidebar-mobile" id="open-profile-sidebar">
+            <div class="sidebar-content">
+
+                <div class="sidebar-header clearfix d-lg-none">
+                    <button type="button" class="close toggle-show p-3" data-show="open-profile-sidebar" aria-label="Close">
+                        <i class="icon icon-cross font-size-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Profile account links -->
+
+                <div class="mb-4 px-4 p-lg-0">
+                    <ul class="list-group list-group-clean">
+
+                        <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
+                            <label class="pre-label">Account</label>
+                        </li>
+
+                        <li class="list-group-item  active">
+                            <a asp-controller="Profile" asp-action="Profile">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-user mr-2"></i>
+                                        <span>Profile account</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="list-group-item ">
+                            <a asp-controller="Profile" asp-action="ProfilePayment">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-cart mr-2"></i>
+                                        <span>Paymnet methods</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="list-group-item ">
+                            <a asp-controller="Profile" asp-action="ProfileNotifications">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-alarm mr-2"></i>
+                                        <span>Notifications</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <!-- Profile dashboard links -->
+
+                <div class="mb-4 px-4 p-lg-0">
+                    <ul class="list-group list-group-clean">
+
+                        <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
+                            <label class="pre-label">Dashboard</label>
+                        </li>
+
+                        <li class="list-group-item ">
+                            <a asp-controller="Profile" asp-action="ProfileOrders">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-cart mr-2"></i>
+                                        <span>Orders</span>
+                                    </span>
+                                    <span class="badge  badge-pill">125</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="list-group-item ">
+                            <a asp-controller="Profile" asp-action="ProfileWishList">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-heart mr-2"></i>
+                                        <span>Whishlist</span>
+                                    </span>
+                                    <span class="badge  badge-pill">9</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Profile reset -->
+
+                <div class="mb-4 px-4 p-lg-0">
+                    <ul class="list-group list-group-clean">
+
+                        <li class="list-group-item text-muted d-flex justify-content-between align-items-center">
+                            <label class="pre-label">Access</label>
+                        </li>
+
+                        <li class="list-group-item ">
+                            <a asp-controller="Profile" asp-action="ProfileResetPassword">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-lock mr-2"></i>
+                                        <span>Reset password</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="list-group-item">
+                            <a asp-controller="Profile" asp-action="Logout">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span>
+                                        <i class="icon icon-enter-down mr-2"></i>
+                                        <span>Sign out</span>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

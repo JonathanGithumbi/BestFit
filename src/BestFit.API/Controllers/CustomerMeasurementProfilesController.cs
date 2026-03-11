@@ -11,7 +11,6 @@ namespace BestFit.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CustomerMeasurementProfilesController : ControllerBase
     {
         private readonly CustomerMeasurementProfileService customerMeasurementProfileService;

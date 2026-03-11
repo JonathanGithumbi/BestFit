@@ -10,7 +10,7 @@
       {
         "Path": "BestFit.Web\\BestFit.Web.csproj",
         "Action": "Start",
-        "DebugTarget": "http"
+        "DebugTarget": "https"
       }
     ]
   },

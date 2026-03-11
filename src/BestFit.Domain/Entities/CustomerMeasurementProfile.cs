@@ -20,16 +20,16 @@ namespace BestFit.Domain.Entities
         /// <summary>
         /// Defines if the values stored are in Centimeters or Inches.
         /// </summary>
-        public MeasurementUnit UnitSystem { get; set; }
+        public MeasurementUnit? UnitSystem { get; set; }
 
-        public HeadMeasurements Head { get; set; } = new();
-        public TorsoMeasurements Torso { get; set; } = new();
-        public ArmAndHandMeasurements Arms { get; set; } = new();
-        public LowerBodyMeasurements HipsAndWaist { get; set; } = new();
-        public LegMeasurements Legs { get; set; } = new();
-        public FootMeasurements Feet { get; set; } = new();
+        public HeadMeasurements? Head { get; set; } = new();
+        public TorsoMeasurements? Torso { get; set; } = new();
+        public ArmAndHandMeasurements? Arms { get; set; } = new();
+        public LowerBodyMeasurements? HipsAndWaist { get; set; } = new();
+        public LegMeasurements? Legs { get; set; } = new();
+        public FootMeasurements? Feet { get; set; } = new();
 
-        public DateTime LastUpdated { get; set; }
+        public DateTime? LastUpdated { get; set; }
     }
 
 

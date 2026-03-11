@@ -187,18 +187,18 @@ namespace BestFit.Web.Controllers
                     CookieAuthenticationDefaults.AuthenticationScheme);
                     TempData["LogoutSucceeded"] = "You have been logged out successfully.";
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToActionPermanent("Index", "Home");
                 }
                 TempData["LogoutSucceeded"] = "Logout Failed";
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToActionPermanent("Index", "Home");
             }
             catch
             {
                 TempData["LogoutSucceeded"] = "Bad Request, please try again";
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToActionPermanent("Index", "Home");
             }
 
 
