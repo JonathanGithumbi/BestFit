@@ -66,3 +66,15 @@
 /src/BestFit.Shared/obj/Debug/net8.0/BestFit.Shared.dll
 /src/BestFit.Shared/obj/Debug/net8.0/BestFit.Shared.pdb
 /src/BestFit.Shared/obj/Debug/net8.0/BestFit.Shared.sourcelink.json
+/tests/BestFit.AcceptanceTests/bin/Debug/net8.0
+/tests/BestFit.AcceptanceTests/obj/Debug/net8.0
+/tests/BestFit.AcceptanceTests/obj/Release/net8.0
+/tests/BestFit.AcceptanceTests/obj
+/tests/BestFit.AcceptanceTests/bin/Release/net8.0
+/tests/BestFit.IntegrationTests/bin/Debug/net8.0
+/tests/BestFit.IntegrationTests/obj/Debug/net8.0
+/tests/BestFit.IntegrationTests/obj/Release/net8.0
+/tests/BestFit.IntegrationTests/obj
+/tests/BestFit.UnitTests/bin/Debug/net8.0
+/tests/BestFit.UnitTests/bin/Release/net8.0
+/tests/BestFit.UnitTests/obj

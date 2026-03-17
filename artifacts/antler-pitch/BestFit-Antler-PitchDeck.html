@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BestFit - Antler Pitch Deck</title>
+  <style>
+    :root {
+      --ink:#14211f; --forest:#234239; --leaf:#567f67; --sand:#efe5d2; --paper:#f8f4eb;
+      --sun:#d9a04f; --rust:#b35c3c; --muted:#67726d; --white:#fff; --shadow:0 20px 50px rgba(20,33,31,.14);
+      --display:"Bahnschrift SemiBold","Aptos Display","Segoe UI",sans-serif; --body:"Aptos","Segoe UI",sans-serif;
+      --mono:Consolas,"Cascadia Code",monospace;
+    }
+    * { box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    html,body { margin:0; padding:0; background:#d7d0bf; color:var(--ink); font-family:var(--body); counter-reset:slide; }
+    @page { size:13.333in 7.5in; margin:0; }
+    .slide {
+      position:relative; width:13.333in; height:7.5in; overflow:hidden; page-break-after:always;
+      background:radial-gradient(circle at 84% 18%, rgba(217,160,79,.17), transparent 24%),
+                 radial-gradient(circle at 16% 82%, rgba(86,127,103,.16), transparent 20%),
+                 linear-gradient(135deg, #f7f3ea 0%, #efe5d2 100%);
+    }
+    .dark {
+      color:var(--white);
+      background:radial-gradient(circle at 80% 16%, rgba(217,160,79,.25), transparent 22%),
+                 radial-gradient(circle at 18% 84%, rgba(86,127,103,.20), transparent 24%),
+                 linear-gradient(135deg, #13201d 0%, #203732 54%, #29453d 100%);
+    }
+    .slide::after {
+      counter-increment:slide; content:counter(slide, decimal-leading-zero); position:absolute; right:28px; bottom:20px;
+      font-size:13px; letter-spacing:.22em; font-weight:800; color:rgba(20,33,31,.34);
+    }
+    .dark::after { color:rgba(255,255,255,.42); }
+    .pad { height:100%; padding:44px 52px 40px; position:relative; z-index:2; }
+    .eyebrow { font-size:13px; font-weight:800; letter-spacing:.22em; text-transform:uppercase; color:var(--leaf); margin-bottom:12px; }
+    .dark .eyebrow { color:#d9c187; }
+    h1,h2,h3,p { margin:0; }
+    h1 { font:48px/1.02 var(--display); letter-spacing:-.03em; }
+    h2 { font:34px/1.08 var(--display); letter-spacing:-.03em; max-width:800px; }
+    h3 { font-size:17px; line-height:1.18; }
+    p,li { font-size:16px; line-height:1.4; }
+    ul { margin:0; padding-left:18px; }
+    li + li { margin-top:8px; }
+    .muted, .meta { color:var(--muted); }
+    .dark .muted, .dark .meta { color:rgba(255,255,255,.72); }
+    .headline { margin-bottom:22px; }
+    .headline p { margin-top:12px; max-width:770px; font-size:18px; }
+    .hero { display:grid; grid-template-columns:1.06fr .94fr; gap:26px; height:100%; }
+    .hero-copy { display:flex; flex-direction:column; justify-content:space-between; }
+    .hero-copy .sub { margin-top:18px; max-width:600px; font-size:22px; line-height:1.34; color:rgba(255,255,255,.86); }
+    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .tag { padding:8px 13px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.14); }
+    .callout,.card,.stat,.note,.panel,.phase,.road,.final-card { border-radius:24px; box-shadow:var(--shadow); }
+    .callout { margin-top:auto; width:88%; padding:18px 20px; background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.16); }
+    .callout strong,.mini { display:block; margin-bottom:8px; font-size:12px; font-weight:800; letter-spacing:.15em; text-transform:uppercase; }
+    .callout strong { color:#d9c187; }
+    .hero-visual { position:relative; }
+    .photo, .small-photo, .screen { position:absolute; border-radius:28px; overflow:hidden; box-shadow:var(--shadow); background-size:cover; background-position:center; }
+    .photo { inset:8px 34px 70px 54px; background-image:url("../../src/BestFit.Web/wwwroot/assets/images/demo/fashion-1.jpg"); }
+    .screen { left:0; bottom:36px; width:290px; height:194px; border:8px solid rgba(255,255,255,.94); background-image:url("../../src/BestFit.Web/wwwroot/assets/images/layouts/page-products-grid.png"); transform:rotate(5deg); }
+    .small-photo { right:8px; bottom:10px; width:280px; height:190px; border:8px solid rgba(255,255,255,.92); background-image:url("../../src/BestFit.Web/wwwroot/assets/images/demo/fashion-4.jpg"); transform:rotate(-6deg); }
+    .visual-note { position:absolute; top:24px; right:0; width:236px; padding:16px 18px; border-radius:22px; background:rgba(239,229,210,.92); color:var(--ink); }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .grid4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .split { display:grid; grid-template-columns:1.1fr .9fr; gap:28px; height:100%; }
+    .card,.stat,.note,.panel,.phase,.road { background:rgba(255,255,255,.76); border:1px solid rgba(20,33,31,.08); padding:22px; }
+    .dark-card,.arch { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); padding:22px; border-radius:24px; box-shadow:0 18px 34px rgba(0,0,0,.18); }
+    .num { font:28px/1 var(--display); color:var(--forest); margin-bottom:10px; }
+    .dark-card .num { color:#f6d59b; }
+    .row { display:grid; grid-template-columns:1.2fr .8fr; gap:18px; margin-top:18px; }
+    .note { background:linear-gradient(135deg, rgba(86,127,103,.13), rgba(217,160,79,.18)); }
+    .source { position:absolute; left:52px; right:70px; bottom:22px; font-size:11px; line-height:1.35; color:rgba(20,33,31,.56); }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:18px; }
+    .flow .card { position:relative; min-height:184px; padding:18px 16px 16px; }
+    .flow .card::after { content:"->"; position:absolute; top:50%; right:-15px; transform:translateY(-50%); font-size:22px; font-weight:800; color:rgba(35,66,57,.45); }
+    .flow .card:last-child::after { content:""; }
+    .bubble { width:34px; height:34px; border-radius:999px; background:var(--forest); color:var(--white); display:inline-flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; margin-bottom:14px; }
+    .duo { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+    .shots { display:grid; grid-template-columns:1.05fr .95fr; gap:18px; height:calc(100% - 138px); margin-top:14px; }
+    .shot, .shot2, .shot3 { border-radius:24px; overflow:hidden; box-shadow:var(--shadow); border:1px solid rgba(20,33,31,.1); background:#fff top center/cover no-repeat; }
+    .shot { background-image:url("../../src/BestFit.Web/wwwroot/assets/images/layouts/page-products-grid.png"); }
+    .stack { display:grid; grid-template-rows:1fr 1fr; gap:18px; }
+    .shot2 { background-image:url("../../src/BestFit.Web/wwwroot/assets/images/layouts/page-profile.png"); }
+    .shot3 { background-image:url("../../src/BestFit.Web/wwwroot/assets/images/layouts/page-product.png"); }
+    .pill-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+    .pill { padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.82); border:1px solid rgba(20,33,31,.08); font-size:14px; line-height:1.3; }
+    .codes { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .code { padding:8px 11px; border-radius:14px; background:rgba(20,33,31,.92); color:#fff; font:13px var(--mono); }
+    .arch-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24px; }
+    .arch h3 { color:#f6d59b; font:23px/1.05 var(--display); margin-bottom:14px; }
+    .arch ul { color:rgba(255,255,255,.82); }
+    .compare { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px; }
+    .path { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px; }
+    .phase { min-height:226px; }
+    .phase .mini, .road .mini { color:var(--rust); }
+    .flywheel { margin-top:22px; padding:18px 22px; border-radius:24px; background:linear-gradient(135deg, rgba(217,160,79,.18), rgba(86,127,103,.12)); border:1px solid rgba(20,33,31,.08); display:flex; justify-content:space-between; gap:14px; align-items:center; font-size:15px; font-weight:700; }
+    .arr { color:var(--rust); font-size:20px; flex:0 0 auto; }
+    .matrix { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:16px; }
+    .panel strong { display:block; margin-bottom:6px; }
+    .roadmap { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:20px; }
+    .road { min-height:286px; }
+    .check { list-style:none; padding-left:0; margin-top:12px; }
+    .check li { position:relative; padding-left:18px; margin-top:10px; }
+    .check li::before { content:"+"; position:absolute; left:0; top:0; font-weight:900; color:var(--rust); }
+    .finale { display:grid; grid-template-columns:1.05fr .95fr; gap:22px; height:100%; }
+    .quote { margin-top:16px; font-size:26px; line-height:1.22; max-width:580px; color:rgba(255,255,255,.92); }
+    .footer-note { margin-top:24px; max-width:560px; font-size:13px; line-height:1.45; color:rgba(255,255,255,.62); }
+    .final-card + .final-card { margin-top:14px; }
+    .final-card { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); padding:22px; }
+  </style>
+</head>
+<body>
+  <section class="slide dark"><div class="pad hero">
+    <div class="hero-copy">
+      <div>
+        <div class="eyebrow">Antler Pitch Deck</div>
+        <h1>BestFit</h1>
+        <p class="sub">Thrift-fashion commerce powered by fit intelligence. BestFit helps shoppers discover secondhand clothes that are likely to fit, while turning fragmented garment and body measurements into reusable infrastructure.</p>
+        <div class="tags"><span class="tag">Kenya launch wedge</span><span class="tag">Marketplace + data platform</span><span class="tag">Circular fashion</span></div>
+      </div>
+      <div class="callout"><strong>Core thesis</strong><p>Online thrifting breaks when inventory is unique, sizing is inconsistent, and fit confidence is low. BestFit solves all three by pairing resale liquidity with a measurement system built for apparel.</p></div>
+    </div>
+    <div class="hero-visual">
+      <div class="photo"></div><div class="screen"></div><div class="small-photo"></div>
+      <div class="visual-note"><span class="mini">From day zero</span><p>Built as a venture-scale wedge: start with a thrift marketplace, grow into a cross-brand fit data layer.</p></div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">The Problem</div><h2>Sizing guesswork breaks online thrift and leaves value stranded on both sides of the market.</h2><p class="muted">Secondhand apparel is especially hard to buy online because every item is one-off, labels are unreliable, and shoppers cannot trust whether a garment will actually fit.</p></div>
+    <div class="grid3">
+      <div class="card"><div class="num">01</div><h3>Supply is fragmented</h3><p>Thrift sellers manage unique inventory with inconsistent size labels, weak metadata, and limited ability to match items to the right buyer.</p></div>
+      <div class="card"><div class="num">02</div><h3>Buyers lack fit confidence</h3><p>Online shoppers cannot try items on, and brand size charts do not translate cleanly to secondhand inventory or to non-standard body types.</p></div>
+      <div class="card"><div class="num">03</div><h3>Waste compounds the pain</h3><p>Bad fit reduces conversion, slows inventory turnover, increases returns, and pushes more apparel toward low-value clearance or disposal.</p></div>
+    </div>
+    <div class="row">
+      <div class="note"><h3>The missing layer is structured fit data.</h3><p>BestFit treats measurement as a first-class domain, so body dimensions, garment dimensions, fit style, and tolerance rules can be compared consistently.</p></div>
+      <div class="note"><h3>Why Kenya first</h3><p>Thrifting is already mainstream, fashion discovery is increasingly digital, and fit uncertainty is one of the biggest blockers to scaling online resale.</p></div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">Why Now</div><h2>Resale is growing globally, Kenya already has real secondhand volume, and discovery is becoming data-driven.</h2></div>
+    <div class="grid4">
+      <div class="stat"><span class="mini">Global tailwind</span><div class="num" style="font-size:48px;">$367B</div><p>Global secondhand apparel market projected for 2029.</p><p class="meta">Resale is no longer niche. It is becoming a major retail category.</p></div>
+      <div class="stat"><span class="mini">Kenya volume</span><div class="num" style="font-size:48px;">$187M</div><p>Kenya's 2023 imports of worn clothing and other worn articles.</p><p class="meta">The country already sits on meaningful secondhand apparel flow.</p></div>
+      <div class="stat"><span class="mini">Physical throughput</span><div class="num" style="font-size:42px;">197.8M kg</div><p>2023 Kenya import quantity for used clothing under HS 630900.</p><p class="meta">Even modest improvements in fit matching can unlock large efficiency gains.</p></div>
+      <div class="stat"><span class="mini">Discovery shift</span><div class="num" style="font-size:48px;">48%</div><p>Consumers saying better personalization and discovery can make secondhand as easy as new.</p><p class="meta">Fit-aware ranking can be a growth lever, not just a utility feature.</p></div>
+    </div>
+    <p class="source">Sources: ThredUp 2025 Resale Report, published March 19, 2025; World Bank WITS Kenya imports of HS 630900 in 2023. The 48% metric comes from ThredUp's U.S. consumer survey and is used here as directional evidence that personalization lowers secondhand shopping friction.</p>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">The Solution</div><h2>BestFit combines a thrift marketplace with a reusable fit intelligence layer.</h2><p class="muted">The marketplace wedge creates liquidity and proprietary data. The measurement engine becomes the long-term platform.</p></div>
+    <div class="flow">
+      <div class="card"><div class="bubble">1</div><h3>Buyer profile</h3><p>Create a structured body profile instead of relying on guessed sizes.</p><p class="meta">Measurements grouped by body region and unit system.</p></div>
+      <div class="card"><div class="bubble">2</div><h3>Seller capture</h3><p>Upload garment photos plus actual dimensions for the specific item.</p><p class="meta">Especially valuable for one-off thrift inventory.</p></div>
+      <div class="card"><div class="bubble">3</div><h3>Normalization</h3><p>Map both sides into consistent measurement entities and garment categories.</p><p class="meta">Eliminates brand-by-brand ambiguity.</p></div>
+      <div class="card"><div class="bubble">4</div><h3>Fit scoring</h3><p>Rank items using fit style, garment relevance, and tolerance rules.</p><p class="meta">Accounts for elasticity and intended fit.</p></div>
+      <div class="card"><div class="bubble">5</div><h3>Higher confidence</h3><p>Surface likely-fit items first, improving conversion and reducing waste.</p><p class="meta">Marketplace benefit now, API opportunity later.</p></div>
+    </div>
+    <div class="duo">
+      <div class="note"><h3>Marketplace wedge</h3><p>Acquire supply and demand through secondhand commerce where fit pain is highest.</p></div>
+      <div class="note"><h3>Platform outcome</h3><p>Turn accumulated fit data into seller tooling, recommendations, and a reusable API layer.</p></div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="pad split">
+    <div>
+      <div class="headline"><div class="eyebrow">Execution Proof</div><h2>BestFit is already more than a concept.</h2><p class="muted">The repo reflects an active product build spanning domain modeling, API endpoints, web storefronts, and a .NET MAUI Blazor Hybrid client.</p></div>
+      <div class="pill-grid">
+        <div class="pill"><strong>Domain-driven model</strong><br />Structured customer and product measurement profiles.</div>
+        <div class="pill"><strong>Multi-surface stack</strong><br />ASP.NET Core API, web experience, and MAUI hybrid app.</div>
+        <div class="pill"><strong>Fit-aware inputs</strong><br />Elasticity, fit style, and garment-specific dimensions.</div>
+        <div class="pill"><strong>Quality discipline</strong><br />Unit, integration, and acceptance tests are already in repo.</div>
+      </div>
+      <div class="codes"><span class="code">CustomerMeasurementProfile</span><span class="code">ProductMeasurementProfile</span><span class="code">FabricProperties</span><span class="code">FitStyle</span></div>
+    </div>
+    <div class="shots"><div class="shot"></div><div class="stack"><div class="shot2"></div><div class="shot3"></div></div></div>
+  </div></section>
+
+  <section class="slide dark"><div class="pad">
+    <div class="headline"><div class="eyebrow">Why BestFit Wins</div><h2>The moat is not just inventory. It is the measurement system behind the transaction.</h2><p class="muted">BestFit can evolve from a local marketplace into a fit infrastructure company because the core model is extensible across brands, garment types, and downstream applications.</p></div>
+    <div class="arch-grid">
+      <div class="arch"><h3>Human body dimension model</h3><ul><li>Standard measurement definitions</li><li>How each measurement is taken</li><li>Anatomical references and unit handling</li><li>Inclusive treatment of body variation</li></ul></div>
+      <div class="arch"><h3>Fit context layer</h3><ul><li>Measurement relevance by garment type</li><li>Fit style logic: slim, regular, oversized</li><li>Fabric elasticity and tolerance rules</li><li>Potential to learn from outcomes over time</li></ul></div>
+      <div class="arch"><h3>Integration layer</h3><ul><li>Marketplace ranking and recommendations</li><li>Seller measurement tooling</li><li>Cross-brand fit APIs</li><li>Tailoring, scanning, and research partnerships</li></ul></div>
+    </div>
+    <div class="compare">
+      <div class="dark-card"><span class="mini">What others do</span><p>Most resale platforms optimize listing and logistics. Most sizing tools sit on top of brand size charts. Few treat measurement data as the product.</p></div>
+      <div class="dark-card"><span class="mini">BestFit advantage</span><p>Capture the transaction and the fit layer together, so every matched purchase improves the measurement graph and strengthens the recommendation engine.</p></div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">Go-To-Market</div><h2>Start with Nairobi thrift supply, build a trusted fit experience, then expand into seller and platform tooling.</h2></div>
+    <div class="path">
+      <div class="phase"><span class="mini">Phase 1</span><h3>Supply-side wedge</h3><ul><li>Boutique mitumba curators</li><li>Instagram and WhatsApp thrift sellers</li><li>Campus and community resellers</li></ul></div>
+      <div class="phase"><span class="mini">Phase 2</span><h3>Demand-side focus</h3><ul><li>Urban mobile shoppers who already buy secondhand</li><li>Style-conscious buyers seeking convenience</li><li>Underserved body types who need better fit confidence</li></ul></div>
+      <div class="phase"><span class="mini">Phase 3</span><h3>Platform expansion</h3><ul><li>Seller subscriptions and analytics</li><li>B2B fit API for other commerce surfaces</li><li>Future tailoring and scanning integrations</li></ul></div>
+    </div>
+    <div class="flywheel"><span>More measurement-tagged inventory</span><span class="arr">-></span><span>Better fit ranking and buyer confidence</span><span class="arr">-></span><span>Higher conversion and lower waste</span><span class="arr">-></span><span>More seller adoption and richer data</span></div>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">Business Model</div><h2>Monetize first as commerce, then as infrastructure.</h2><p class="muted">The marketplace creates early revenue and proprietary data. The software and fit layer create higher-margin expansion paths.</p></div>
+    <div class="matrix">
+      <div class="panel"><strong>Marketplace take rate</strong><p>Commission on completed secondhand transactions.</p></div>
+      <div class="panel"><strong>Seller tools</strong><p>Paid measurement capture, storefront tools, analytics, and boosted placement.</p></div>
+      <div class="panel"><strong>Fit API / SDK</strong><p>Subscription pricing for third-party retailers, resale apps, or fit engines.</p></div>
+      <div class="panel"><strong>Premium services</strong><p>Optional assisted measurement capture, tailoring partners, or enterprise data services.</p></div>
+    </div>
+    <div class="row">
+      <div class="note"><h3>Short-term business</h3><p>Use a transaction-led model to prove demand, reduce friction, and build the dataset.</p></div>
+      <div class="note"><h3>Long-term upside</h3><p>Become the reusable fit layer for circular fashion and measurement-aware commerce.</p></div>
+    </div>
+  </div></section>
+
+  <section class="slide"><div class="pad">
+    <div class="headline"><div class="eyebrow">Roadmap</div><h2>Build credibility with a focused MVP, then scale from Kenyan resale into fit infrastructure.</h2></div>
+    <div class="roadmap">
+      <div class="road"><span class="mini">Now - 2026</span><h3>Foundation</h3><ul class="check"><li>Canonical measurement dataset and definitions</li><li>Schema validation across body and garment entities</li><li>Profile and listing workflows for fit-aware commerce</li><li>Continue strengthening API, web, and app surfaces</li></ul></div>
+      <div class="road"><span class="mini">Next 6-12 months</span><h3>MVP + pilot</h3><ul class="check"><li>Pilot with a focused seller cohort in Nairobi</li><li>Launch likely-fit ranking and conversion learning loops</li><li>Measure confidence, repeat purchase behavior, and returns impact</li><li>Refine the narrowest repeatable GTM wedge</li></ul></div>
+      <div class="road"><span class="mini">12-24 months</span><h3>Expand the platform</h3><ul class="check"><li>Expose fit intelligence through seller tooling and APIs</li><li>Add cross-brand interoperability features</li><li>Explore tailoring, scanning, and partner integrations</li><li>Scale beyond Kenya into broader circular fashion flows</li></ul></div>
+    </div>
+  </div></section>
+
+  <section class="slide dark"><div class="pad finale">
+    <div>
+      <div class="eyebrow">Why Antler</div>
+      <h2>BestFit is built for the kind of day-zero support Antler is known for.</h2>
+      <p class="quote">Start with a painful, fragmented market. Build a venture-scale wedge. Use early product execution to validate a platform that can expand far beyond a single storefront.</p>
+      <p class="footer-note">BestFit is currently in active design and research, with real architecture already in place. The next goal is sharper validation: the right wedge, the right early customers, and the right speed toward product-market fit. Replace this footer with your name, email, and phone number if you plan to send the deck as a standalone attachment outside Antler's application form.</p>
+    </div>
+    <div>
+      <div class="final-card"><span class="mini">Why this can be venture-scale</span><p>It starts as commerce, but the bigger business is the fit data layer that can power multiple sellers, brands, and commerce environments.</p></div>
+      <div class="final-card"><span class="mini">What Antler unlocks</span><p>Founder support, sharper business model validation, fast customer discovery, and the first institutional backing to turn the wedge into a repeatable company.</p></div>
+      <div class="final-card"><span class="mini">Vision</span><p>Build the fit layer for circular fashion in Africa and beyond, starting with online thrift where the need is most obvious and the data advantage compounds fastest.</p></div>
+    </div>
+  </div></section>
+</body>
+</html>
